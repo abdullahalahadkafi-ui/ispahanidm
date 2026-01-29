@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>প্রতিষ্ঠানের ইতিহাস | ইস্পাহানি দাখিল মাদ্রাসা</title>
+    
+    <!-- Premium Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <style>
+        :root {
+            --p-green: #006a4e;
+            --s-red: #f42a41;
+            --gold: #b8860b;
+            --white: #ffffff;
+            --bg-paper: #fcfaf5;
+            --hind: 'Hind Siliguri', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--hind); background-color: var(--white); color: #2c3e50; line-height: 1.8; overflow-x: hidden; }
+
+        .premium-nav {
+    background: #ffffff;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    position: fixed; width: 100%; top: 0; z-index: 2000;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    border-bottom: 1px solid #eee;
+}
+.nav-wrapper {
+    width: 90%; max-width: 1250px; margin: auto;
+    display: flex; justify-content: space-between; align-items: center;
+}
+
+/* Logo Section */
+.brand-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand-logo i { font-size: 30px; color: #006a4e; }
+.logo-txt h1 { font-size: 19px; font-weight: 700; color: #333; margin: 0; }
+.logo-txt span { font-size: 10px; color: #888; text-transform: uppercase; }
+
+/* Desktop Menu Styling */
+.nav-menu { display: flex; list-style: none; gap: 20px; align-items: center; }
+.nav-menu li { position: relative; height: 80px; display: flex; align-items: center; }
+.nav-menu a { 
+    text-decoration: none; color: #444; font-weight: 600; font-size: 14px; 
+    padding: 10px 5px; transition: 0.3s;
+}
+.nav-menu a:hover { color: #006a4e; }
+
+/* Arif Azad Style Dropdown */
+.submenu {
+    position: absolute; top: 80px; left: 0; width: 220px;
+    background: #ffffff; border-radius: 0 0 8px 8px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    list-style: none; padding: 15px 0;
+    display: none; transform: translateY(10px); transition: 0.3s;
+}
+.has-dropdown:hover .submenu { display: block; transform: translateY(0); }
+.submenu li { height: auto; display: block; }
+.submenu li a { 
+    display: block; padding: 10px 25px; font-size: 13px; color: #555; font-weight: 500;
+}
+.submenu li a:hover { background: #f8fafc; color: #006a4e; padding-left: 30px; }
+
+.btn-login-round { 
+    background: #006a4e; color: #fff !important; 
+    padding: 8px 22px !important; border-radius: 50px; 
+}
+
+/* PC-তে সাইডবার টগল বাটন হাইড থাকবে */
+.mobile-toggle { display: none; font-size: 24px; color: #006a4e; cursor: pointer; }
+
+/* --- Mobile Sidebar (Right Slide) --- */
+.sidebar-menu {
+    position: fixed; top: 0; right: -300px; width: 300px; height: 100vh;
+    background: #fff; z-index: 3000; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1); overflow-y: auto; padding-top: 20px;
+}
+.sidebar-menu.active { right: 0; }
+
+.sidebar-header { display: flex; justify-content: space-between; padding: 0 25px 20px; border-bottom: 1px solid #eee; }
+.sidebar-header span { font-weight: 800; color: #006a4e; }
+
+.sidebar-content { list-style: none; padding: 20px 0; }
+.m-nav-item, .sidebar-content li a {
+    display: flex; justify-content: space-between; padding: 15px 25px;
+    text-decoration: none; color: #333; font-weight: 600; cursor: pointer;
+}
+
+/* Sidebar Accordion (Dropdown) */
+.m-submenu { list-style: none; background: #f9f9f9; max-height: 0; overflow: hidden; transition: 0.4s ease; }
+.m-submenu.open { max-height: 500px; padding: 10px 0; }
+.m-submenu li a { padding: 10px 45px; font-weight: 400; font-size: 14px; color: #666; }
+
+.m-nav-item i { transition: 0.3s; font-size: 12px; }
+.m-nav-item.active i { transform: rotate(180deg); color: #006a4e; }
+
+.side-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2500; display: none; }
+.side-overlay.active { display: block; }
+
+/* --- Responsive Logic --- */
+@media (max-width: 1024px) {
+    .nav-menu { display: none; } /* পিসি মেনু মোবাইলে হাইড হবে */
+    .mobile-toggle { display: block; } /* মোবাইল বাটন মোবাইলে শো করবে */
+}
+        /* Hero Header */
+        .history-hero { 
+            padding: 150px 8% 80px; 
+            background: linear-gradient(rgba(0,106,78,0.9), rgba(0,106,78,0.7)), url('https://images.unsplash.com/photo-1523050853064-8521a201c833?q=80&w=1500'); 
+            background-size: cover; background-position: center;
+            color: #fff; text-align: center; border-radius: 0 0 50px 50px;
+        }
+        .history-hero h1 { font-size: clamp(30px, 5vw, 48px); margin-bottom: 10px; font-family: var(--hind) }
+
+        /* Main Content Container */
+        .container { max-width: 800px; margin: 25px auto;}
+        
+        .content-card { 
+            padding: 30px; border-radius: 30px; 
+            position: relative; overflow: hidden;
+        }
+        .content-card::before { content: "\f02d"; font-family: "Font Awesome 5 Free"; font-weight: 900; position: absolute; top: -20px; right: -20px; font-size: 150px; color: rgba(0,106,78,0.03); }
+
+        .article-title { font-size: 32px; color: var(--p-green); margin-bottom: 25px; border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 5px; }
+        .paragraph { margin-bottom: 25px; text-align: justify; font-size: 18px; color: #444; }
+        .highlight { color: var(--p-green); font-weight: 700; }
+
+        /* Stats Section */
+        .history-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 40px 0; }
+        .stat-box { background: #f0fdf4; padding: 25px; border-radius: 20px; text-align: center; border: 1px solid #dcfce7; }
+        .stat-box i { font-size: 30px; color: var(--p-green); margin-bottom: 10px; }
+        .stat-box h4 { font-size: 24px; color: var(--p-green); }
+
+        /* Founder Box */
+        .founder-tribute { background: #f6fffbbb; border: 1px solid #eee; padding: 30px; border-radius: 20px; display: flex; align-items: center; gap: 25px; margin-top: 50px; }
+        .founder-img { width: 120px; border-radius: 50%; border: 4px solid var(--gold); object-fit: cover; }
+
+        /* Footer */
+        footer { background: #111; color: white; padding: 80px 8% 20px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+        .social-icons { display: flex; gap: 20px; margin-top: 20px; font-size: 25px; }
+        .social-icons a{color: #999;}
+
+        .footer-bottom { border-top: 1px solid #333; margin-top: 50px; padding-top: 20px; text-align: center; }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .result-container, .footer-grid, .stats { grid-template-columns: 1fr; }
+            .form-grid { grid-template-columns: 1fr; }
+            .btn-submit { grid-column: span 1; }
+            nav { display: none; }
+            .hero h2 { font-size: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+<nav class="premium-nav">
+    <div class="nav-wrapper">
+        <!-- Logo -->
+        <a href="index.html" class="brand-logo">
+            <i class="fas fa-mosque"></i>
+            <div class="logo-txt">
+                <h1>ইস্পাহানি দাখিল মাদ্রাসা</h1>
+            </div>
+        </a>
+
+        <!-- Desktop Menu -->
+        <ul class="nav-menu">
+            <li><a href="index.html">শুরু</a></li>
+            
+            <li class="has-dropdown">
+                <a href="#">প্রতিষ্ঠানের তথ্য <i class="fas fa-angle-down"></i></a>
+                <ul class="submenu">
+                    <li><a href="history.html">মাদ্রাসার ইতিহাস</a></li>
+                    <li><a href="about.html">আমাদের সম্পর্কে</a></li>
+                    <li><a href="#">প্রতিষ্ঠানের স্বীকৃতি</a></li>
+                    <li><a href="#">ম্যানেজিং কমিটি</a></li>
+                </ul>
+            </li>
+
+            <li class="has-dropdown">
+                <a href="#">প্রশাসন <i class="fas fa-angle-down"></i></a>
+                <ul class="submenu">
+                    <li><a href="https://bn.wikipedia.org/wiki/%E0%A6%87%E0%A6%B8%E0%A7%8D%E0%A6%AA%E0%A6%BE%E0%A6%B9%E0%A6%BE%E0%A6%A8%E0%A6%BF_%E0%A6%AA%E0%A6%B0%E0%A6%BF%E0%A6%AC%E0%A6%BE%E0%A6%B0">ইস্পাহানী পরিবার</a></li>
+                    <li><a href="supar_speech.html">সুপারিনটেনডেন্ট মহোদয়ের বাণী</a></li>
+                    <li><a href="teachers.html">শিক্ষকমন্ডলীর তথ্য</a></li>
+                    <li><a href="workers.html">কর্মচারীদের তথ্য</a></li>
+                    <li><a href="privacy.html">প্রাইভেসি পলিসি</a></li>
+                </ul>
+            </li>
+
+            <li class="has-dropdown">
+                <a href="#">একাডেমিক <i class="fas fa-angle-down"></i></a>
+                <ul class="submenu">
+                    <li><a href="activities.html">কার্যক্রম</a></li>
+                    <li><a href="notice.html">নোটিশ বোর্ড</a></li>
+                    <li><a href="class-rutin.html">ক্লাস রুটিন</a></li>
+                </ul>
+            </li>
+
+            <li class="has-dropdown">
+                <a href="#">ফলাফল <i class="fas fa-angle-down"></i></a>
+                <ul class="submenu">
+                    <li><a href="result.html">একাডেমিক ফলাফল</a></li>
+                    <li><a href="http://www.educationboardresults.gov.bd/">বোর্ড ফলাফল</a></li>
+                </ul>
+            </li>
+
+            <li><a href="gallery.html">গ্যালারি</a></li>
+
+            <li><a href="contact.html">যোগাযোগ</a></li>
+            <li><a href="login.html" class="btn-login-round">লগইন</a></li>
+        </ul>
+
+        <!-- Mobile Toggle -->
+        <div class="mobile-toggle" onclick="openSidebar()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</nav>
+
+<!-- মোবাইল সাইডবার (স্লাইড মেনু) -->
+<div id="mobileSidebar" class="sidebar-menu">
+    <div class="sidebar-header">
+        <span>মেনুবার</span>
+        <i class="fas fa-times" onclick="closeSidebar()"></i>
+    </div>
+    <ul class="sidebar-content">
+        <li><a href="index.html">হোম</a></li>
+        
+        <li class="m-has-dropdown">
+            <div class="m-nav-item" onclick="toggleMSub('m1', this)">
+                <span>প্রতিষ্ঠানের তথ্য</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <ul id="m1" class="m-submenu">
+                <li><a href="history.html">মাদ্রাসার ইতিহাস</a></li>
+                <li><a href="about.html">আমাদের সম্পর্কে</a></li>
+                <li><a href="#">প্রতিষ্ঠানের স্বীকৃতি</a></li>
+                <li><a href="#">ম্যানেজিং কমিটি</a></li>
+            </ul>
+        </li>
+
+        <li class="m-has-dropdown">
+            <div class="m-nav-item" onclick="toggleMSub('m2', this)">
+                <span>প্রশাসন</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <ul id="m2" class="m-submenu">
+                <li><a href="https://bn.wikipedia.org/wiki/%E0%A6%87%E0%A6%B8%E0%A7%8D%E0%A6%AA%E0%A6%BE%E0%A6%B9%E0%A6%BE%E0%A6%A8%E0%A6%BF_%E0%A6%AA%E0%A6%B0%E0%A6%BF%E0%A6%AC%E0%A6%BE%E0%A6%B0">ইস্পাহানি পরিবার</a></li>
+                <li><a href="history.html">সুপারিনটেনডেন্ট মহোদয়ের বাণী</a></li>
+                <li><a href="teachers.html">শিক্ষকমন্ডলীর তথ্য</a></li>
+                <li><a href="workers.html">কর্মচারী তথ্য</a></li>
+                <li><a href="privacy.html">প্রাইভেসি পলিসি</a></li>
+            </ul>
+        </li>
+
+        <li class="m-has-dropdown">
+            <div class="m-nav-item" onclick="toggleMSub('m4', this)">
+                <span>একাডেমিক</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <ul id="m4" class="m-submenu">
+                <li><a href="result.html">কার্যক্রম</a></li>
+                <li><a href="notice.html">নোটিস বোর্ড</a></li>
+                <li><a href="class-rutin.html">ক্লাস রুটিন</a></li>
+            </ul>
+        </li>
+
+        <li class="m-has-dropdown">
+            <div class="m-nav-item" onclick="toggleMSub('m3', this)">
+                <span>ফলাফল</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <ul id="m3" class="m-submenu">
+                <li><a href="result.html">একাডেমিক ফলাফল</a></li>
+                <li><a href="http://www.educationboardresults.gov.bd/">বোর্ড ফলাফল</a></li>
+            </ul>
+        </li>
+        <li><a href="gallery.html">গ্যালারি</a></li>
+        <li><a href="contact.html">যোগাযোগ</a></li>
+        <li><a href="login.html">লগইন</a></li>
+    </ul>
+</div>
+
+<!-- শ্যাডো ওভারলে -->
+<div id="sideOverlay" class="side-overlay" onclick="closeSidebar()"></div>
+
+
+    <!-- Hero -->
+    <header class="history-hero">
+        <div class="animate__animated animate__fadeInDown">
+            <h1>প্রতিষ্ঠানের ইতিহাস ও ঐতিহ্য</h1>
+            <p>সুদীর্ঘ সময়ের পথ পরিক্রমায় আলোকোজ্জ্বল আগামীর পথে</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <main class="content-card animate__animated animate__fadeIn">
+            <h2 class="article-title">প্রতিষ্ঠার প্রেক্ষাপট</h2>
+            
+            <p class="paragraph">
+                চট্টগ্রাম সিটি কর্পোরেশনের চান্দগাঁও থানাধীন ৫নং মোহরা ওয়ার্ডে অবস্থিত <span class="highlight">ইস্পাহানি দাখিল মাদ্রাসা</span> অত্র এলাকার দ্বীনি ও আধুনিক শিক্ষার এক অনন্য মারকাজ। উপমহাদেশের প্রখ্যাত শিল্প পরিবার ইস্পাহানি শিল্পগোষ্ঠীর সাবেক চেয়ারম্যান ও বিদ্যানুরাগী ব্যক্তিত্ব <span class="highlight">মরহুম জনাব মির্জা আহমেদ ইস্পাহানি</span> সাহেবের সুদূরপ্রসারী চিন্তার ফসল হিসেবে এই শিক্ষা প্রতিষ্ঠানটি যাত্রা শুরু করে।
+            </p>
+
+            <p class="paragraph">
+                ১৯৭০ সালের দিকে যখন অত্র অঞ্চলে মানসম্মত দ্বীনি শিক্ষার তীব্র অভাব ছিল, তখন ইস্পাহানি শিল্পগোষ্ঠীর কর্মকর্তা-কর্মচারীদের সন্তান এবং স্থানীয় পিছিয়ে পড়া জনগোষ্ঠীর নৈতিক ও বৈষয়িক শিক্ষার চাহিদা পূরণের লক্ষ্যে এই মাদ্রাসাটি প্রতিষ্ঠা করা হয়। ক্ষুদ্র পরিসরে যাত্রা শুরু করলেও আজ এটি একটি পূর্ণাঙ্গ দাখিল মাদ্রাসা হিসেবে শিক্ষা অঙ্গনে গৌরব উজ্জ্বল স্থান দখল করে নিয়েছে।
+            </p>
+
+            <div class="history-stats">
+                <div class="stat-box">
+                    <i class="fas fa-user-graduate"></i>
+                    <h4>৮০০+</h4>
+                    <p>শিক্ষার্থী</p>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h4>২৫ জন</h4>
+                    <p>দক্ষ শিক্ষক</p>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-award"></i>
+                    <h4>১০০%</h4>
+                    <p>সাফল্যের হার</p>
+                </div>
+            </div>
+
+            <h2 class="article-title">বর্তমান অবস্থা ও শিক্ষা ব্যবস্থা</h2>
+            <p class="paragraph">
+                বর্তমানে মাদ্রাসাটি বাংলাদেশ মাদ্রাসা শিক্ষা বোর্ড কর্তৃক এম্পিও (MPO) ভুক্ত এবং ইস্পাহানি গ্রুপের প্রত্যক্ষ তত্ত্বাবধানে অত্যন্ত সুনামের সাথে পরিচালিত হচ্ছে। মাদ্রাসার বর্তমান সুপারিনটেনডেন্ট <span class="highlight">মাওলানা মোহাম্মদ আব্দুল হামিদ</span> সাহেবের যোগ্য নেতৃত্বে বর্তমানে ২৫ জন অভিজ্ঞ শিক্ষক মণ্ডলী পাঠদান করছেন। মাদ্রাসায় বর্তমানে প্রায় ৮০০ জন শিক্ষার্থী অধ্যয়নরত আছে। 
+            </p>
+
+            <p class="paragraph">
+                আমরা শিক্ষার্থীদের একাডেমিক পড়াশোনার পাশাপাশি নৈতিক চরিত্র গঠন এবং কারিগরি জ্ঞান প্রদানে বিশ্বাসী। বর্তমানে আমাদের মাদ্রাসায় বিজ্ঞান ও ব্যবসায় শিক্ষা শাখা না থাকলেও, সাধারণ (General) বিভাগে আমরা সর্বোচ্চ মান বজায় রাখি। আমাদের শিক্ষার্থীরা নিয়মিতভাবে দাখিল পরীক্ষায় জিপিএ-৫ সহ চমৎকার ফলাফল অর্জন করে রাষ্ট্রের গুরুত্বপূর্ণ স্তরে অবদান রাখছে।
+            </p>
+
+            <h2 class="article-title">আধুনিকায়ন ও ভবিষ্যৎ পরিকল্পনা</h2>
+            <p class="paragraph">
+                ইস্পাহানি শিল্পগোষ্ঠীর বর্তমান চেয়ারম্যান ও মাদ্রাসা পরিচালনা কমিটির সম্মানিত সভাপতি <span class="highlight">জনাব মির্জা সালমান ইস্পাহানি</span> সাহেবের বদান্যতায় মাদ্রাসার অবকাঠামো ও প্রযুক্তিগত প্রভূত উন্নয়ন সাধিত হয়েছে। মাদ্রাসার আধুনিক বহুতল ভবন এবং ডিজিটাল ক্লাসরুম স্থাপনের মাধ্যমে এটি এখন চট্টগ্রামের অন্যতম দৃষ্টিনন্দন ও আধুনিক শিক্ষা প্রতিষ্ঠানে রূপান্তরিত হতে যাচ্ছে। শিক্ষার্থীদের ক্রমবর্ধমান চাপের মধ্যেও শিক্ষার মান বজায় রাখতে আমরা সদা সচেষ্ট।
+            </p>
+
+            <div class="founder-tribute">
+                <img src="mirza_ahmed.jpg" alt="Founder" class="founder-img">
+                <div>
+                    <h3 style="color:var(--p-green)">মরহুম মির্জা আহমেদ ইস্পাহানি</h3>
+                    <p style="font-size:14px; color:#666;">প্রতিষ্ঠাতা ও স্বপ্নদ্রষ্টা, ইস্পাহানি গ্রুপ</p>
+                    <p style="margin-top:5px; font-style:italic; font-size:13px;">"জ্ঞানের প্রসারের মাধ্যমেই একটি সুন্দর সমাজ গঠন সম্ভব।"</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+     <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h3>ইস্পাহানি দাখিল মাদ্রাসা</h3>
+                <p style="color: #888; margin-top: 15px;">ইস্পাহানি শিল্পগোষ্ঠীর সরাসরি তত্ত্বাবধানে পরিচালিত একটি আধুনিক ও আদর্শ শিক্ষা প্রতিষ্ঠান। নৈতিক মূল্যবোধ ও প্রযুক্তিগত শিক্ষার সমন্বয়ে আমরা ছাত্র-ছাত্রীদের ভবিষ্যৎ উজ্জ্বল করি।</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/people/%E0%A6%87%E0%A6%B8%E0%A7%8D%E0%A6%AA%E0%A6%BE%E0%A6%B9%E0%A6%BE%E0%A6%A8%E0%A7%80-%E0%A6%A6%E0%A6%96%E0%A6%BF%E0%A6%B2-%E0%A6%AE%E0%A6%BE%E0%A6%A6%E0%A7%8D%E0%A6%B0%E0%A6%BE%E0%A6%B8%E0%A6%BE/61575785404475/"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/8801814727204"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:info.idm@gmail.com"> <i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4>কুইক লিঙ্ক</h4>
+                <ul style="list-style: none; margin-top: 15px; line-height: 2; color: #999;">
+                    <li><a href="result.html" style="color: #999; text-decoration: none;">একাডেমিক ফলাফল</a></li>
+                    <li><a href="history.html" style="color: #999; text-decoration: none;">মাদ্রাসার ইতিহাস</a></li>
+                    <li><a href="supar_speech.html" style="color: #999; text-decoration: none;">সুপারিনটেনডেন্ট মহোদয়ের বাণী</a></li>
+                    <li><a href="teachers.html" style="color: #999; text-decoration: none;">শিক্ষকমন্ডলীর তথ্য</a></li>
+                    <li><a href="contact.html" style="color: #999; text-decoration: none;">যোগাযোগ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>অফিসিয়াল</h4>
+                <ul style="list-style: none; margin-top: 15px; line-height: 2;">
+                    <li><a href="http://www.educationboardresults.gov.bd/" style="color: #999; text-decoration: none;">বোর্ড ফলাফল</a></li>
+                    <li><a href="https://bmeb.gov.bd/" style="color: #999; text-decoration: none;">মাদ্রাসা বোর্ড</a></li>
+                    <li><a href="https://dme.gov.bd/" style="color: #999; text-decoration: none;">মাদ্রাসা শিক্ষা অধিদপ্তর </a></li>
+                    <li><a href="https://nctb.gov.bd/" style="color: #999; text-decoration: none;">এনসিটিবি</a></li>
+                    <li><a href="https://shed.gov.bd/" style="color: #999; text-decoration: none;">কারিগরি ও মাদ্রাসা শিক্ষা বিভাগ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>ঠিকানা</h4>
+                <p style="color: #888; margin-top: 15px;">Website: <a href="https://ispahanidm.onrender.com" style="color: #999; text-decoration: none;">www.ispahanidm.onrender.com</a><br></a>E-mail:<a href="mailto:info.idm@gmail.com" style="color: #999; text-decoration: none;"> info.idm@gmail.com</a><br>Location: Mohara, Chandgaon, Chattogram<br>Phone: +8801814727204</p>
+            </div>
+        </div>
+        <div class="footer-bottom" style="color: #888; padding: 25px;">
+            <p>&copy; 2026 Ispahani Dakhil Madrasah<br>Designed & Developed by <a href="https://www.facebook.com/profile.php?id=61564242167643"style="color: #888; text-decoration: none;">Kafi Ahad</a></p>
+        </div>
+    </footer>
+
+    <script>
+       function openSidebar() {
+    document.getElementById('mobileSidebar').classList.add('active');
+    document.getElementById('sideOverlay').classList.add('active');
+}
+
+function closeSidebar() {
+    document.getElementById('mobileSidebar').classList.remove('active');
+    document.getElementById('sideOverlay').classList.remove('active');
+}
+
+function toggleMSub(id, element) {
+    const sub = document.getElementById(id);
+    element.classList.toggle('active'); // তীরের আইকন ঘোরানোর জন্য
+    sub.classList.toggle('open'); // মেনু নিচে স্লাইড করার জন্য
+}
+    </script>
+
+</body>
+</html>
