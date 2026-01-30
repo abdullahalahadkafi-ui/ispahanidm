@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>পরীক্ষার ফলাফল | ইস্পাহানি দাখিল মাদ্রাসা</title>
+    <title>নোটিশ বোর্ড | ইস্পাহানি দাখিল মাদ্রাসা - অফিশিয়াল আপডেট</title>
     
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- Premium Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
     <style>
         /* --- ELITE UI ENGINE --- */
         :root {
-            --primary-green: #006a4e;
-            --btn-green: #15803d;
-            --bg-light: #f3f4f6;
+            --p-green: #006a4e;
+            --s-red: #f42a41;
+            --gold: #b8860b;
+            --bg: #f8fafc;
             --white: #ffffff;
-            --text-dark: #374151;
-            --border: #d1d5db;
+            --text-dark: #333333;
             --hind: 'Hind Siliguri', sans-serif;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: var(--hind); background-color: var(--bg-light); color: var(--text-dark); overflow-x: hidden; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-style: normal !important; }
+        body { font-family: var(--hind); background-color: var(--bg); color: var(--text-dark); line-height: 1.7; overflow-x: hidden; }
 
-                /* --- PREMIUM NAV STYLES --- */
+         /* --- PREMIUM NAV STYLES --- */
 .premium-nav {
     background: #ffffff;
     height: 80px;
@@ -111,45 +111,34 @@
     .nav-menu { display: none; } /* পিসি মেনু মোবাইলে হাইড হবে */
     .mobile-toggle { display: block; } /* মোবাইল বাটন মোবাইলে শো করবে */
 }
+        /* --- HERO AREA --- */
+        .notice-hero { padding: 140px 8% 60px; background: var(--p-green); color: #fff; text-align: center; border-radius: 0 0 50px 50px; }
+        .notice-hero h1 { font-size: 38px; font-weight: 700; margin-bottom: 10px; }
 
-        /* --- RESULT CARD DESIGN (Matching Screenshot) --- */
-        .portal-wrapper { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 120px 20px 60px; }
+        /* --- NOTICE BOARD LAYOUT --- */
+        .container { max-width: 1100px; margin: 50px auto; padding: 0 20px; }
         
-        .result-card { 
-            background: var(--white); padding: 40px 30px; border-radius: 15px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08); width: 100%; max-width: 500px; text-align: center;
-        }
+        /* Category Filter */
+        .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; justify-content: center; }
+        .filter-btn { padding: 8px 20px; background: #fff; border: 1px solid #ddd; border-radius: 50px; cursor: pointer; font-weight: 600; font-size: 14px; transition: 0.3s; }
+        .filter-btn.active { background: var(--p-green); color: #fff; border-color: var(--p-green); }
 
-        .card-header { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 30px; }
-        .card-header img { width: 50px; }
-        .card-header h2 { font-family: 'Playfair Display', serif; font-size: 24px; color: #4b5563; letter-spacing: 1px; }
-
-        .form-group { text-align: left; margin-bottom: 20px; }
-        .form-group label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px; color: #4b5563; }
+        /* Notice Items */
+        .notice-card { background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); border: 1px solid #eee; margin-bottom: 20px; display: flex; align-items: center; padding: 20px; transition: 0.3s; }
+        .notice-card:hover { transform: scale(1.01); border-left: 6px solid var(--s-red); }
         
-        input, select { 
-            width: 100%; padding: 12px 15px; border: 1px solid var(--border); 
-            border-radius: 8px; font-size: 15px; outline: none; transition: 0.3s;
-            color: #6b7280; background: #fff;
-        }
-        input:focus, select:focus { border-color: var(--primary-green); box-shadow: 0 0 0 3px rgba(0, 106, 78, 0.1); }
+        .date-box { min-width: 70px; height: 70px; background: #f1f5f9; border-radius: 15px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: 800; color: var(--p-green); line-height: 1.2; margin-right: 25px; }
+        .date-box span { font-size: 12px; font-weight: 400; color: #666; }
 
-        .btn-show { 
-            width: 100%; padding: 15px; background: var(--btn-green); color: white; 
-            border: none; border-radius: 8px; font-weight: 700; font-size: 18px; 
-            cursor: pointer; margin-top: 10px; transition: 0.3s;
-        }
-        .btn-show:hover { background: #166534; transform: translateY(-2px); }
+        .notice-info { flex-grow: 1; }
+        .notice-info h3 { font-size: 18px; margin-bottom: 5px; color: #111; }
+        .notice-tag { font-size: 11px; background: #e0f2fe; color: #0369a1; padding: 2px 10px; border-radius: 50px; font-weight: 700; text-transform: uppercase; }
 
-        /* --- MARKSHEET DISPLAY --- */
-        #marksheet-area { display: none; margin-top: 40px; }
-        .marksheet { 
-            background: #fff; padding: 50px; border-radius: 5px; border: 2px solid #333; 
-            text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.1); color: #000;
-        }
-        .marks-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        .marks-table th, .marks-table td { border: 1px solid #ddd; padding: 12px; text-align: center; }
-        .marks-table th { background: #f9fafb; }
+        .btn-download { background: #f8fafc; border: 1px solid #ddd; padding: 10px 15px; border-radius: 10px; color: var(--s-red); cursor: pointer; transition: 0.3s; }
+        .btn-download:hover { background: var(--s-red); color: #fff; }
+
+        .article-card { background: white; padding: 20px; border-radius: 20px; margin-top: 60px;box-shadow: 1px 4px 10px #1111110d; line-height: 1.8; }
+        .article-card h2 { color: var(--p-green); margin-bottom: 20px; font-size: 26px; }
 
         /* Footer */
         footer { background: #111; color: white; padding: 80px 8% 20px; }
@@ -210,7 +199,7 @@
             <li class="has-dropdown">
                 <a href="#">একাডেমিক <i class="fas fa-angle-down"></i></a>
                 <ul class="submenu">
-                    <li><a href="activities.html">কার্যক্রম</a></li>
+                    <li><a href="academic.html">কার্যক্রম</a></li>
                     <li><a href="notice.html">নোটিশ বোর্ড</a></li>
                     <li><a href="class-rutin.html">ক্লাস রুটিন</a></li>
                 </ul>
@@ -266,7 +255,7 @@
             </div>
             <ul id="m2" class="m-submenu">
                 <li><a href="https://bn.wikipedia.org/wiki/%E0%A6%87%E0%A6%B8%E0%A7%8D%E0%A6%AA%E0%A6%BE%E0%A6%B9%E0%A6%BE%E0%A6%A8%E0%A6%BF_%E0%A6%AA%E0%A6%B0%E0%A6%BF%E0%A6%AC%E0%A6%BE%E0%A6%B0">ইস্পাহানি পরিবার</a></li>
-                <li><a href="history.html">সুপারিনটেনডেন্ট মহোদয়ের বাণী</a></li>
+                <li><a href="supar_speech.html">সুপারিনটেনডেন্ট মহোদয়ের বাণী</a></li>
                 <li><a href="teachers.html">শিক্ষকমন্ডলীর তথ্য</a></li>
                 <li><a href="workers.html">কর্মচারী তথ্য</a></li>
                 <li><a href="privacy.html">প্রাইভেসি পলিসি</a></li>
@@ -279,7 +268,7 @@
                 <i class="fas fa-chevron-down"></i>
             </div>
             <ul id="m4" class="m-submenu">
-                <li><a href="result.html">কার্যক্রম</a></li>
+                <li><a href="academic.html">কার্যক্রম</a></li>
                 <li><a href="notice.html">নোটিস বোর্ড</a></li>
                 <li><a href="class-rutin.html">ক্লাস রুটিন</a></li>
             </ul>
@@ -304,77 +293,65 @@
 <!-- শ্যাডো ওভারলে -->
 <div id="sideOverlay" class="side-overlay" onclick="closeSidebar()"></div>
 
-    <div class="portal-wrapper">
-        <div class="result-card animate__animated animate__fadeIn">
-            <div class="card-header">
-                <img src="https://cdn-icons-png.flaticon.com/512/3222/3222800.png" alt="Icon">
-                <h2>GET RESULT</h2>
-            </div>
+    <!-- Hero -->
+    <header class="notice-hero">
+        <div class="animate__animated animate__fadeInDown">
+            <h1>নোটিশ বোর্ড</h1>
+            <p>মাদ্রাসার সকল জরুরী ঘোষণা ও একাডেমিক আপডেট এখন অনলাইনে</p>
+        </div>
+    </header>
 
-            <!-- Form -->
-            <div class="form-group">
-                <label>Student ID</label>
-                <input type="text" id="studentId" placeholder="Enter Student Id">
-            </div>
-
-            <div class="form-group">
-                <label>Select Class</label>
-                <select id="selectClass">
-                    <option value="">Select a class</option>
-                    <option>One</option><option>Two</option><option>Three</option>
-                    <option>Four</option><option>Five</option><option>Six</option>
-                    <option>Seven</option><option>Eight</option><option>Nine</option>
-                    <option>Dakhil</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Select Term</label>
-                <select id="selectTerm">
-                    <option value="">Select a term</option>
-                    <option>1st Term Examination</option>
-                    <option>Half Yearly Examination</option>
-                    <option>Annual Examination</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Session</label>
-                <select id="selectSession">
-                    <option>2026</option>
-                    <option>2025-2026</option>
-                    <option>2024-2025</option>
-                    <option>2023-2024</option>
-                </select>
-            </div>
-
-            <button class="btn-show" onclick="fetchResult()">Show Marks</button>
+    <div class="container">
+        
+        <!-- Category Filter -->
+        <div class="filter-bar">
+            <button class="filter-btn active">সব নোটিশ</button>
+            <button class="filter-btn">একাডেমিক</button>
+            <button class="filter-btn">পরীক্ষা</button>
+            <button class="filter-btn">ভর্তি</button>
+            <button class="filter-btn">ছুটি</button>
         </div>
 
-        <!-- Marksheet Display Area -->
-        <div id="marksheet-area" class="container">
-            <div class="marksheet" id="printable-ms">
-                <div style="text-align: center; border-bottom: 2px solid #000; padding-bottom: 15px; margin-bottom: 20px;">
-                    <h1 style="font-size: 24px;">ইস্পাহানি দাখিল মাদ্রাসা</h1>
-                    <p>একাডেমিক মার্কশিট / ফলাফল বিবরণী</p>
+        <!-- Notice List -->
+        <div class="notice-list-wrapper">
+            <!-- Notice 1 -->
+            <div class="notice-card animate__animated animate__fadeInUp">
+                <div class="date-box">২৯<span>জানু, ২৬</span></div>
+                <div class="notice-info">
+                    <span class="notice-tag">পরীক্ষা</span>
+                    <h3>দাখিল পরীক্ষা ২০২৬ এর প্রবেশপত্র বিতরণ সংক্রান্ত বিজ্ঞপ্তি</h3>
+                    <p style="font-size: 13px; color: #777;">পরীক্ষার্থীদের আগামী ২রা ফেব্রুয়ারির মধ্যে অফিস থেকে প্রবেশপত্র সংগ্রহের অনুরোধ করা হলো।</p>
                 </div>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
-                    <p>নাম: <b id="res-name"></b></p>
-                    <p>আইডি: <b id="res-id"></b></p>
-                </div>
-                <p>শ্রেণী: <b id="res-class"></b> | সেশন: <b id="res-session"></b></p>
-
-                <table class="marks-table">
-                    <thead>
-                        <tr><th>বিষয়</th><th>প্রাপ্ত নম্বর</th><th>গ্রেড</th></tr>
-                    </thead>
-                    <tbody id="marks-body"></tbody>
-                </table>
-                
-                <div style="margin-top: 30px; text-align: center;">
-                    <button class="btn-show" style="max-width: 200px; background: #333;" onclick="window.print()">Print Marksheet</button>
-                </div>
+                <button class="btn-download"><i class="fas fa-file-pdf"></i> PDF</button>
             </div>
+
+            <!-- Notice 2 -->
+            <div class="notice-card animate__animated animate__fadeInUp" style="animation-delay: 0.1s;">
+                <div class="date-box">২৫<span>জানু, ২৬</span></div>
+                <div class="notice-info">
+                    <span class="notice-tag">একাডেমিক</span>
+                    <h3>বার্ষিক ক্রীড়া ও সাংস্কৃতিক প্রতিযোগিতার চূড়ান্ত সময়সূচী</h3>
+                    <p style="font-size: 13px; color: #777;">আগামী ১০ই ফেব্রুয়ারি মাদ্রাসার খেলার মাঠে বার্ষিক অনুষ্ঠান অনুষ্ঠিত হবে।</p>
+                </div>
+                <button class="btn-download"><i class="fas fa-file-pdf"></i> PDF</button>
+            </div>
+
+            <!-- Notice 3 -->
+            <div class="notice-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                <div class="date-box">১০<span>জানু, ২৬</span></div>
+                <div class="notice-info">
+                    <span class="notice-tag">ভর্তি</span>
+                    <h3>২০২৬ শিক্ষাবর্ষে ইবতেদায়ী ও দাখিল শাখায় ভর্তি বিজ্ঞপ্তি</h3>
+                    <p style="font-size: 13px; color: #777;">আগ্রহী শিক্ষার্থীদের আগামী ১৫ই জানুয়ারির মধ্যে আবেদন ফরম জমা দিতে হবে।</p>
+                </div>
+                <button class="btn-download"><i class="fas fa-file-pdf"></i> PDF</button>
+            </div>
+        </div>
+
+        <article class="article-card">
+            <h2>ডিজিটাল শিক্ষা ব্যবস্থায় অনলাইন নোটিশ বোর্ডের গুরুত্ব</h2>
+            <p>বর্তমান তথ্য-প্রযুক্তির যুগে শিক্ষা প্রতিষ্ঠানগুলোতে অনলাইন নোটিশ বোর্ড একটি অপরিহার্য অংশ হয়ে দাঁড়িয়েছে। আগে যখন কোনো নোটিশ বা ঘোষণা দেওয়া হতো, তা কেবল মাদ্রাসার দেওয়ালে টাঙানো থাকতো। ফলে অনেক সময় অভিভাবক বা দূরে থাকা শিক্ষার্থীরা গুরুত্বপূর্ণ তথ্য সময়মতো জানতে পারতো না। ইস্পাহানি দাখিল মাদ্রাসা তাদের ডিজিটাল রূপান্তরের অংশ হিসেবে এই অনলাইন নোটিশ বোর্ড চালু করেছে।</p>
+            <p>এর ফলে এখন থেকে যেকোনো শিক্ষার্থী বা অভিভাবক পৃথিবীর যেকোনো প্রান্ত থেকে স্মার্টফোনের মাধ্যমেই প্রতিদিনের আপডেট জানতে পারবে। পরীক্ষার রুটিন, রেজাল্ট প্রকাশের তারিখ বা বিশেষ ছুটির ঘোষণা এখন মুহূর্তের মধ্যেই সবার কাছে পৌঁছে যাচ্ছে। এটি একদিকে যেমন সময় সাশ্রয় করে, অন্যদিকে মাদ্রাসার প্রশাসনিক কাজে গতিশীলতা ও স্বচ্ছতা নিশ্চিত করে। আমরা বিশ্বাস করি, প্রযুক্তির এই ব্যবহার আমাদের শিক্ষার্থীদের আধুনিক বিশ্বের সাথে তাল মিলিয়ে চলতে সাহায্য করবে।</p>
         </div>
     </div>
 
@@ -419,7 +396,6 @@
             <p>&copy; 2026 Ispahani Dakhil Madrasah<br>Designed & Developed by <a href="https://www.facebook.com/profile.php?id=61564242167643"style="color: #0fac9f; font-weight: 600; text-decoration: none;">Kafi Ahad</a></p>
         </div>
     </footer>
-
 
     <script>
        function openSidebar() {

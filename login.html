@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>লগইন পোর্টাল | ইস্পাহানি দাখিল মাদ্রাসা</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <style>
+        :root {
+            --primary: #006a4e;
+            --secondary: #f42a41;
+            --bg: #f0f2f5;
+            --white: #ffffff;
+            --hind: 'Hind Siliguri', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--hind); background-color: var(--bg); overflow-x: hidden; }
+
+        /* --- NAVIGATION --- */
+        nav { 
+            background: var(--white); padding: 10px 8%; display: flex; justify-content: space-between; 
+            align-items: center; position: sticky; top: 0; z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-bottom: 2px solid var(--primary);
+        }
+        .logo { font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 800; color: var(--primary); text-decoration: none; }
+
+        /* --- LOGIN PORTAL BOX --- */
+        .portal-wrapper { min-height: 90vh; display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
+        .login-card { 
+            background: var(--white); padding: 40px; border-radius: 30px; 
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1); width: 100%; max-width: 500px; text-align: center;
+        }
+        .login-card h2 { color: var(--primary); margin-bottom: 30px; font-size: 26px; }
+
+        /* User Tabs */
+        .user-tabs { display: flex; background: #f1f5f9; padding: 5px; border-radius: 15px; margin-bottom: 25px; }
+        .tab { flex: 1; padding: 10px; border-radius: 10px; cursor: pointer; font-weight: 700; font-size: 14px; transition: 0.3s; color: #64748b; }
+        .tab.active { background: var(--primary); color: #white; box-shadow: 0 5px 15px rgba(0, 106, 78, 0.2); color: white; }
+
+        /* Form Controls */
+        .form-group { text-align: left; margin-bottom: 15px; }
+        label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 5px; color: #475569; }
+        input { width: 100%; padding: 13px; border: 2px solid #e2e8f0; border-radius: 12px; outline: none; transition: 0.3s; font-family: var(--hind); }
+        input:focus { border-color: var(--primary); }
+
+        /* Buttons */
+        .btn-login { width: 100%; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 12px; font-weight: 800; font-size: 18px; cursor: pointer; margin-top: 10px; transition: 0.3s; }
+        .btn-login:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 106, 78, 0.2); }
+
+        .google-btn { 
+            width: 100%; padding: 12px; background: #fff; border: 1px solid #ddd; 
+            border-radius: 12px; margin-top: 15px; cursor: pointer; 
+            display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 600;
+        }
+
+        /* Information Section for AdSense */
+        .info-card { max-width: 800px; margin: 40px auto; padding: 30px; background: white; border-radius: 20px; border-left: 10px solid var(--secondary); }
+
+        footer { background: #0f172a; color: #94a3b8; padding: 40px; text-align: center; margin-top: 50px; }
+
+        #additional-fields { display: none; margin-top: 20px; border-top: 2px dashed #eee; padding-top: 20px; }
+
+        @media (max-width: 600px) { .login-card { padding: 30px 20px; } }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">ইস্পাহানি দাখিল মাদ্রাসা</a>
+        <a href="index.html" style="text-decoration:none; font-weight:700; color:var(--primary); font-size:14px;">← হোমে যান</a>
+    </nav>
+
+    <div class="portal-wrapper">
+        <div class="login-card animate__animated animate__zoomIn">
+            <h2>লগইন পোর্টাল</h2>
+            
+            <div class="user-tabs">
+                <div class="tab active" onclick="switchTab('student', this)">ছাত্র</div>
+                <div class="tab" onclick="switchTab('teacher', this)">শিক্ষক</div>
+                <div class="tab" onclick="switchTab('parent', this)">অভিভাবক</div>
+            </div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>ইমেইল বা ইউজার আইডি</label>
+                    <input type="text" id="email" placeholder="example@mail.com" required>
+                </div>
+                <div class="form-group">
+                    <label>পাসওয়ার্ড</label>
+                    <input type="password" id="password" placeholder="******" required>
+                </div>
+
+                <button type="submit" class="btn-login">প্রবেশ করুন</button>
+            </form>
+
+            <button class="google-btn">
+                <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" width="20">
+                গুগল দিয়ে লগইন করুন
+            </button>
+
+            <!-- লগইন করার পর এই অংশটি পপ-আপ হবে তথ্য নেওয়ার জন্য -->
+            <div id="additional-fields">
+                <h4 style="margin-bottom:15px; color:var(--secondary);">আপনার তথ্য আপডেট করুন</h4>
+                <div class="form-group">
+                    <label id="label-class">শ্রেণী</label>
+                    <input type="text" id="info-1" placeholder="শ্রেণী/পদবী">
+                </div>
+                <div class="form-group">
+                    <label id="label-roll">রোল নম্বর / আইডি</label>
+                    <input type="text" id="info-2" placeholder="রোল/ফোন">
+                </div>
+                <button class="btn-login" style="background:var(--secondary);" onclick="saveData()">তথ্য সেভ করুন</button>
+            </div>
+
+            <p style="margin-top: 20px; font-size: 12px; color: #999;">পাসওয়ার্ড ভুলে গেছেন? <a href="#" style="color:var(--primary)">এখানে ক্লিক করুন</a></p>
+        </div>
+    </div>
+
+    <!-- AdSense Booster Article -->
+    <div class="info-card">
+        <h3>কেন অনলাইন পোর্টাল ব্যবহার করবেন?</h3>
+        <p>ডিজিটাল বাংলাদেশের পথে এক ধাপ এগিয়ে ইস্পাহানি দাখিল মাদ্রাসা তাদের শিক্ষার্থীদের জন্য নিয়ে এসেছে আধুনিক লগইন সিস্টেম। এর মাধ্যমে ছাত্ররা তাদের রেজাল্ট, ক্লাসের উপস্থিতি এবং শিক্ষকদের দেওয়া বিশেষ নোটগুলো খুব সহজেই ডাউনলোড করতে পারবে। শিক্ষকদের জন্য রয়েছে আলাদা প্যানেল যেখান থেকে তারা প্রতিদিনের ক্লাসের আপডেট দিতে পারবেন। আপনার তথ্যের সুরক্ষা নিশ্চিত করা আমাদের প্রথম দায়িত্ব।</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 ইস্পাহানি দাখিল মাদ্রাসা | কারিগরি সহযোগিতায়: হাসিব আহমেদ</p>
+    </footer>
+
+    <script>
+        let currentUserType = 'student';
+
+        function switchTab(type, el) {
+            currentUserType = type;
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+            
+            // ট্যাব অনুযায়ী ইনপুট লেবেল পরিবর্তন
+            if(type === 'teacher') {
+                document.getElementById('label-class').innerText = "পদবী";
+                document.getElementById('label-roll').innerText = "ফোন নম্বর";
+            } else {
+                document.getElementById('label-class').innerText = "শ্রেণী";
+                document.getElementById('label-roll').innerText = "রোল নম্বর";
+            }
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // এখানে ব্যাকএন্ড লজিক হবে
+            alert("লগইন সফল হয়েছে! অনুগ্রহ করে নিচের তথ্যগুলো পূরণ করুন।");
+            document.getElementById('loginForm').style.display = "none";
+            document.querySelector('.google-btn').style.display = "none";
+            document.getElementById('additional-fields').style.display = "block";
+        });
+
+        function saveData() {
+            const val1 = document.getElementById('info-1').value;
+            const val2 = document.getElementById('info-2').value;
+            
+            if(!val1 || !val2) { alert("সবগুলো ঘর পূরণ করুন!"); return; }
+            
+            alert(`ধন্যবাদ! আপনার তথ্য সেভ করা হয়েছে। \nবিভাগ: ${currentUserType} \nতথ্য ১: ${val1} \nতথ্য ২: ${val2}`);
+            window.location.href = "index.html";
+        }
+
+        function toggleSidebar() {
+            // এটি তোমার অন্য পেজের মেনুর সাথে কাজ করবে
+        }
+    </script>
+</body>
+</html>

@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>পরীক্ষার ফলাফল | ইস্পাহানি দাখিল মাদ্রাসা</title>
+    <title>ক্লাস রুটিন | ইস্পাহানি দাখিল মাদ্রাসা - ডিজিটাল সময়সূচী</title>
     
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- Premium Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
     <style>
         /* --- ELITE UI ENGINE --- */
         :root {
-            --primary-green: #006a4e;
-            --btn-green: #15803d;
-            --bg-light: #f3f4f6;
+            --p-green: #006a4e;
+            --s-red: #f42a41;
+            --gold: #b8860b;
+            --bg: #f8fafc;
             --white: #ffffff;
-            --text-dark: #374151;
-            --border: #d1d5db;
+            --text-dark: #333333;
             --hind: 'Hind Siliguri', sans-serif;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: var(--hind); background-color: var(--bg-light); color: var(--text-dark); overflow-x: hidden; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-style: normal !important; }
+        body { font-family: var(--hind); background-color: var(--bg); color: var(--text-dark); line-height: 1.7; overflow-x: hidden; }
 
-                /* --- PREMIUM NAV STYLES --- */
+               /* --- PREMIUM NAV STYLES --- */
 .premium-nav {
     background: #ffffff;
     height: 80px;
@@ -111,45 +111,35 @@
     .nav-menu { display: none; } /* পিসি মেনু মোবাইলে হাইড হবে */
     .mobile-toggle { display: block; } /* মোবাইল বাটন মোবাইলে শো করবে */
 }
+        /* --- HERO AREA --- */
+        .routine-hero { padding: 140px 8% 60px; background: var(--p-green); color: #fff; text-align: center; border-radius: 0 0 50px 50px; }
+        .routine-hero h1 { font-size: 38px; font-weight: 700; }
 
-        /* --- RESULT CARD DESIGN (Matching Screenshot) --- */
-        .portal-wrapper { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 120px 20px 60px; }
+        /* --- ROUTINE TABLE AREA --- */
+        .container { max-width: 1100px; margin: 50px auto; padding: 0 20px; }
         
-        .result-card { 
-            background: var(--white); padding: 40px 30px; border-radius: 15px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08); width: 100%; max-width: 500px; text-align: center;
-        }
+        .routine-card { background: white; padding: 30px; border-radius: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.03); border: 1px solid #eee; margin-bottom: 30px; }
+        .routine-card h3 { color: var(--p-green); margin-bottom: 20px; text-align: center; border-bottom: 2px solid #f1f5f9; padding-bottom: 15px; }
 
-        .card-header { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 30px; }
-        .card-header img { width: 50px; }
-        .card-header h2 { font-family: 'Playfair Display', serif; font-size: 24px; color: #4b5563; letter-spacing: 1px; }
-
-        .form-group { text-align: left; margin-bottom: 20px; }
-        .form-group label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px; color: #4b5563; }
+        /* Table Responsive Wrapper */
+        .table-responsive { overflow-x: auto; margin-top: 20px; border-radius: 10px; }
+        .routine-table { width: 100%; border-collapse: collapse; min-width: 800px; }
+        .routine-table th, .routine-table td { border: 1px solid #ddd; padding: 15px; text-align: center; font-size: 14px; }
+        .routine-table th { background: #f1f5f9; color: var(--p-green); font-weight: 700; }
+        .routine-table tr:hover { background-color: #f0fdf4; }
         
-        input, select { 
-            width: 100%; padding: 12px 15px; border: 1px solid var(--border); 
-            border-radius: 8px; font-size: 15px; outline: none; transition: 0.3s;
-            color: #6b7280; background: #fff;
-        }
-        input:focus, select:focus { border-color: var(--primary-green); box-shadow: 0 0 0 3px rgba(0, 106, 78, 0.1); }
+        .break-time { background: #fff1f2 !important; color: var(--s-red); font-weight: bold; }
 
-        .btn-show { 
-            width: 100%; padding: 15px; background: var(--btn-green); color: white; 
-            border: none; border-radius: 8px; font-weight: 700; font-size: 18px; 
-            cursor: pointer; margin-top: 10px; transition: 0.3s;
-        }
-        .btn-show:hover { background: #166534; transform: translateY(-2px); }
+        /* Class Selector Bar */
+        .class-selector { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; justify-content: center; }
+        .select-btn { padding: 8px 20px; background: #fff; border: 1px solid #ddd; border-radius: 50px; cursor: pointer; font-weight: 600; font-size: 14px; transition: 0.3s; }
+        .select-btn.active { background: var(--p-green); color: #fff; border-color: var(--p-green); }
 
-        /* --- MARKSHEET DISPLAY --- */
-        #marksheet-area { display: none; margin-top: 40px; }
-        .marksheet { 
-            background: #fff; padding: 50px; border-radius: 5px; border: 2px solid #333; 
-            text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.1); color: #000;
-        }
-        .marks-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        .marks-table th, .marks-table td { border: 1px solid #ddd; padding: 12px; text-align: center; }
-        .marks-table th { background: #f9fafb; }
+        .btn-download { display: block; max-width: 250px; margin: 30px auto; padding: 15px; background: var(--s-red); color: white; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; text-align: center; text-decoration: none; }
+
+
+        .article-card { background: white; padding: 20px; border-radius: 10px; margin-top: 60px; line-height: 1.8; }
+        .article-card h2 { color: var(--p-green); margin-bottom: 20px; font-size: 26px; }
 
         /* Footer */
         footer { background: #111; color: white; padding: 80px 8% 20px; }
@@ -210,7 +200,7 @@
             <li class="has-dropdown">
                 <a href="#">একাডেমিক <i class="fas fa-angle-down"></i></a>
                 <ul class="submenu">
-                    <li><a href="activities.html">কার্যক্রম</a></li>
+                    <li><a href="academic.html">কার্যক্রম</a></li>
                     <li><a href="notice.html">নোটিশ বোর্ড</a></li>
                     <li><a href="class-rutin.html">ক্লাস রুটিন</a></li>
                 </ul>
@@ -266,7 +256,7 @@
             </div>
             <ul id="m2" class="m-submenu">
                 <li><a href="https://bn.wikipedia.org/wiki/%E0%A6%87%E0%A6%B8%E0%A7%8D%E0%A6%AA%E0%A6%BE%E0%A6%B9%E0%A6%BE%E0%A6%A8%E0%A6%BF_%E0%A6%AA%E0%A6%B0%E0%A6%BF%E0%A6%AC%E0%A6%BE%E0%A6%B0">ইস্পাহানি পরিবার</a></li>
-                <li><a href="history.html">সুপারিনটেনডেন্ট মহোদয়ের বাণী</a></li>
+                <li><a href="supar_speech.html">সুপারিনটেনডেন্ট মহোদয়ের বাণী</a></li>
                 <li><a href="teachers.html">শিক্ষকমন্ডলীর তথ্য</a></li>
                 <li><a href="workers.html">কর্মচারী তথ্য</a></li>
                 <li><a href="privacy.html">প্রাইভেসি পলিসি</a></li>
@@ -279,7 +269,7 @@
                 <i class="fas fa-chevron-down"></i>
             </div>
             <ul id="m4" class="m-submenu">
-                <li><a href="result.html">কার্যক্রম</a></li>
+                <li><a href="academic.html">কার্যক্রম</a></li>
                 <li><a href="notice.html">নোটিস বোর্ড</a></li>
                 <li><a href="class-rutin.html">ক্লাস রুটিন</a></li>
             </ul>
@@ -304,78 +294,103 @@
 <!-- শ্যাডো ওভারলে -->
 <div id="sideOverlay" class="side-overlay" onclick="closeSidebar()"></div>
 
-    <div class="portal-wrapper">
-        <div class="result-card animate__animated animate__fadeIn">
-            <div class="card-header">
-                <img src="https://cdn-icons-png.flaticon.com/512/3222/3222800.png" alt="Icon">
-                <h2>GET RESULT</h2>
-            </div>
+    <!-- Hero -->
+    <header class="routine-hero">
+        <div class="animate__animated animate__fadeInDown">
+            <h1>একাডেমিক সময়সূচী</h1>
+            <p>সুশৃঙ্খল রুটিন ও সময়ানুবর্তিতা সফলতার প্রথম সোপান</p>
+        </div>
+    </header>
 
-            <!-- Form -->
-            <div class="form-group">
-                <label>Student ID</label>
-                <input type="text" id="studentId" placeholder="Enter Student Id">
-            </div>
-
-            <div class="form-group">
-                <label>Select Class</label>
-                <select id="selectClass">
-                    <option value="">Select a class</option>
-                    <option>One</option><option>Two</option><option>Three</option>
-                    <option>Four</option><option>Five</option><option>Six</option>
-                    <option>Seven</option><option>Eight</option><option>Nine</option>
-                    <option>Dakhil</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Select Term</label>
-                <select id="selectTerm">
-                    <option value="">Select a term</option>
-                    <option>1st Term Examination</option>
-                    <option>Half Yearly Examination</option>
-                    <option>Annual Examination</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Session</label>
-                <select id="selectSession">
-                    <option>2026</option>
-                    <option>2025-2026</option>
-                    <option>2024-2025</option>
-                    <option>2023-2024</option>
-                </select>
-            </div>
-
-            <button class="btn-show" onclick="fetchResult()">Show Marks</button>
+    <div class="container">
+        
+        <!-- Class Selector -->
+        <div class="class-selector">
+            <button class="select-btn active">দাখিল ১০ম</button>
+            <button class="select-btn">দাখিল ৯ন</button>
+            <button class="select-btn">দাখিল ৮ন</button>
+            <button class="select-btn">দাখিল ৭ম</button>
+            <button class="select-btn">দাখিল ৬ষ্ঠ</button>
         </div>
 
-        <!-- Marksheet Display Area -->
-        <div id="marksheet-area" class="container">
-            <div class="marksheet" id="printable-ms">
-                <div style="text-align: center; border-bottom: 2px solid #000; padding-bottom: 15px; margin-bottom: 20px;">
-                    <h1 style="font-size: 24px;">ইস্পাহানি দাখিল মাদ্রাসা</h1>
-                    <p>একাডেমিক মার্কশিট / ফলাফল বিবরণী</p>
-                </div>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
-                    <p>নাম: <b id="res-name"></b></p>
-                    <p>আইডি: <b id="res-id"></b></p>
-                </div>
-                <p>শ্রেণী: <b id="res-class"></b> | সেশন: <b id="res-session"></b></p>
-
-                <table class="marks-table">
+        <!-- Routine Table -->
+        <div class="routine-card animate__animated animate__fadeIn">
+            <h3>দাখিল ১০ম শ্রেণীর সাপ্তাহিক রুটিন</h3>
+            <div class="table-responsive">
+                <table class="routine-table">
                     <thead>
-                        <tr><th>বিষয়</th><th>প্রাপ্ত নম্বর</th><th>গ্রেড</th></tr>
+                        <tr>
+                            <th>বার / সময়</th>
+                            <th>১ম (৯:০০-৯:৫০)</th>
+                            <th>২য় (৯:৫০-১০:৪০)</th>
+                            <th>৩য় (১০:৪০-১১:৩০)</th>
+                            <th>বিরতি (১১:৩০-১২:০০)</th>
+                            <th>৪র্থ (১২:০০-১২:৫০)</th>
+                            <th>৫ম (১২:৫০-১:৪০)</th>
+                        </tr>
                     </thead>
-                    <tbody id="marks-body"></tbody>
+                    <tbody>
+                        <tr>
+                            <td>শনিবার</td>
+                            <td>আল কুরআন</td>
+                            <td>আরবি ১ম</td>
+                            <td>গণিত</td>
+                            <td class="break-time" rowspan="6">টিফিন ও যোহরের নামায</td>
+                            <td>বাংলা</td>
+                            <td>ইংরেজি</td>
+                        </tr>
+                        <tr>
+                            <td>রবিবার</td>
+                            <td>হাদিস শরীফ</td>
+                            <td>আরবি ২য়</td>
+                            <td>ইংরেজি</td>
+                            <td>গণিত</td>
+                            <td>বিজ্ঞান</td>
+                        </tr>
+                        <tr>
+                            <td>সোমবার</td>
+                            <td>আকাইদ ও ফিকহ</td>
+                            <td>বাংলা</td>
+                            <td>গণিত</td>
+                            <td>সমাজবিজ্ঞান</td>
+                            <td>শারীরিক শিক্ষা</td>
+                        </tr>
+                        <tr>
+                            <td>মঙ্গলবার</td>
+                            <td>আল কুরআন</td>
+                            <td>আরবি ১ম</td>
+                            <td>বিজ্ঞান</td>
+                            <td>আরবি ২য়</td>
+                            <td>পৌরনীতি</td>
+                        </tr>
+                        <tr>
+                            <td>বুধবার</td>
+                            <td>হাদিস শরীফ</td>
+                            <td>গণিত</td>
+                            <td>ইংরেজি</td>
+                            <td>আইসিটি</td>
+                            <td>কৃষি শিক্ষা</td>
+                        </tr>
+                        <tr>
+                            <td>বৃহস্পতিবার</td>
+                            <td>আরবি সাহিত্য</td>
+                            <td>ইসলামের ইতিহাস</td>
+                            <td>বাংলা</td>
+                            <td>ইংরেজি</td>
+                            <td>মডেল টেস্ট</td>
+                        </tr>
+                    </tbody>
                 </table>
-                
-                <div style="margin-top: 30px; text-align: center;">
-                    <button class="btn-show" style="max-width: 200px; background: #333;" onclick="window.print()">Print Marksheet</button>
-                </div>
             </div>
+
+            <a href="routine-2026.pdf" class="btn-download"><i class="fas fa-file-download"></i> রুটিন ডাউনলোড করুন (PDF)</a>
         </div>
+
+        <article class="article-card">
+            <h2>শিক্ষার্থী জীবনে রুটিন বা সময়সূচীর গুরুত্ব</h2>
+            <p>একজন শিক্ষার্থীর জীবনের প্রতিটি মুহূর্ত অত্যন্ত মূল্যবান। সময়কে সঠিকভাবে কাজে লাগানোর মাধ্যমেই একজন শিক্ষার্থী তার কাঙ্ক্ষিত লক্ষ্যে পৌঁছাতে পারে। একটি পরিকল্পিত ক্লাস রুটিন বা সময়সূচী শিক্ষার্থীদের কেবল পড়াশোনার কথা মনে করিয়ে দেয় না, বরং তাদের মধ্যে সুশৃঙ্খল জীবনযাপনের অভ্যাস গড়ে তোলে। ইস্পাহানি দাখিল মাদ্রাসা শিক্ষার্থীদের সময়ের সঠিক মূল্যায়ন শেখাতে অত্যন্ত গুরুত্ব দেয়।</p>
+            <p>গবেষণায় দেখা গেছে, যারা রুটিন অনুযায়ী পড়াশোনা করে, তাদের পরীক্ষার ভীতি কম থাকে এবং তারা অন্যদের চেয়ে মানসিকভাবে অনেক বেশি আত্মবিশ্বাসী হয়। আমাদের মাদ্রাসার ক্লাস রুটিনটি এমনভাবে তৈরি করা হয়েছে যাতে শিক্ষার্থীরা কঠিন বিষয়গুলোর পাশাপাশি ধর্মীয় এবং সহ-শিক্ষা কার্যক্রমেও সমান সময় দিতে পারে। নিয়মিত রুটিন অনুসরণ করার ফলে মস্তিষ্কের কার্যক্ষমতা বাড়ে এবং পড়ার প্রতি মনোযোগ দীর্ঘস্থায়ী হয়। আমরা বিশ্বাস করি, আজকের রুটিন মাফিক পরিশ্রমই আগামীকাল একজন শিক্ষার্থীকে সুনাগরিক হিসেবে গড়ে তুলবে।</p>
+        </article>
     </div>
 
     <!-- Footer -->
@@ -419,7 +434,6 @@
             <p>&copy; 2026 Ispahani Dakhil Madrasah<br>Designed & Developed by <a href="https://www.facebook.com/profile.php?id=61564242167643"style="color: #0fac9f; font-weight: 600; text-decoration: none;">Kafi Ahad</a></p>
         </div>
     </footer>
-
 
     <script>
        function openSidebar() {

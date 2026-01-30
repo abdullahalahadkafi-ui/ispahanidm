@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কর্মচারীবৃন্দ | ইস্পাহানি দাখিল মাদ্রাসা - অফিস ও প্রশাসন</title>
+    
+    <!-- Premium Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <style>
+        /* --- ELITE UI ENGINE --- */
+        :root {
+            --p-green: #006a4e;
+            --s-red: #f42a41;
+            --gold: #b8860b;
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --text-dark: #333333;
+            --hind: 'Hind Siliguri', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-style: normal !important; }
+        body { font-family: var(--hind); background-color: var(--bg); color: var(--text-dark); line-height: 1.8; overflow-x: hidden; }
+
+        /* --- NAVIGATION (Consistent Arif Azad Style) --- */
+        .premium-nav { background: #fff; height: 80px; position: fixed; width: 100%; top: 0; z-index: 2000; box-shadow: 0 2px 20px rgba(0,0,0,0.05); border-bottom: 1px solid #eee; display: flex; align-items: center; }
+        .nav-wrapper { width: 90%; max-width: 1250px; margin: auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 800; color: var(--p-green); text-decoration: none; font-size: 20px; }
+
+        .nav-menu { display: flex; list-style: none; gap: 20px; }
+        .nav-menu li { position: relative; }
+        .nav-menu a { text-decoration: none; color: #444; font-weight: 600; font-size: 14px; transition: 0.3s; }
+        .nav-menu a:hover { color: var(--p-green); }
+
+        /* --- MOBILE SIDEBAR --- */
+        .sidebar-menu { position: fixed; top: 0; right: -320px; width: 300px; height: 100vh; background: #fff; z-index: 3000; transition: 0.4s; padding: 30px; box-shadow: -10px 0 40px rgba(0,0,0,0.1); }
+        .sidebar-menu.active { right: 0; }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2500; display: none; }
+        .overlay.active { display: block; }
+        .menu-btn { font-size: 24px; color: var(--p-green); cursor: pointer; display: none; }
+
+        /* --- HERO AREA --- */
+        .header-banner { padding: 140px 8% 60px; background: var(--p-green); color: #fff; text-align: center; border-radius: 0 0 50px 50px; }
+        .header-banner h1 { font-size: 38px; font-weight: 700; }
+
+        /* --- TABLE SECTION --- */
+        .container { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
+        .table-card { background: white; padding: 35px; border-radius: 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.03); border: 1px solid #eee; overflow-x: auto; }
+        
+        table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        th { background: #f8fafc; padding: 15px; text-align: left; color: var(--p-green); border-bottom: 2px solid var(--p-green); font-weight: 800; }
+        td { padding: 15px; border-bottom: 1px solid #f1f5f9; font-size: 15px; vertical-align: middle; }
+        
+        .worker-img { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold); }
+        .contact-link { color: var(--p-green); text-decoration: none; font-weight: 700; }
+
+        /* --- ADSENSE HEAVY CONTENT --- */
+        .article-card { background: white; padding: 40px; border-radius: 30px; margin-top: 60px; border-left: 10px solid var(--s-red); line-height: 1.8; }
+        .article-card h2 { color: var(--p-green); margin-bottom: 15px; font-size: 26px; }
+
+        /* Ad Slot */
+        .ad-box { background: #f1f1f1; border: 1px dashed #ccc; padding: 25px; text-align: center; border-radius: 15px; margin: 30px 0; color: #999; font-size: 12px; }
+
+        footer { background: #0f172a; color: #94a3b8; padding: 60px 8% 30px; text-align: center; }
+
+        @media (max-width: 900px) {
+            .nav-menu { display: none; }
+            .menu-btn { display: block; }
+            .header-banner h1 { font-size: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav class="premium-nav">
+        <div class="nav-wrapper">
+            <a href="index.html" class="logo"><i class="fas fa-mosque"></i> ইস্পাহানি দাখিল মাদ্রাসা</a>
+            <ul class="nav-menu">
+                <li><a href="index.html">হোম</a></li>
+                <li><a href="teachers.html">শিক্ষকবৃন্দ</a></li>
+                <li><a href="academic.html">একাডেমিক</a></li>
+                <li><a href="result.html">ফলাফল</a></li>
+                <li><a href="contact.html">যোগাযোগ</a></li>
+            </ul>
+            <div class="menu-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar-menu">
+        <div style="text-align: right; cursor: pointer;" onclick="toggleSidebar()"><i class="fas fa-times fa-2x"></i></div>
+        <ul style="list-style: none; margin-top: 30px;">
+            <li style="margin-bottom: 20px; border-bottom: 1px solid #eee;"><a href="index.html" style="text-decoration: none; color: #333; font-weight: 700;">হোম পেজ</a></li>
+            <li style="margin-bottom: 20px; border-bottom: 1px solid #eee;"><a href="workers.html" style="text-decoration: none; color: #333; font-weight: 700;">কর্মচারী তথ্য</a></li>
+            <li style="margin-bottom: 20px; border-bottom: 1px solid #eee;"><a href="gallery.html" style="text-decoration: none; color: #333; font-weight: 700;">ফটোগ্যালারি</a></li>
+        </ul>
+    </div>
+    <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
+
+    <!-- Hero -->
+    <header class="header-banner">
+        <h1 class="animate__animated animate__fadeInDown">অফিস ও কর্মচারী তথ্য</h1>
+        <p class="animate__animated animate__fadeInUp">মাদ্রাসার প্রশাসনিক ও সেবামূলক কার্যাবলীতে নিয়োজিত কর্মীবৃন্দ</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="table-card animate__animated animate__fadeIn">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ছবি</th>
+                        <th>নাম</th>
+                        <th>পদবী</th>
+                        <th>মোবাইল নম্বর</th>
+                        <th>যোগদানের তারিখ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- কর্মচারী ১ -->
+                    <tr>
+                        <td><img src="worker1.jpg" class="worker-img" alt="Staff"></td>
+                        <td><b>মোঃ হারুনুর রশিদ</b></td>
+                        <td>অফিস সহকারী</td>
+                        <td><a href="tel:01711122233" class="contact-link">০১৭১১-১২২২৩৩</a></td>
+                        <td>১০/০৫/২০১০</td>
+                    </tr>
+                    <!-- কর্মচারী ২ -->
+                    <tr>
+                        <td><img src="worker2.jpg" class="worker-img" alt="Staff"></td>
+                        <td><b>আব্দুল মালেক</b></td>
+                        <td>নিরাপত্তা প্রহরী</td>
+                        <td>০১৮০০-০০০০০০</td>
+                        <td>১৫/০২/২০১৫</td>
+                    </tr>
+                    <!-- কর্মচারী ৩ -->
+                    <tr>
+                        <td><img src="worker3.jpg" class="worker-img" alt="Staff"></td>
+                        <td><b>খোরশেদ আলম</b></td>
+                        <td>দপ্তরী</td>
+                        <td>০১৯০০-০০০০০০</td>
+                        <td>০১/০১/২০১৮</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="ad-box">বিজ্ঞাপন ইউনিট ১ (ইনকাম পয়েন্ট)</div>
+
+        <!-- AdSense Heavy Content Area -->
+        <article class="article-card">
+            <h2>শিক্ষা প্রতিষ্ঠানে প্রশাসনিক কর্মচারীদের ভূমিকা</h2>
+            <p>একটি আদর্শ শিক্ষা প্রতিষ্ঠান পরিচালনার পেছনে শিক্ষক মণ্ডলীর পাশাপাশি প্রশাসনিক কর্মচারীদের অবদান অনস্বীকার্য। ইস্পাহানি দাখিল মাদ্রাসার দৈনন্দিন প্রশাসনিক কার্যক্রম, অফিস ব্যবস্থাপনা এবং ক্যাম্পাসের শৃঙ্খলা বজায় রাখতে আমাদের কর্মচারীগণ নিরলস পরিশ্রম করে যাচ্ছেন। অফিসের যাবতীয় নথিপত্র সংরক্ষণ থেকে শুরু করে শিক্ষার্থীদের দাপ্তরিক সহায়তায় তারা সব সময় নিয়োজিত থাকেন।</p>
+            <p>ডিজিটাল বাংলাদেশের স্বপ্ন বাস্তবায়নে আমাদের অফিসের প্রতিটি কার্যক্রম এখন অনলাইন নির্ভর। কর্মচারীরা আধুনিক প্রযুক্তির সাথে তাল মিলিয়ে কাজ করছেন, যা মাদ্রাসার গতিশীলতাকে বহুগুণ বাড়িয়ে দিয়েছে। পরিচ্ছন্ন ও নিরাপদ ক্যাম্পাস নিশ্চিত করার ক্ষেত্রে আমাদের সাপোর্ট স্টাফদের ভূমিকা মাদ্রাসার সৌন্দর্যের অন্যতম কারণ। আমরা বিশ্বাস করি, একটি প্রতিষ্ঠানের সফলতা নির্ভর করে শিক্ষক, শিক্ষার্থী এবং কর্মচারীদের সম্মিলিত প্রচেষ্টার ওপর। আমাদের প্রতিটি কর্মী প্রতিষ্ঠানের সম্মান ও আদর্শ বজায় রাখতে প্রতিশ্রুতিবদ্ধ।</p>
+        </article>
+
+        <div class="ad-box" style="height: 150px;">বিজ্ঞাপন ইউনিট ২ (অ্যাডসেন্স)</div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 ইস্পাহানি দাখিল মাদ্রাসা | EIIN: ১২৩৪৫৬</p>
+        <p style="font-size: 11px; opacity: 0.5; margin-top: 10px;">কারিগরি সহযোগিতায়: হাসিব আহমেদ (কাফি)</p>
+    </footer>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('overlay').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

@@ -3,30 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>পরীক্ষার ফলাফল | ইস্পাহানি দাখিল মাদ্রাসা</title>
+    <title>শিক্ষকবৃন্দ | ইস্পাহানি দাখিল মাদ্রাসা</title>
     
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- Meta Tags for Search Images (গুগলে ছবি আসার জন্য) -->
+    <meta property="og:title" content="ইস্পাহানি দাখিল মাদ্রাসা - শিক্ষকবৃন্দ">
+    <meta property="og:image" content="madrasah_logo.jpg">
+    <link rel="icon" href="favicon.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
     <style>
-        /* --- ELITE UI ENGINE --- */
-        :root {
-            --primary-green: #006a4e;
-            --btn-green: #15803d;
-            --bg-light: #f3f4f6;
-            --white: #ffffff;
-            --text-dark: #374151;
-            --border: #d1d5db;
-            --hind: 'Hind Siliguri', sans-serif;
-        }
-
+        :root { --p: #006a4e; --s: #f42a41; --bg: #f8fafc; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: var(--hind); background-color: var(--bg-light); color: var(--text-dark); overflow-x: hidden; }
+        body { font-family: 'Hind Siliguri', sans-serif; background: var(--bg); line-height: 1.6; }
 
-                /* --- PREMIUM NAV STYLES --- */
-.premium-nav {
+        .premium-nav {
     background: #ffffff;
     height: 80px;
     display: flex;
@@ -111,45 +103,18 @@
     .nav-menu { display: none; } /* পিসি মেনু মোবাইলে হাইড হবে */
     .mobile-toggle { display: block; } /* মোবাইল বাটন মোবাইলে শো করবে */
 }
+        .header { padding: 120px 5% 50px; background: var(--p); color: white; text-align: center; }
 
-        /* --- RESULT CARD DESIGN (Matching Screenshot) --- */
-        .portal-wrapper { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 120px 20px 60px; }
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
         
-        .result-card { 
-            background: var(--white); padding: 40px 30px; border-radius: 15px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08); width: 100%; max-width: 500px; text-align: center;
-        }
-
-        .card-header { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 30px; }
-        .card-header img { width: 50px; }
-        .card-header h2 { font-family: 'Playfair Display', serif; font-size: 24px; color: #4b5563; letter-spacing: 1px; }
-
-        .form-group { text-align: left; margin-bottom: 20px; }
-        .form-group label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px; color: #4b5563; }
+        /* Teacher List Table */
+        .table-container { background: white; border-radius: 20px; overflow-x: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.02); border: 1px solid #eee; }
+        table { width: 100%; border-collapse: collapse; min-width: 700px; }
+        th { background: #f1f5f9; padding: 15px; text-align: left; color: var(--p); }
+        td { padding: 15px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
         
-        input, select { 
-            width: 100%; padding: 12px 15px; border: 1px solid var(--border); 
-            border-radius: 8px; font-size: 15px; outline: none; transition: 0.3s;
-            color: #6b7280; background: #fff;
-        }
-        input:focus, select:focus { border-color: var(--primary-green); box-shadow: 0 0 0 3px rgba(0, 106, 78, 0.1); }
-
-        .btn-show { 
-            width: 100%; padding: 15px; background: var(--btn-green); color: white; 
-            border: none; border-radius: 8px; font-weight: 700; font-size: 18px; 
-            cursor: pointer; margin-top: 10px; transition: 0.3s;
-        }
-        .btn-show:hover { background: #166534; transform: translateY(-2px); }
-
-        /* --- MARKSHEET DISPLAY --- */
-        #marksheet-area { display: none; margin-top: 40px; }
-        .marksheet { 
-            background: #fff; padding: 50px; border-radius: 5px; border: 2px solid #333; 
-            text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.1); color: #000;
-        }
-        .marks-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        .marks-table th, .marks-table td { border: 1px solid #ddd; padding: 12px; text-align: center; }
-        .marks-table th { background: #f9fafb; }
+        .teacher-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--s); }
+        .blood-badge { background: #ffebee; color: #c62828; padding: 3px 8px; border-radius: 5px; font-weight: bold; font-size: 12px; }
 
         /* Footer */
         footer { background: #111; color: white; padding: 80px 8% 20px; }
@@ -171,7 +136,7 @@
 </head>
 <body>
 
-    <!-- Navigation -->
+   <!-- Navigation -->
 <nav class="premium-nav">
     <div class="nav-wrapper">
         <!-- Logo -->
@@ -304,81 +269,46 @@
 <!-- শ্যাডো ওভারলে -->
 <div id="sideOverlay" class="side-overlay" onclick="closeSidebar()"></div>
 
-    <div class="portal-wrapper">
-        <div class="result-card animate__animated animate__fadeIn">
-            <div class="card-header">
-                <img src="https://cdn-icons-png.flaticon.com/512/3222/3222800.png" alt="Icon">
-                <h2>GET RESULT</h2>
-            </div>
+    <div class="header">
+        <h1>আমাদের সম্মানিত শিক্ষক মণ্ডলী</h1>
+        <p>দক্ষ ও অভিজ্ঞ শিক্ষকমণ্ডলীর নিরলস প্রচেষ্টায় আমাদের পথচলা</p>
+    </div>
 
-            <!-- Form -->
-            <div class="form-group">
-                <label>Student ID</label>
-                <input type="text" id="studentId" placeholder="Enter Student Id">
-            </div>
-
-            <div class="form-group">
-                <label>Select Class</label>
-                <select id="selectClass">
-                    <option value="">Select a class</option>
-                    <option>One</option><option>Two</option><option>Three</option>
-                    <option>Four</option><option>Five</option><option>Six</option>
-                    <option>Seven</option><option>Eight</option><option>Nine</option>
-                    <option>Dakhil</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Select Term</label>
-                <select id="selectTerm">
-                    <option value="">Select a term</option>
-                    <option>1st Term Examination</option>
-                    <option>Half Yearly Examination</option>
-                    <option>Annual Examination</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Session</label>
-                <select id="selectSession">
-                    <option>2026</option>
-                    <option>2025-2026</option>
-                    <option>2024-2025</option>
-                    <option>2023-2024</option>
-                </select>
-            </div>
-
-            <button class="btn-show" onclick="fetchResult()">Show Marks</button>
-        </div>
-
-        <!-- Marksheet Display Area -->
-        <div id="marksheet-area" class="container">
-            <div class="marksheet" id="printable-ms">
-                <div style="text-align: center; border-bottom: 2px solid #000; padding-bottom: 15px; margin-bottom: 20px;">
-                    <h1 style="font-size: 24px;">ইস্পাহানি দাখিল মাদ্রাসা</h1>
-                    <p>একাডেমিক মার্কশিট / ফলাফল বিবরণী</p>
-                </div>
-                <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
-                    <p>নাম: <b id="res-name"></b></p>
-                    <p>আইডি: <b id="res-id"></b></p>
-                </div>
-                <p>শ্রেণী: <b id="res-class"></b> | সেশন: <b id="res-session"></b></p>
-
-                <table class="marks-table">
-                    <thead>
-                        <tr><th>বিষয়</th><th>প্রাপ্ত নম্বর</th><th>গ্রেড</th></tr>
-                    </thead>
-                    <tbody id="marks-body"></tbody>
-                </table>
-                
-                <div style="margin-top: 30px; text-align: center;">
-                    <button class="btn-show" style="max-width: 200px; background: #333;" onclick="window.print()">Print Marksheet</button>
-                </div>
-            </div>
+    <div class="container">
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ছবি</th>
+                        <th>নাম</th>
+                        <th>পদবী</th>
+                        <th>মোবাইল</th>
+                        <th>রক্তের গ্রুপ</th>
+                    </tr>
+                </thead>
+                <tbody id="teacher-list">
+                    <!-- শিক্ষক ১ -->
+                    <tr>
+                        <td><img src="super_photo.jpg" class="teacher-img" alt="Super"></td>
+                        <td><b>মাওলানা [আব্বুর নাম]</b></td>
+                        <td>সুপারিনটেনডেন্ট</td>
+                        <td>০১৮XXXXXXXX</td>
+                        <td><span class="blood-badge">A+</span></td>
+                    </tr>
+                    <!-- শিক্ষক ২ -->
+                    <tr>
+                        <td><img src="teacher2.jpg" class="teacher-img" alt="Teacher"></td>
+                        <td><b>মোঃ আব্দুল করিম</b></td>
+                        <td>সহকারী মৌলভী</td>
+                        <td>০১৭XXXXXXXX</td>
+                        <td><span class="blood-badge">O+</span></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
-    <!-- Footer -->
+     <!-- Footer -->
     <footer>
         <div class="footer-grid">
             <div>
@@ -416,11 +346,9 @@
             </div>
         </div>
         <div class="footer-bottom" style="color: #888; padding: 25px;">
-            <p>&copy; 2026 Ispahani Dakhil Madrasah<br>Designed & Developed by <a href="https://www.facebook.com/profile.php?id=61564242167643"style="color: #0fac9f; font-weight: 600; text-decoration: none;">Kafi Ahad</a></p>
+            <p>&copy; 2026 Ispahani Dakhil Madrasah<br>Designed & Developed by <a href="https://www.facebook.com/profile.php?id=61564242167643"style="color: #888; text-decoration: none;">Kafi Ahad</a></p>
         </div>
     </footer>
-
-
     <script>
        function openSidebar() {
     document.getElementById('mobileSidebar').classList.add('active');
