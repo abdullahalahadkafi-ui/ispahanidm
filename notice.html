@@ -346,6 +346,14 @@
                 </div>
                 <button class="btn-download"><i class="fas fa-file-pdf"></i> PDF</button>
             </div>
+
+            <div class="notice-list-wrapper" id="live-notice-list">
+    <!-- এখানে তোমার জাভাস্ক্রিপ্ট থেকে ডায়নামিক নোটিশগুলো লোড হবে -->
+    <p style="text-align:center;">সার্ভার থেকে নোটিশ লোড হচ্ছে...</p>
+</div>
+
+
+
         </div>
 
         <article class="article-card">
@@ -413,6 +421,59 @@ function toggleMSub(id, element) {
     element.classList.toggle('active'); // তীরের আইকন ঘোরানোর জন্য
     sub.classList.toggle('open'); // মেনু নিচে স্লাইড করার জন্য
 }
+
     </script>
+
+<!-- ২. ফায়ারবেস লজিক -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    // তোমার সেই ইউনিক চাবি (Config)
+    const firebaseConfig = {
+        apiKey: "AIzaSyCTxt82Z4KRW425eYAU-WkVJbmUu1Vcy58",
+        authDomain: "ispahani-madrasah-portal.firebaseapp.com",
+        projectId: "ispahani-madrasah-portal",
+        storageBucket: "ispahani-madrasah-portal.firebasestorage.app",
+        messagingSenderId: "501627545319",
+        appId: "1:501627545319:web:42409b2d8f614dfc3c6442"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // ডাটাবেজ থেকে নোটিশ পড়ার ফাংশন
+    const q = query(collection(db, "notices"), orderBy("time", "desc"));
+    
+    // রিয়েল-টাইম আপডেট শোনা
+onSnapshot(q, (querySnapshot) => {
+    const listElement = document.getElementById('live-notice-list');
+    
+    // যদি আইডিটি খুঁজে না পায়, তবে এরর দিবে না
+    if (!listElement) {
+        console.error("HTML এ 'live-notice-list' আইডিটি পাওয়া যায়নি!");
+        return;
+    }
+
+    listElement.innerHTML = ""; // আগের ডামি ডাটা মুছে ফেলা
+
+    querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        
+        // তোমার সুন্দর ডিজাইন অনুযায়ী এইচটিএমএল তৈরি
+        listElement.innerHTML += `
+            <div class="notice-card animate__animated animate__fadeInUp">
+                <div class="date-box">নতুন<span>জানু, ২৬</span></div>
+                <div class="notice-info">
+                    <span class="notice-tag">সাধারণ</span>
+                    <h3>${data.title}</h3>
+                    <p style="font-size: 13px; color: #777;">${data.details}</p>
+                </div>
+                <button class="btn-download"><i class="fas fa-file-pdf"></i> PDF</button>
+            </div>
+        `;
+    });
+});
+</script>
 </body>
 </html>

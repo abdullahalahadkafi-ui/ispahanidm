@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অ্যাডমিন প্যানেল | ইস্পাহানি দাখিল মাদ্রাসা</title>
+    
+    <!-- Premium UI Resources -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #006a4e;
+            --secondary: #1e293b;
+            --accent: #f42a41;
+            --white: #ffffff;
+            --bg: #f1f5f9;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Hind Siliguri', sans-serif; background: var(--bg); }
+
+        /* --- LOGIN OVERLAY --- */
+        #login-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--primary); z-index: 5000;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .login-box { background: #fff; padding: 40px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        
+        /* --- MAIN DASHBOARD --- */
+        .admin-nav { background: var(--secondary); color: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; }
+        
+        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+        .admin-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 30px; }
+        .admin-card h2 { color: var(--primary); margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: 700; font-size: 14px; margin-bottom: 5px; }
+        input, textarea, select { width: 100%; padding: 12px; border: 2px solid #f1f5f9; border-radius: 10px; outline: none; font-family: inherit; }
+        
+        .btn-update { background: var(--primary); color: white; padding: 12px 25px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; width: 100%; }
+        .btn-update:hover { background: #004d39; }
+
+        .logout-btn { background: var(--accent); color: white; padding: 5px 15px; border-radius: 5px; cursor: pointer; text-decoration: none; font-size: 13px; }
+    </style>
+</head>
+<body>
+
+    <!-- Login Protection -->
+    <div id="login-overlay">
+        <div class="login-box">
+            <i class="fas fa-user-shield fa-3x" style="color: var(--primary); margin-bottom: 20px;"></i>
+            <h3>অ্যাডমিন লগইন</h3>
+            <input type="password" id="adminPass" placeholder="গোপন পাসওয়ার্ড দিন" style="margin: 20px 0; border: 1px solid #ddd;"> <br>
+            <button class="btn-update" onclick="checkPass()">প্রবেশ করুন</button>
+        </div>
+    </div>
+
+    <!-- Admin Content -->
+    <nav class="admin-nav">
+        <div style="font-weight: 800;">IDM ADMIN PANEL</div>
+        <a class="logout-btn" onclick="location.reload()">লগআউট</a>
+    </nav>
+
+    <div class="container">
+        <!-- Section 1: Update Notice -->
+        <div class="admin-card">
+            <h2><i class="fas fa-bullhorn"></i> নতুন নোটিশ যোগ করুন</h2>
+            <div class="form-group">
+                <label>নোটিশের শিরোনাম</label>
+                <input type="text" id="noticeTitle" placeholder="যেমন: দাখিল পরীক্ষার ফরম পূরণ">
+            </div>
+            <div class="form-group">
+                <label>বিস্তারিত তথ্য</label>
+                <textarea id="noticeDetails" rows="3" placeholder="বিস্তারিত এখানে লিখুন..."></textarea>
+            </div>
+            <button class="btn-update" onclick="updateNotice()">পাবলিশ করুন</button>
+        </div>
+
+        <!-- Section 2: Update Result -->
+        <div class="admin-card">
+            <h2><i class="fas fa-poll"></i> রেজাল্ট আপলোড করুন</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <div class="form-group">
+                    <label>রোল নম্বর</label>
+                    <input type="number" id="stdRoll" placeholder="রোল">
+                </div>
+                <div class="form-group">
+                    <label>জিপিএ (GPA)</label>
+                    <input type="text" id="stdGpa" placeholder="৫.০০">
+                </div>
+            </div>
+            <button class="btn-update" style="background: var(--secondary);" onclick="updateResult()">রেজাল্ট সেভ করুন</button>
+        </div>
+
+        <!-- Section 3: Teacher Info -->
+        <div class="admin-card">
+            <h2><i class="fas fa-user-plus"></i> শিক্ষক তথ্য আপডেট</h2>
+            <input type="text" placeholder="শিক্ষকের নাম">
+            <input type="text" placeholder="পদবী">
+            <button class="btn-update">আপডেট করুন</button>
+        </div>
+    </div>
+
+   <script type="module">
+    // ১. Firebase লাইব্রেরি লোড করা
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    // ২. তোমার ফায়ারবেস কনফিগ (স্ক্রিনশট থেকে নেওয়া)
+    const firebaseConfig = {
+        apiKey: "AIzaSyCTxt82Z4KRW425eYAU-WkVJbmUu1Vcy58",
+        authDomain: "ispahani-madrasah-portal.firebaseapp.com",
+        projectId: "ispahani-madrasah-portal",
+        storageBucket: "ispahani-madrasah-portal.firebasestorage.app",
+        messagingSenderId: "501627545319",
+        appId: "1:501627545319:web:42409b2d8f614dfc3c6442"
+    };
+
+    // ৩. কানেকশন শুরু
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // ৪. লগইন ফাংশন (উইন্ডো অবজেক্টে দেওয়া হলো যাতে বাটন কাজ করে)
+    window.checkPass = function() {
+        const pass = document.getElementById('adminPass').value;
+        if(pass === "ispahani123") { // তোমার পাসওয়ার্ডটি এখানে ঠিক করো
+            document.getElementById('login-overlay').style.display = "none";
+            alert("অ্যাডমিন প্যানেলে স্বাগতম!");
+        } else {
+            alert("ভুল পাসওয়ার্ড! আবার চেষ্টা করুন।");
+        }
+    }
+
+    // ৫. নোটিশ পাবলিশ করার ফাংশন
+    window.updateNotice = async function() {
+        const title = document.getElementById('noticeTitle').value;
+        const details = document.getElementById('noticeDetails').value;
+
+        if(!title || !details) {
+            alert("সব তথ্য দিন!");
+            return;
+        }
+
+        try {
+            await addDoc(collection(db, "notices"), {
+                title: title,
+                details: details,
+                time: serverTimestamp()
+            });
+            alert("সাফল্য! নোটিশটি ওয়েবসাইটে আপডেট হয়েছে।");
+            document.getElementById('noticeTitle').value = "";
+            document.getElementById('noticeDetails').value = "";
+        } catch (e) {
+            console.error("Error: ", e);
+            alert("ডাটা পাঠাতে সমস্যা হয়েছে। রুলস চেক করুন।");
+        }
+    }
+
+    // ৬. রেজাল্ট সেভ করার ফাংশন
+    window.updateResult = async function() {
+        const roll = document.getElementById('stdRoll').value;
+        const gpa = document.getElementById('stdGpa').value;
+
+        if(!roll || !gpa) {
+            alert("রোল ও জিপিএ দিন");
+            return;
+        }
+
+        try {
+            await addDoc(collection(db, "results"), {
+                roll: roll,
+                gpa: gpa,
+                time: serverTimestamp()
+            });
+            alert("রোল " + roll + " এর রেজাল্ট সেভ হয়েছে!");
+        } catch (e) {
+            alert("এরর: " + e.message);
+        }
+    }
+</script>
+    </body>
+</html>
