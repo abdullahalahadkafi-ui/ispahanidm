@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDM AI Pro | ইস্পাহানি দাখিল মাদ্রাসা</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <style>
+        :root {
+            --primary: #006a4e;
+            --ai-glow: #00f2ff;
+            --bg-dark: #02060a;
+            --card-glass: rgba(255, 255, 255, 0.05);
+            --text-silver: #cbd5e1;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Hind Siliguri', sans-serif; background: var(--bg-dark); color: #fff; height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
+
+        /* --- Header --- */
+        .header { background: rgba(0, 106, 78, 0.9); padding: 15px 5%; display: flex; align-items: center; gap: 12px; box-shadow: 0 0 20px rgba(0, 242, 255, 0.2); }
+        .ai-status { font-family: 'Orbitron'; font-size: 10px; color: #39ff14; letter-spacing: 1px; }
+
+        /* --- Chat Arena --- */
+        #chat-arena { flex: 1; padding: 20px 5%; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; background-image: radial-gradient(circle at center, #0a1528 0%, #02060a 100%); }
+        
+        .msg-row { display: flex; flex-direction: column; width: 100%; }
+        .bubble { max-width: 85%; padding: 15px 20px; border-radius: 20px; font-size: 15px; line-height: 1.6; position: relative; }
+        
+        .user-bubble { align-self: flex-end; background: var(--primary); color: white; border-bottom-right-radius: 2px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        
+        /* --- GOOGLE/GEMINI STYLE LOADING DOTS --- */
+.dots-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 0;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background-color: #94a3b8; /* হালকা ধূসর রঙ */
+    border-radius: 50%;
+    animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.dot:nth-child(1) { animation-delay: -0.32s; }
+.dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes bounce {
+    0%, 80%, 100% { transform: scale(0); opacity: 0.3; }
+    40% { transform: scale(1); opacity: 1; }
+}
+
+/* AI টাইপিং করার সময় এই বক্সটি দেখাবে */
+.thinking-bubble {
+    align-self: flex-start;
+    background: var(--card-glass);
+    border: 1px solid rgba(0, 210, 255, 0.2);
+    padding: 10px 20px;
+    border-radius: 20px;
+    border-bottom-left-radius: 2px;
+    margin-bottom: 10px;
+    display: none; /* শুরুতে লুকানো থাকবে */
+}
+
+        /* --- INPUT --- */
+        .input-container { padding: 20px 5%; background: #050a10; border-top: 1px solid #1a2530; display: flex; gap: 10px; }
+        input { flex: 1; padding: 14px 25px; background: #000; border: 1px solid #334155; border-radius: 50px; color: white; outline: none; transition: 0.3s; }
+        input:focus { border-color: var(--ai-glow); box-shadow: 0 0 10px rgba(0, 242, 255, 0.1); }
+        .btn-send { background: var(--primary); color: white; width: 50px; height: 50px; border-radius: 50%; border: none; cursor: pointer; transition: 0.3s; }
+        .btn-send:hover { background: var(--ai-glow); transform: scale(1.1); color: #000; }
+
+        #chat-arena::-webkit-scrollbar { width: 4px; }
+        #chat-arena::-webkit-scrollbar-thumb { background: var(--primary); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <a href="index.html" style="color:white;"><i class="fas fa-chevron-left"></i></a>
+        <div style="width: 40px; height: 40px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary);">
+            <i class="fas fa-robot"></i>
+        </div>
+        <div>
+            <h2 style="font-size: 18px;">IDM AI PRO</h2>
+            <span class="ai-status">NEURAL ENGINE ACTIVE</span>
+        </div>
+    </div>
+
+    <div id="chat-arena">
+        <!-- Initial Message -->
+        <div class="msg-row">
+            <div class="bubble ai-bubble animate__animated animate__fadeIn">
+                আসসালামু আলাইকুম! আমি <b>IDM AI</b> ইস্পাহানি দাখিল মাদ্রাসা সম্পর্কে যেকোনো তথ্য জানতে আমাকে জিজ্ঞাসা করুন। 
+            </div>
+        </div>
+    </div>
+
+    <div class="input-container">
+        <input type="text" id="userInput" placeholder="মাদ্রাসা সম্পর্কে জিজ্ঞাসা করুন..." onkeypress="handleKey(event)" style="font-family: 'Hind Siliguri', sans-serif;">
+        <button class="btn-send" onclick="askAI()"><i class="fas fa-paper-plane"></i></button>
+    </div>
+
+    <!-- এই বক্সটি এআই উত্তর দেওয়ার আগে ভেসে উঠবে -->
+<div id="ai-thinking" class="thinking-bubble animate__animated animate__fadeIn">
+    <div class="dots-container">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+</div>
+
+    <script type="module">
+    // ১. Firebase লাইব্রেরি ইমপোর্ট করা
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    // ২. তোমার অরিজিনাল ফায়ারবেস কনফিগ (এটি ছাড়া ডাটা আসবে না)
+    const firebaseConfig = {
+        apiKey: "AIzaSyCTxt82Z4KRW425eYAU-WkVJbmUu1Vcy58",
+        authDomain: "ispahani-madrasah-portal.firebaseapp.com",
+        projectId: "ispahani-madrasah-portal",
+        storageBucket: "ispahani-madrasah-portal.firebasestorage.app",
+        messagingSenderId: "501627545319",
+        appId: "1:501627545319:web:42409b2d8f614dfc3c6442"
+    };
+
+    // ৩. কানেকশন শুরু
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // ৪. এআই ফাংশন (উইন্ডো অবজেক্টে রাখা হলো যাতে বাটন কাজ করে)
+    window.askAI = async function() {
+        const inputField = document.getElementById('userInput');
+        const userText = inputField.value.trim();
+        if(!userText) return;
+
+        // ইউজারের মেসেজ দেখানো
+        appendMessage(userText, 'user-bubble');
+        inputField.value = "";
+
+        // ৫. লোডিং অ্যানিমেশন দেখানো (dots)
+        const thinkingBubble = document.getElementById('ai-thinking');
+        thinkingBubble.style.display = "block";
+        scrollBottom();
+
+        // ডাটাবেজ থেকে উত্তর খোঁজা
+        try {
+            const response = await getBestResponse(userText);
+            
+            // উত্তর আসার পর লোডিং বন্ধ করা
+            setTimeout(() => {
+                thinkingBubble.style.display = "none";
+                appendMessageWithEffect(response);
+            }, 1500); // ১.৫ সেকেন্ড স্ক্যানিং দেখাবে
+
+        } catch (error) {
+            console.error("Error fetching data:", error);
+            thinkingBubble.style.display = "none";
+            appendMessage("দুঃখিত, সার্ভারের সাথে সংযোগ বিচ্ছিন্ন হয়েছে।", "ai-bubble");
+        }
+    }
+
+    // ৬. ডাটাবেজ থেকে বুদ্ধিমান উপায়ে উত্তর খুঁজে বের করার লজিক
+    async function getBestResponse(text) {
+        const lowText = text.toLowerCase();
+        let finalAnswer = "";
+
+        // ফায়ারবেসের 'ai_brain' কালেকশন থেকে সব তথ্য আনা
+        const querySnapshot = await getDocs(collection(db, "ai_brain"));
+        
+        querySnapshot.forEach((doc) => {
+            const data = doc.data();
+            // চেক করা হচ্ছে ইউজারের ইনপুটে কোনো কি-ওয়ার্ড আছে কি না
+            if (data.keywords.some(k => lowText.includes(k.toLowerCase()))) {
+                finalAnswer = data.answer;
+            }
+        });
+
+        if (!finalAnswer) {
+            // যদি ডাটাবেজে উত্তর না থাকে
+            finalAnswer = `দুঃখিত, এই বিষয়ে আমার ডাটাবেজে তথ্য নেই। তবে আপনি চাইলে <a href='https://www.google.com/search?q=ইস্পাহানি+দাখিল+মাদ্রাসা+${text}' target='_blank' style='color:var(--ai-glow)'>এখানে ক্লিক করে</a> গুগলে সার্চ করতে পারেন।`;
+        }
+
+        const closing = "<br><br><i>আমি আপনাকে আর কীভাবে সাহায্য করতে পারি?</i>";
+        return finalAnswer + closing;
+    }
+
+    // মেসেজ যোগ করার সাধারণ ফাংশন
+    function appendMessage(text, className) {
+        const win = document.getElementById('chat-arena');
+        const row = document.createElement('div');
+        row.className = "msg-row";
+        row.innerHTML = `<div class="bubble ${className}">${text}</div>`;
+        win.appendChild(row);
+        scrollBottom();
+    }
+
+    // টাইপরাইটার ইফেক্ট ফাংশন
+    function appendMessageWithEffect(text) {
+        const win = document.getElementById('chat-arena');
+        const row = document.createElement('div');
+        row.className = "msg-row";
+        const bubble = document.createElement('div');
+        bubble.className = "bubble ai-bubble animate__animated animate__fadeIn";
+        row.appendChild(bubble);
+        win.appendChild(row);
+
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                if (text.charAt(i) === '<') {
+                    let tagEnd = text.indexOf('>', i);
+                    bubble.innerHTML += text.substring(i, tagEnd + 1);
+                    i = tagEnd + 1;
+                } else {
+                    bubble.innerHTML += text.charAt(i);
+                    i++;
+                }
+                scrollBottom();
+                setTimeout(type, 15);
+            }
+        }
+        type();
+    }
+
+    function scrollBottom() {
+        const win = document.getElementById('chat-arena');
+        win.scrollTop = win.scrollHeight;
+    }
+
+    window.handleKey = (e) => { if(e.key === 'Enter') askAI(); };
+</script>    
+</body>
+</html>

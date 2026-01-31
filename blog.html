@@ -1,31 +1,32 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>নোটিশ বোর্ড | ইস্পাহানি দাখিল মাদ্রাসা - অফিশিয়াল আপডেট</title>
-    
+    <title>শিক্ষক কলাম</title>
+
     <!-- Premium Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-
     <style>
-        /* --- ELITE UI ENGINE --- */
         :root {
-            --p-green: #006a4e;
-            --s-red: #f42a41;
-            --gold: #b8860b;
-            --bg: #f8fafc;
-            --white: #ffffff;
-            --text-dark: #333333;
-            --hind: 'Hind Siliguri', sans-serif;
-        }
+    --p-green: #006a4e;
+    --s-red: #f42a41;
+    --gold: #b8860b;
+    --white: #ffffff;
+    --bg-soft: #f1f5f9;
+    --hind: 'Hind Siliguri', sans-serif;
+    --ispahani-green: #006a4e;
+    --ispahani-green: #006a4e;
+    --ispahani-red: #f42a41;
+    --bg-light: #f8fafc;
+    --primary: #006a4e;
+}
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: var(--hind); background-color: var(--bg-light); color: var(--text-dark); line-height: 1.7; overflow-x: hidden; }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-style: normal !important; }
-        body { font-family: var(--hind); background-color: var(--bg); color: var(--text-dark); line-height: 1.7; overflow-x: hidden; }
-
-         /* --- PREMIUM NAV STYLES --- */
+        /* --- PREMIUM NAV STYLES --- */
 .premium-nav {
     background: #ffffff;
     height: 80px;
@@ -46,7 +47,7 @@
 .logo-txt h1 { font-size: 19px; font-weight: 700; color: #333; margin: 0; }
 .logo-txt span { font-size: 10px; color: #888; text-transform: uppercase; }
 
-/* Desktop Menu Styling */
+/* Desktop Menu*/
 .nav-menu { display: flex; list-style: none; gap: 20px; align-items: center; }
 .nav-menu li { position: relative; height: 80px; display: flex; align-items: center; }
 .nav-menu a { 
@@ -55,7 +56,7 @@
 }
 .nav-menu a:hover { color: #006a4e; }
 
-/* Arif Azad Style Dropdown */
+/* Dropdown */
 .submenu {
     position: absolute; top: 80px; left: 0; width: 220px;
     background: #ffffff; border-radius: 0 0 8px 8px;
@@ -78,7 +79,7 @@
 /* PC-তে সাইডবার টগল বাটন হাইড থাকবে */
 .mobile-toggle { display: none; font-size: 24px; color: #006a4e; cursor: pointer; }
 
-/* --- Mobile Sidebar (Right Slide) --- */
+/* --- Mobile Sidebar --- */
 .sidebar-menu {
     position: fixed; top: 0; right: -300px; width: 300px; height: 100vh;
     background: #fff; z-index: 3000; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -108,37 +109,18 @@
 
 /* --- Responsive Logic --- */
 @media (max-width: 1024px) {
-    .nav-menu { display: none; } /* পিসি মেনু মোবাইলে হাইড হবে */
-    .mobile-toggle { display: block; } /* মোবাইল বাটন মোবাইলে শো করবে */
+    .nav-menu { display: none; } 
+    .mobile-toggle { display: block; } 
 }
-        /* --- HERO AREA --- */
-        .notice-hero { padding: 140px 8% 60px; background: var(--p-green); color: #fff; text-align: center; border-radius: 0 0 50px 50px; }
-        .notice-hero h1 { font-size: 38px; font-weight: 700; margin-bottom: 10px; }
 
-        /* --- NOTICE BOARD LAYOUT --- */
-        .container { max-width: 1100px; margin: 50px auto; padding: 0 20px; }
-        
-        /* Category Filter */
-        .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; justify-content: center; }
-        .filter-btn { padding: 8px 20px; background: #fff; border: 1px solid #ddd; border-radius: 50px; cursor: pointer; font-weight: 600; font-size: 14px; transition: 0.3s; }
-        .filter-btn.active { background: var(--p-green); color: #fff; border-color: var(--p-green); }
+/* --- HERO SECTION --- */
+        .hero { 
+            background: linear-gradient(rgb(0, 57, 106), rgba(0, 74, 106, 0.6)), url('https://images.unsplash.com/photo-1541339907198-e08756ebafe1?q=80&w=1500');
+            background-size: cover; background-position: center;
+            padding: 140px 8% 80px; text-align: center; color: white; border-radius: 0 0 50px 50px;
+        }
+        .hero h2 { font-size: clamp(24px, 5vw, 40px); margin-bottom: 15px; }
 
-        /* Notice Items */
-        .notice-card { background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); border: 1px solid #eee; margin-bottom: 20px; display: flex; align-items: center; padding: 20px; transition: 0.3s; }
-        .notice-card:hover { transform: scale(1.01); border-left: 6px solid var(--s-red); }
-        
-        .date-box { min-width: 70px; height: 70px; background: #f1f5f9; border-radius: 15px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: 800; color: var(--p-green); line-height: 1.2; margin-right: 25px; }
-        .date-box span { font-size: 12px; font-weight: 400; color: #666; }
-
-        .notice-info { flex-grow: 1; }
-        .notice-info h3 { font-size: 18px; margin-bottom: 5px; color: #111; }
-        .notice-tag { font-size: 11px; background: #e0f2fe; color: #0369a1; padding: 2px 10px; border-radius: 50px; font-weight: 700; text-transform: uppercase; }
-
-        .btn-download { background: #f8fafc; border: 1px solid #ddd; padding: 10px 15px; border-radius: 10px; color: var(--s-red); cursor: pointer; transition: 0.3s; }
-        .btn-download:hover { background: var(--s-red); color: #fff; }
-
-        .article-card { background: white; padding: 20px; border-radius: 20px; margin-top: 60px;box-shadow: 1px 4px 10px #1111110d; line-height: 1.8; }
-        .article-card h2 { color: var(--p-green); margin-bottom: 20px; font-size: 26px; }
 
         /* Footer */
         footer { background: #111; color: white; padding: 80px 8% 20px; }
@@ -156,101 +138,9 @@
             nav { display: none; }
             .hero h2 { font-size: 30px; }
         }
-
-
-
-
-
-
-
-
-
-
-
-        /* --- CINEMATIC AI BOT ICON STYLE --- */
-.ai-launcher {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 65px;
-    height: 65px;
-    z-index: 9999;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.ai-icon-inner {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #000 0%, #1a1a2e 100%);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid rgba(0, 210, 255, 0.5);
-    color: #00d2ff; /* Initial AI Blue */
-    font-size: 28px;
-    box-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
-    z-index: 2;
-    animation: aiColorShift 5s infinite linear; /* কালার চেঞ্জ এনিমেশন */
-}
-
-/* আইকনকে দামী লুক দেওয়ার জন্য RGB কালার শিফট */
-@keyframes aiColorShift {
-    0% { color: #00d2ff; border-color: #00d2ff; box-shadow: 0 0 20px rgba(0, 210, 255, 0.6); }
-    33% { color: #39ff14; border-color: #39ff14; box-shadow: 0 0 20px rgba(57, 255, 20, 0.6); }
-    66% { color: #7000ff; border-color: #7000ff; box-shadow: 0 0 20px rgba(112, 0, 255, 0.6); }
-    100% { color: #00d2ff; border-color: #00d2ff; box-shadow: 0 0 20px rgba(0, 210, 255, 0.6); }
-}
-
-/* রোবট আইকনের থরথর করে কাঁপার এনিমেশন (Neural Pulse) */
-.ai-launcher i {
-    animation: neuralPulse 2s infinite ease-in-out;
-}
-@keyframes neuralPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.15); opacity: 0.8; }
-}
-
-/* আইকনের চারপাশে ছড়ানো নিয়ন রিং (Cinematic Aura) */
-.ai-pulse-ring {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: inherit;
-    border: 2px solid var(--ai-blue);
-    animation: ringGlow 2s infinite;
-    z-index: 1;
-}
-
-@keyframes ringGlow {
-    0% { transform: scale(1); opacity: 0.8; box-shadow: 0 0 10px rgba(0, 210, 255, 0.5); }
-    100% { transform: scale(1.8); opacity: 0; box-shadow: 0 0 40px rgba(0, 210, 255, 0); }
-}
-
-/* হোভার ইফেক্ট */
-.ai-launcher:hover {
-    transform: scale(1.2) rotate(15deg);
-}
-
-/* মোবাইল রেসপন্সিভ - মোবাইলে একটু ছোট হবে */
-@media (max-width: 600px) {
-    .ai-launcher {
-        bottom: 20px;
-        right: 20px;
-        width: 55px;
-        height: 55px;
-    }
-    .ai-icon-inner { font-size: 24px; }
-}
     </style>
 </head>
 <body>
-
     <!-- Navigation -->
 <nav class="premium-nav">
     <div class="nav-wrapper">
@@ -304,8 +194,8 @@
                 </ul>
             </li>
 
+            <li><a href="blog.html">শিক্ষক কলাম</a></li>
             <li><a href="gallery.html">গ্যালারি</a></li>
-
             <li><a href="contact.html">যোগাযোগ</a></li>
             <li><a href="login.html" class="btn-login-round">লগইন</a></li>
         </ul>
@@ -317,7 +207,7 @@
     </div>
 </nav>
 
-<!-- মোবাইল সাইডবার (স্লাইড মেনু) -->
+<!-- স্লাইড মেনু -->
 <div id="mobileSidebar" class="sidebar-menu">
     <div class="sidebar-header">
         <span>মেনুবার</span>
@@ -375,86 +265,37 @@
                 <li><a href="http://www.educationboardresults.gov.bd/">বোর্ড ফলাফল</a></li>
             </ul>
         </li>
+        <li><a href="blog.html">শিক্ষক কলাম</a></li>
         <li><a href="gallery.html">গ্যালারি</a></li>
         <li><a href="contact.html">যোগাযোগ</a></li>
         <li><a href="login.html">লগইন</a></li>
     </ul>
 </div>
-
-<!-- শ্যাডো ওভারলে -->
 <div id="sideOverlay" class="side-overlay" onclick="closeSidebar()"></div>
 
-    <!-- Hero -->
-    <header class="notice-hero">
-        <div class="animate__animated animate__fadeInDown">
-            <h1>নোটিশ বোর্ড</h1>
-            <p>মাদ্রাসার সকল জরুরী ঘোষণা ও একাডেমিক আপডেট এখন অনলাইনে</p>
+
+<!-- Hero -->
+    <header class="hero">
+        <div class="animate__animated animate__fadeInUp">
+            <h2>শিক্ষক কলাম</h2>
+            <p></p>
         </div>
     </header>
 
-    <div class="container">
-        
-        <!-- Category Filter -->
-        <div class="filter-bar">
-            <button class="filter-btn active">সব নোটিশ</button>
-            <button class="filter-btn">একাডেমিক</button>
-            <button class="filter-btn">পরীক্ষা</button>
-            <button class="filter-btn">ভর্তি</button>
-            <button class="filter-btn">ছুটি</button>
-        </div>
-
-        <!-- Notice List -->
-        <div class="notice-list-wrapper">
-            <!-- Notice 1 -->
-            <div class="notice-card animate__animated animate__fadeInUp">
-                <div class="date-box">২৯<span>জানু, ২৬</span></div>
-                <div class="notice-info">
-                    <span class="notice-tag">পরীক্ষা</span>
-                    <h3>দাখিল পরীক্ষা ২০২৬ এর প্রবেশপত্র বিতরণ সংক্রান্ত বিজ্ঞপ্তি</h3>
-                    <p style="font-size: 13px; color: #777;">পরীক্ষার্থীদের আগামী ২রা ফেব্রুয়ারির মধ্যে অফিস থেকে প্রবেশপত্র সংগ্রহের অনুরোধ করা হলো।</p>
-                </div>
-                <button class="btn-download"><i class="fas fa-file-pdf"></i> PDF</button>
-            </div>
-
-            <!-- Notice 2 -->
-            <div class="notice-card animate__animated animate__fadeInUp" style="animation-delay: 0.1s;">
-                <div class="date-box">২৫<span>জানু, ২৬</span></div>
-                <div class="notice-info">
-                    <span class="notice-tag">একাডেমিক</span>
-                    <h3>বার্ষিক ক্রীড়া ও সাংস্কৃতিক প্রতিযোগিতার চূড়ান্ত সময়সূচী</h3>
-                    <p style="font-size: 13px; color: #777;">আগামী ১০ই ফেব্রুয়ারি মাদ্রাসার খেলার মাঠে বার্ষিক অনুষ্ঠান অনুষ্ঠিত হবে।</p>
-                </div>
-                <button class="btn-download"><i class="fas fa-file-pdf"></i> PDF</button>
-            </div>
-
-            <!-- Notice 3 -->
-            <div class="notice-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
-                <div class="date-box">১০<span>জানু, ২৬</span></div>
-                <div class="notice-info">
-                    <span class="notice-tag">ভর্তি</span>
-                    <h3>২০২৬ শিক্ষাবর্ষে ইবতেদায়ী ও দাখিল শাখায় ভর্তি বিজ্ঞপ্তি</h3>
-                    <p style="font-size: 13px; color: #777;">আগ্রহী শিক্ষার্থীদের আগামী ১৫ই জানুয়ারির মধ্যে আবেদন ফরম জমা দিতে হবে।</p>
-                </div>
-                <button class="btn-download"><i class="fas fa-file-pdf"></i> PDF</button>
-            </div>
-
-            <div class="notice-list-wrapper" id="live-notice-list">
-    <!-- এখানে তোমার জাভাস্ক্রিপ্ট থেকে ডায়নামিক নোটিশগুলো লোড হবে -->
-    <p style="text-align:center;">সার্ভার থেকে নোটিশ লোড হচ্ছে...</p>
-</div>
-
-
-
-        </div>
-
-        <article class="article-card">
-            <h2>ডিজিটাল শিক্ষা ব্যবস্থায় অনলাইন নোটিশ বোর্ডের গুরুত্ব</h2>
-            <p>বর্তমান তথ্য-প্রযুক্তির যুগে শিক্ষা প্রতিষ্ঠানগুলোতে অনলাইন নোটিশ বোর্ড একটি অপরিহার্য অংশ হয়ে দাঁড়িয়েছে। আগে যখন কোনো নোটিশ বা ঘোষণা দেওয়া হতো, তা কেবল মাদ্রাসার দেওয়ালে টাঙানো থাকতো। ফলে অনেক সময় অভিভাবক বা দূরে থাকা শিক্ষার্থীরা গুরুত্বপূর্ণ তথ্য সময়মতো জানতে পারতো না। ইস্পাহানি দাখিল মাদ্রাসা তাদের ডিজিটাল রূপান্তরের অংশ হিসেবে এই অনলাইন নোটিশ বোর্ড চালু করেছে।</p>
-            <p>এর ফলে এখন থেকে যেকোনো শিক্ষার্থী বা অভিভাবক পৃথিবীর যেকোনো প্রান্ত থেকে স্মার্টফোনের মাধ্যমেই প্রতিদিনের আপডেট জানতে পারবে। পরীক্ষার রুটিন, রেজাল্ট প্রকাশের তারিখ বা বিশেষ ছুটির ঘোষণা এখন মুহূর্তের মধ্যেই সবার কাছে পৌঁছে যাচ্ছে। এটি একদিকে যেমন সময় সাশ্রয় করে, অন্যদিকে মাদ্রাসার প্রশাসনিক কাজে গতিশীলতা ও স্বচ্ছতা নিশ্চিত করে। আমরা বিশ্বাস করি, প্রযুক্তির এই ব্যবহার আমাদের শিক্ষার্থীদের আধুনিক বিশ্বের সাথে তাল মিলিয়ে চলতে সাহায্য করবে।</p>
-        </div>
+    <div class="article-card" style="max-width: 800px;margin: 25px auto; padding: 50px; background-color: #ffff; box-shadow: 1px 4px 10px #11111111; border-radius: 20px;">
+        <h2 style="color: #006a4e;">শিরোনাম</h2>
+        <p>এখনে লিখুন...</p>
+        <div class="writer" style="font-weight: 600;font-size: large; text-align: right;">আপনার নাম</div>
     </div>
 
-    <!-- Footer -->
+<!--Article uplood to admin penl-->
+
+
+
+<div class="articl"style="padding: 200px"></div>
+
+
+<!-- Footer -->
     <footer>
         <div class="footer-grid">
             <div>
@@ -509,73 +350,9 @@ function closeSidebar() {
 
 function toggleMSub(id, element) {
     const sub = document.getElementById(id);
-    element.classList.toggle('active'); // তীরের আইকন ঘোরানোর জন্য
-    sub.classList.toggle('open'); // মেনু নিচে স্লাইড করার জন্য
+    element.classList.toggle('active');
+    sub.classList.toggle('open');
 }
-
     </script>
-
-<!-- ২. ফায়ারবেস লজিক -->
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-    // তোমার সেই ইউনিক চাবি (Config)
-    const firebaseConfig = {
-        apiKey: "AIzaSyCTxt82Z4KRW425eYAU-WkVJbmUu1Vcy58",
-        authDomain: "ispahani-madrasah-portal.firebaseapp.com",
-        projectId: "ispahani-madrasah-portal",
-        storageBucket: "ispahani-madrasah-portal.firebasestorage.app",
-        messagingSenderId: "501627545319",
-        appId: "1:501627545319:web:42409b2d8f614dfc3c6442"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    // ডাটাবেজ থেকে নোটিশ পড়ার ফাংশন
-    const q = query(collection(db, "notices"), orderBy("time", "desc"));
-    
-    // রিয়েল-টাইম আপডেট শোনা
-onSnapshot(q, (querySnapshot) => {
-    const listElement = document.getElementById('live-notice-list');
-    
-    // যদি আইডিটি খুঁজে না পায়, তবে এরর দিবে না
-    if (!listElement) {
-        console.error("HTML এ 'live-notice-list' আইডিটি পাওয়া যায়নি!");
-        return;
-    }
-
-    listElement.innerHTML = ""; // আগের ডামি ডাটা মুছে ফেলা
-
-    querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        
-        // তোমার সুন্দর ডিজাইন অনুযায়ী এইচটিএমএল তৈরি
-        listElement.innerHTML += `
-            <div class="notice-card animate__animated animate__fadeInUp">
-                <div class="date-box">নতুন<span>জানু, ২৬</span></div>
-                <div class="notice-info">
-                    <span class="notice-tag">সাধারণ</span>
-                    <h3>${data.title}</h3>
-                    <p style="font-size: 13px; color: #777;">${data.details}</p>
-                </div>
-                <button class="btn-download"><i class="fas fa-file-pdf"></i> PDF</button>
-            </div>
-        `;
-    });
-});
-</script>
-
-
-
-<!-- Floating AI Bot Launcher -->
-<a href="ai-chat.html" class="ai-launcher animate__animated animate__fadeInUp" title="IDM AI এর সাথে কথা বলুন">
-    <div class="ai-icon-inner">
-        <i class="fas fa-robot"></i>
-    </div>
-    <!-- আইকনের চারপাশে নিয়ন রিং -->
-    <div class="ai-pulse-ring"></div>
-</a>
 </body>
 </html>

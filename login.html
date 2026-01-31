@@ -67,6 +67,96 @@
         #additional-fields { display: none; margin-top: 20px; border-top: 2px dashed #eee; padding-top: 20px; }
 
         @media (max-width: 600px) { .login-card { padding: 30px 20px; } }
+
+
+
+
+
+
+
+
+
+
+        /* --- CINEMATIC AI BOT ICON STYLE --- */
+.ai-launcher {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 65px;
+    height: 65px;
+    z-index: 9999;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.ai-icon-inner {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #000 0%, #1a1a2e 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(0, 210, 255, 0.5);
+    color: #00d2ff; /* Initial AI Blue */
+    font-size: 28px;
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
+    z-index: 2;
+    animation: aiColorShift 5s infinite linear; /* কালার চেঞ্জ এনিমেশন */
+}
+
+/* আইকনকে দামী লুক দেওয়ার জন্য RGB কালার শিফট */
+@keyframes aiColorShift {
+    0% { color: #00d2ff; border-color: #00d2ff; box-shadow: 0 0 20px rgba(0, 210, 255, 0.6); }
+    33% { color: #39ff14; border-color: #39ff14; box-shadow: 0 0 20px rgba(57, 255, 20, 0.6); }
+    66% { color: #7000ff; border-color: #7000ff; box-shadow: 0 0 20px rgba(112, 0, 255, 0.6); }
+    100% { color: #00d2ff; border-color: #00d2ff; box-shadow: 0 0 20px rgba(0, 210, 255, 0.6); }
+}
+
+/* রোবট আইকনের থরথর করে কাঁপার এনিমেশন (Neural Pulse) */
+.ai-launcher i {
+    animation: neuralPulse 2s infinite ease-in-out;
+}
+@keyframes neuralPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); opacity: 0.8; }
+}
+
+/* আইকনের চারপাশে ছড়ানো নিয়ন রিং (Cinematic Aura) */
+.ai-pulse-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: inherit;
+    border: 2px solid var(--ai-blue);
+    animation: ringGlow 2s infinite;
+    z-index: 1;
+}
+
+@keyframes ringGlow {
+    0% { transform: scale(1); opacity: 0.8; box-shadow: 0 0 10px rgba(0, 210, 255, 0.5); }
+    100% { transform: scale(1.8); opacity: 0; box-shadow: 0 0 40px rgba(0, 210, 255, 0); }
+}
+
+/* হোভার ইফেক্ট */
+.ai-launcher:hover {
+    transform: scale(1.2) rotate(15deg);
+}
+
+/* মোবাইল রেসপন্সিভ - মোবাইলে একটু ছোট হবে */
+@media (max-width: 600px) {
+    .ai-launcher {
+        bottom: 20px;
+        right: 20px;
+        width: 55px;
+        height: 55px;
+    }
+    .ai-icon-inner { font-size: 24px; }
+}
     </style>
 </head>
 <body>
@@ -173,5 +263,68 @@
             // এটি তোমার অন্য পেজের মেনুর সাথে কাজ করবে
         }
     </script>
+
+
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    // তোমার সেই আগের কনফিগ কোড
+    const firebaseConfig = {
+        apiKey: "AIzaSyCTxt82Z4KRW425eYAU-WkVJbmUu1Vcy58",
+        authDomain: "ispahani-madrasah-portal.firebaseapp.com",
+        projectId: "ispahani-madrasah-portal",
+        storageBucket: "ispahani-madrasah-portal.firebasestorage.app",
+        messagingSenderId: "501627545319",
+        appId: "1:501627545319:web:42409b2d8f614dfc3c6442"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const provider = new GoogleAuthProvider();
+
+    // ১. গুগল দিয়ে লগইন এবং ডাটাবেজে তথ্য রাখা
+    window.loginWithGoogle = function() {
+        signInWithPopup(auth, provider)
+            .then(async (result) => {
+                const user = result.user;
+                
+                // ইউজার ডাটাবেজে আছে কি না চেক করা
+                const userRef = doc(db, "users", user.uid);
+                const userSnap = await getDoc(userRef);
+
+                if (!userSnap.exists()) {
+                    // প্রথমবার হলে তথ্য সেভ হবে
+                    await setDoc(userRef, {
+                        name: user.displayName,
+                        email: user.email,
+                        photo: user.photoURL,
+                        role: "student", // ডিফল্ট ছাত্র
+                        joined: new Date()
+                    });
+                    alert("স্বাগতম " + user.displayName + "! আপনার একাউন্ট তৈরি হয়েছে।");
+                }
+                
+                // ব্রাউজার মেমরিতে নাম সেভ রাখা
+                localStorage.setItem('userName', user.displayName);
+                window.location.href = "index.html"; // লগইন শেষে হোমে যাবে
+            }).catch((error) => alert(error.message));
+    }
+
+    // বাটন ক্লিক ইভেন্ট লিসেনার (যদি আইডিতে ক্লিক করা হয়)
+    document.getElementById('google-login-btn').onclick = loginWithGoogle;
+</script>
+
+<!-- Floating AI Bot Launcher -->
+<a href="ai-chat.html" class="ai-launcher animate__animated animate__fadeInUp" title="IDM AI এর সাথে কথা বলুন">
+    <div class="ai-icon-inner">
+        <i class="fas fa-robot"></i>
+    </div>
+    <!-- আইকনের চারপাশে নিয়ন রিং -->
+    <div class="ai-pulse-ring"></div>
+</a>
 </body>
 </html>
