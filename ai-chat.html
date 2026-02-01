@@ -120,11 +120,10 @@
    
 
     <script type="module">
-    // ১. Firebase লাইব্রেরি ইমপোর্ট করা
+    // ১. প্রয়োজনীয় ইমপোর্ট (Firebase যদি অন্য কাজে লাগে তবে থাকুক, নয়তো শুধু নিচের লজিক কাজ করবে)
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-    // ২. তোমার অরিজিনাল ফায়ারবেস কনফিগ (এটি ছাড়া ডাটা আসবে না)
+    // ২. তোমার কনফিগ (আগেরটাই থাকবে)
     const firebaseConfig = {
         apiKey: "AIzaSyCTxt82Z4KRW425eYAU-WkVJbmUu1Vcy58",
         authDomain: "ispahani-madrasah-portal.firebaseapp.com",
@@ -134,65 +133,45 @@
         appId: "1:501627545319:web:42409b2d8f614dfc3c6442"
     };
 
-    // ৩. কানেকশন শুরু
     const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
 
-    // ৪. এআই ফাংশন (উইন্ডো অবজেক্টে রাখা হলো যাতে বাটন কাজ করে)
+    // ৩. মেইন চ্যাট ফাংশন (যা তোমার পাইথন সার্ভারে মেসেজ পাঠাবে)
     window.askAI = async function() {
         const inputField = document.getElementById('userInput');
         const userText = inputField.value.trim();
         if(!userText) return;
 
-        // ইউজারের মেসেজ দেখানো
+        // ইউজারের মেসেজ স্ক্রিনে দেখানো
         appendMessage(userText, 'user-bubble');
         inputField.value = "";
 
-        // ৫. লোডিং অ্যানিমেশন দেখানো (dots)
+        // ৪. থ্রি-ডট লোডিং এনিমেশন দেখানো (Thinking...)
         const thinkingBubble = document.getElementById('ai-thinking');
         thinkingBubble.style.display = "block";
         scrollBottom();
 
-        // ডাটাবেজ থেকে উত্তর খোঁজা
         try {
-            const response = await getBestResponse(userText);
+            // ৫. তোমার পাইথন সার্ভারের সাথে কানেক্ট করা
+            // মনে রেখো: লোকাল হোস্টে চেক করলে http://localhost:5000/chat 
+            // আর রেন্ডারে লাইভ করলে ওই লিঙ্কে দিতে হবে।
+            const response = await fetch('http://localhost:5000/chat', { 
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: userText })
+            });
             
-            // উত্তর আসার পর লোডিং বন্ধ করা
-            setTimeout(() => {
-                thinkingBubble.style.display = "none";
-                appendMessageWithEffect(response);
-            }, 1500); // ১.৫ সেকেন্ড স্ক্যানিং দেখাবে
+            const data = await response.json();
+            const aiReply = data.reply; // সার্ভার থেকে আসা উত্তর
+
+            // ৬. উত্তর আসার পর লোডিং বন্ধ করা এবং টাইপরাইটার ইফেক্ট দেওয়া
+            thinkingBubble.style.display = "none";
+            appendMessageWithEffect(aiReply);
 
         } catch (error) {
-            console.error("Error fetching data:", error);
+            console.error("Server Error:", error);
             thinkingBubble.style.display = "none";
-            appendMessage("দুঃখিত, সার্ভারের সাথে সংযোগ বিচ্ছিন্ন হয়েছে।", "ai-bubble");
+            appendMessage("দুঃখিত, সার্ভারটি এই মুহূর্তে স্লিপ মোডে আছে। দয়া করে ৩০ সেকেন্ড পর আবার চেষ্টা করুন।", "ai-bubble");
         }
-    }
-
-    // ৬. ডাটাবেজ থেকে বুদ্ধিমান উপায়ে উত্তর খুঁজে বের করার লজিক
-    async function getBestResponse(text) {
-        const lowText = text.toLowerCase();
-        let finalAnswer = "";
-
-        // ফায়ারবেসের 'ai_brain' কালেকশন থেকে সব তথ্য আনা
-        const querySnapshot = await getDocs(collection(db, "ai_brain"));
-        
-        querySnapshot.forEach((doc) => {
-            const data = doc.data();
-            // চেক করা হচ্ছে ইউজারের ইনপুটে কোনো কি-ওয়ার্ড আছে কি না
-            if (data.keywords.some(k => lowText.includes(k.toLowerCase()))) {
-                finalAnswer = data.answer;
-            }
-        });
-
-        if (!finalAnswer) {
-            // যদি ডাটাবেজে উত্তর না থাকে
-            finalAnswer = `দুঃখিত, এই বিষয়ে আমার ডাটাবেজে তথ্য নেই।`;
-        }
-
-        const closing = "<br><br><i>আমি আপনাকে আর কীভাবে সাহায্য করতে পারি?</i>";
-        return finalAnswer + closing;
     }
 
     // মেসেজ যোগ করার সাধারণ ফাংশন
@@ -205,7 +184,7 @@
         scrollBottom();
     }
 
-    // টাইপরাইটার ইফেক্ট ফাংশন
+    // চ্যাটজিপিটি স্টাইল টাইপরাইটার ইফেক্ট
     function appendMessageWithEffect(text) {
         const win = document.getElementById('chat-arena');
         const row = document.createElement('div');
@@ -218,16 +197,15 @@
         let i = 0;
         function type() {
             if (i < text.length) {
-                if (text.charAt(i) === '<') {
-                    let tagEnd = text.indexOf('>', i);
-                    bubble.innerHTML += text.substring(i, tagEnd + 1);
-                    i = tagEnd + 1;
+                // মার্কডাউন বা এইচটিএমএল ট্যাগ থাকলে তা একবারে দেখানোর জন্য
+                if (text.charAt(i) === '*') { 
+                    bubble.innerHTML += "<br>"; i++; 
                 } else {
                     bubble.innerHTML += text.charAt(i);
                     i++;
                 }
                 scrollBottom();
-                setTimeout(type, 15);
+                setTimeout(type, 20); // টাইপিং স্পিড
             }
         }
         type();
@@ -237,6 +215,7 @@
         const win = document.getElementById('chat-arena');
         win.scrollTop = win.scrollHeight;
     }
+
     window.handleKey = (e) => { if(e.key === 'Enter') askAI(); };
 </script>    
 </body>
