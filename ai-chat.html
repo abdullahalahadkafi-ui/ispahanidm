@@ -154,7 +154,7 @@
             // ৫. তোমার পাইথন সার্ভারের সাথে কানেক্ট করা
             // মনে রেখো: লোকাল হোস্টে চেক করলে http://localhost:5000/chat 
             // আর রেন্ডারে লাইভ করলে ওই লিঙ্কে দিতে হবে।
-            const response = await fetch('http://localhost:5000/chat', { 
+            const response = await fetch('https://idm-ai-server.onrender.com', { 
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ message: userText })
@@ -217,6 +217,6 @@
     }
 
     window.handleKey = (e) => { if(e.key === 'Enter') askAI(); };
-</script>    
+</script>-    
 </body>
 </html>
