@@ -151,15 +151,12 @@
         scrollBottom();
 
         try {
-            // ৫. তোমার পাইথন সার্ভারের সাথে কানেক্ট করা
-            // মনে রেখো: লোকাল হোস্টে চেক করলে http://localhost:5000/chat 
-            // আর রেন্ডারে লাইভ করলে ওই লিঙ্কে দিতে হবে।
-            const response = await fetch('https://idm-ai-server.onrender.com/chat', { // এখানে শেষে /chat আছে তো?
+           // নিশ্চিত করো লিঙ্কটি হুবহু এমন:
+const response = await fetch('https://idm-ai-server.onrender.com/chat', { 
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ message: userText })
-});
-            
+});      
             const data = await response.json();
             const aiReply = data.reply; // সার্ভার থেকে আসা উত্তর
 
