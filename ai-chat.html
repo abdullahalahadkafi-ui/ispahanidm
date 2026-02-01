@@ -120,10 +120,9 @@
    
 
     <script type="module">
-    // ১. প্রয়োজনীয় ইমপোর্ট (Firebase যদি অন্য কাজে লাগে তবে থাকুক, নয়তো শুধু নিচের লজিক কাজ করবে)
+    // ১. Firebase ইমপোর্ট (যদি তোমার অন্য কাজে লাগে, না লাগলে শুধু নিচের অংশ কাজ করবে)
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 
-    // ২. তোমার কনফিগ (আগেরটাই থাকবে)
     const firebaseConfig = {
         apiKey: "AIzaSyCTxt82Z4KRW425eYAU-WkVJbmUu1Vcy58",
         authDomain: "ispahani-madrasah-portal.firebaseapp.com",
@@ -135,7 +134,7 @@
 
     const app = initializeApp(firebaseConfig);
 
-    // ৩. মেইন চ্যাট ফাংশন (যা তোমার পাইথন সার্ভারে মেসেজ পাঠাবে)
+    // ২. মেইন এআই ফাংশন (উইন্ডো অবজেক্টে রাখা হয়েছে যাতে বাটন কাজ করে)
     window.askAI = async function() {
         const inputField = document.getElementById('userInput');
         const userText = inputField.value.trim();
@@ -145,29 +144,36 @@
         appendMessage(userText, 'user-bubble');
         inputField.value = "";
 
-        // ৪. থ্রি-ডট লোডিং এনিমেশন দেখানো (Thinking...)
+        // ৩. থ্রি-ডট লোডিং এনিমেশন দেখানো
         const thinkingBubble = document.getElementById('ai-thinking');
         thinkingBubble.style.display = "block";
         scrollBottom();
 
         try {
-           // নিশ্চিত করো লিঙ্কটি হুবহু এমন:
-const response = await fetch('https://idm-ai-server.onrender.com/chat', { 
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ message: userText })
-});      
+            // ৪. তোমার পাইথন সার্ভারে রিকোয়েস্ট পাঠানো
+            // হ্যাকার টিপস: এই লিঙ্কটি তোমার রেন্ডার সার্ভার লিঙ্ক হতে হবে
+            const response = await fetch('https://idm-ai-server.onrender.com/chat', { 
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: userText })
+            });
+            
             const data = await response.json();
-            const aiReply = data.reply; // সার্ভার থেকে আসা উত্তর
-
-            // ৬. উত্তর আসার পর লোডিং বন্ধ করা এবং টাইপরাইটার ইফেক্ট দেওয়া
+            
+            // ৫. উত্তর আসার পর লোডিং বন্ধ করা এবং টাইপরাইটার ইফেক্ট দেওয়া
             thinkingBubble.style.display = "none";
-            appendMessageWithEffect(aiReply);
+            
+            if (data.reply) {
+                appendMessageWithEffect(data.reply);
+            } else {
+                appendMessage("দুঃখিত, এআই সার্ভার থেকে কোনো উত্তর পাওয়া যায়নি।", "ai-bubble");
+            }
 
         } catch (error) {
-            console.error("Server Error:", error);
+            console.error("Connection Error:", error);
             thinkingBubble.style.display = "none";
-            appendMessage("দুঃখিত, সার্ভারটি এই মুহূর্তে স্লিপ মোডে আছে। দয়া করে ৩০ সেকেন্ড পর আবার চেষ্টা করুন।", "ai-bubble");
+            // রেন্ডার ফ্রি সার্ভার ঘুমানোর কারণে এই মেসেজটি জরুরি
+            appendMessage("আপনার এআই সার্ভারটি এই মুহূর্তে 'স্লিপ মোডে' আছে। প্রথমবার জেগে উঠতে ৩০-৫০ সেকেন্ড সময় লাগতে পারে। দয়া করে একটু পর আবার 'Hi' লিখে মেসেজ দিন।", "ai-bubble");
         }
     }
 
@@ -194,7 +200,7 @@ const response = await fetch('https://idm-ai-server.onrender.com/chat', {
         let i = 0;
         function type() {
             if (i < text.length) {
-                // মার্কডাউন বা এইচটিএমএল ট্যাগ থাকলে তা একবারে দেখানোর জন্য
+                // মার্কডাউন বা ব্রেক হ্যান্ডলিং
                 if (text.charAt(i) === '*') { 
                     bubble.innerHTML += "<br>"; i++; 
                 } else {
@@ -213,7 +219,8 @@ const response = await fetch('https://idm-ai-server.onrender.com/chat', {
         win.scrollTop = win.scrollHeight;
     }
 
+    // এন্টার বাটন চাপলে মেসেজ যাবে
     window.handleKey = (e) => { if(e.key === 'Enter') askAI(); };
-</script>-    
+</script>    
 </body>
 </html>
