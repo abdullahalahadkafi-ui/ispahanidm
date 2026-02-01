@@ -22,26 +22,95 @@
             --hind: 'Hind Siliguri', sans-serif;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-style: normal !important; }
-        body { font-family: var(--hind); background-color: var(--bg); color: var(--text-dark); line-height: 1.8; overflow-x: hidden; }
+                * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: var(--hind); background-color: var(--bg-light); color: var(--text-dark); line-height: 1.7; overflow-x: hidden; }
 
-        /* --- NAVIGATION (Consistent Arif Azad Style) --- */
-        .premium-nav { background: #fff; height: 80px; position: fixed; width: 100%; top: 0; z-index: 2000; box-shadow: 0 2px 20px rgba(0,0,0,0.05); border-bottom: 1px solid #eee; display: flex; align-items: center; }
-        .nav-wrapper { width: 90%; max-width: 1250px; margin: auto; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-weight: 800; color: var(--p-green); text-decoration: none; font-size: 20px; }
+        /* --- PREMIUM NAV STYLES --- */
+.premium-nav {
+    background: #ffffff;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    position: fixed; width: 100%; top: 0; z-index: 2000;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    border-bottom: 1px solid #eee;
+}
+.nav-wrapper {
+    width: 90%; max-width: 1250px; margin: auto;
+    display: flex; justify-content: space-between; align-items: center;
+}
 
-        .nav-menu { display: flex; list-style: none; gap: 20px; }
-        .nav-menu li { position: relative; }
-        .nav-menu a { text-decoration: none; color: #444; font-weight: 600; font-size: 14px; transition: 0.3s; }
-        .nav-menu a:hover { color: var(--p-green); }
+/* Logo Section */
+.brand-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand-logo i { font-size: 30px; color: #006a4e; }
+.logo-txt h1 { font-size: 19px; font-weight: 700; color: #333; margin: 0; }
+.logo-txt span { font-size: 10px; color: #888; text-transform: uppercase; }
 
-        /* --- MOBILE SIDEBAR --- */
-        .sidebar-menu { position: fixed; top: 0; right: -320px; width: 300px; height: 100vh; background: #fff; z-index: 3000; transition: 0.4s; padding: 30px; box-shadow: -10px 0 40px rgba(0,0,0,0.1); }
-        .sidebar-menu.active { right: 0; }
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2500; display: none; }
-        .overlay.active { display: block; }
-        .menu-btn { font-size: 24px; color: var(--p-green); cursor: pointer; display: none; }
+/* Desktop Menu*/
+.nav-menu { display: flex; list-style: none; gap: 20px; align-items: center; }
+.nav-menu li { position: relative; height: 80px; display: flex; align-items: center; }
+.nav-menu a { 
+    text-decoration: none; color: #444; font-weight: 600; font-size: 14px; 
+    padding: 10px 5px; transition: 0.3s;
+}
+.nav-menu a:hover { color: #006a4e; }
 
+/* Dropdown */
+.submenu {
+    position: absolute; top: 80px; left: 0; width: 220px;
+    background: #ffffff; border-radius: 0 0 8px 8px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    list-style: none; padding: 15px 0;
+    display: none; transform: translateY(10px); transition: 0.3s;
+}
+.has-dropdown:hover .submenu { display: block; transform: translateY(0); }
+.submenu li { height: auto; display: block; }
+.submenu li a { 
+    display: block; padding: 10px 25px; font-size: 13px; color: #555; font-weight: 500;
+}
+.submenu li a:hover { background: #f8fafc; color: #006a4e; padding-left: 30px; }
+
+.btn-login-round { 
+    background: #006a4e; color: #fff !important; 
+    padding: 8px 22px !important; border-radius: 50px; 
+}
+
+/* PC-তে সাইডবার টগল বাটন হাইড থাকবে */
+.mobile-toggle { display: none; font-size: 24px; color: #006a4e; cursor: pointer; }
+
+/* --- Mobile Sidebar --- */
+.sidebar-menu {
+    position: fixed; top: 0; right: -300px; width: 300px; height: 100vh;
+    background: #fff; z-index: 3000; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1); overflow-y: auto; padding-top: 20px;
+}
+.sidebar-menu.active { right: 0; }
+
+.sidebar-header { display: flex; justify-content: space-between; padding: 0 25px 20px; border-bottom: 1px solid #eee; }
+.sidebar-header span { font-weight: 800; color: #006a4e; }
+
+.sidebar-content { list-style: none; padding: 20px 0; }
+.m-nav-item, .sidebar-content li a {
+    display: flex; justify-content: space-between; padding: 15px 25px;
+    text-decoration: none; color: #333; font-weight: 600; cursor: pointer;
+}
+
+/* Sidebar Accordion (Dropdown) */
+.m-submenu { list-style: none; background: #f9f9f9; max-height: 0; overflow: hidden; transition: 0.4s ease; }
+.m-submenu.open { max-height: 500px; padding: 10px 0; }
+.m-submenu li a { padding: 10px 45px; font-weight: 400; font-size: 14px; color: #666; }
+
+.m-nav-item i { transition: 0.3s; font-size: 12px; }
+.m-nav-item.active i { transform: rotate(180deg); color: #006a4e; }
+
+.side-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2500; display: none; }
+.side-overlay.active { display: block; }
+
+/* --- Responsive Logic --- */
+@media (max-width: 1024px) {
+    .nav-menu { display: none; } 
+    .mobile-toggle { display: block; } 
+}
         /* --- HERO AREA --- */
         .header-banner { padding: 140px 8% 60px; background: var(--p-green); color: #fff; text-align: center; border-radius: 0 0 50px 50px; }
         .header-banner h1 { font-size: 38px; font-weight: 700; }
@@ -154,32 +223,139 @@
     </style>
 </head>
 <body>
+<!-- Navigation -->
+<nav class="premium-nav">
+    <div class="nav-wrapper">
+        <!-- Logo -->
+        <a href="index.html" class="brand-logo">
+            <img src="favicon.png" alt="brand-logo" style="width: 40px;">
+            <div class="logo-txt">
+                <h1>ইস্পাহানি দাখিল মাদ্রাসা</h1>
+            </div>
+        </a>
 
-    <!-- Nav -->
-    <nav class="premium-nav">
-        <div class="nav-wrapper">
-            <a href="index.html" class="logo"><i class="fas fa-mosque"></i> ইস্পাহানি দাখিল মাদ্রাসা</a>
-            <ul class="nav-menu">
-                <li><a href="index.html">হোম</a></li>
-                <li><a href="teachers.html">শিক্ষকবৃন্দ</a></li>
-                <li><a href="academic.html">একাডেমিক</a></li>
-                <li><a href="result.html">ফলাফল</a></li>
-                <li><a href="contact.html">যোগাযোগ</a></li>
-            </ul>
-            <div class="menu-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
-        </div>
-    </nav>
+        <!-- Desktop Menu -->
+        <ul class="nav-menu">
+            <li><a href="index.html">শুরু</a></li>
+            
+            <li class="has-dropdown">
+                <a href="#">প্রতিষ্ঠানের তথ্য <i class="fas fa-angle-down"></i></a>
+                <ul class="submenu">
+                    <li><a href="history.html">মাদ্রাসার ইতিহাস</a></li>
+                    <li><a href="about.html">আমাদের সম্পর্কে</a></li>
+                    <li><a href="#">প্রতিষ্ঠানের স্বীকৃতি</a></li>
+                    <li><a href="#">ম্যানেজিং কমিটি</a></li>
+                </ul>
+            </li>
 
-    <!-- Sidebar -->
-    <div id="sidebar" class="sidebar-menu">
-        <div style="text-align: right; cursor: pointer;" onclick="toggleSidebar()"><i class="fas fa-times fa-2x"></i></div>
-        <ul style="list-style: none; margin-top: 30px;">
-            <li style="margin-bottom: 20px; border-bottom: 1px solid #eee;"><a href="index.html" style="text-decoration: none; color: #333; font-weight: 700;">হোম পেজ</a></li>
-            <li style="margin-bottom: 20px; border-bottom: 1px solid #eee;"><a href="workers.html" style="text-decoration: none; color: #333; font-weight: 700;">কর্মচারী তথ্য</a></li>
-            <li style="margin-bottom: 20px; border-bottom: 1px solid #eee;"><a href="gallery.html" style="text-decoration: none; color: #333; font-weight: 700;">ফটোগ্যালারি</a></li>
+            <li class="has-dropdown">
+                <a href="#">প্রশাসন <i class="fas fa-angle-down"></i></a>
+                <ul class="submenu">
+                    <li><a href="https://bn.wikipedia.org/wiki/%E0%A6%87%E0%A6%B8%E0%A7%8D%E0%A6%AA%E0%A6%BE%E0%A6%B9%E0%A6%BE%E0%A6%A8%E0%A6%BF_%E0%A6%AA%E0%A6%B0%E0%A6%BF%E0%A6%AC%E0%A6%BE%E0%A6%B0">ইস্পাহানী পরিবার</a></li>
+                    <li><a href="supar_speech.html">সুপারিনটেনডেন্ট মহোদয়ের বাণী</a></li>
+                    <li><a href="teachers.html">শিক্ষকমন্ডলীর তথ্য</a></li>
+                    <li><a href="workers.html">কর্মচারীদের তথ্য</a></li>
+                    <li><a href="privacy.html">প্রাইভেসি পলিসি</a></li>
+                </ul>
+            </li>
+
+            <li class="has-dropdown">
+                <a href="#">একাডেমিক <i class="fas fa-angle-down"></i></a>
+                <ul class="submenu">
+                    <li><a href="academic.html">কার্যক্রম</a></li>
+                    <li><a href="notice.html">নোটিশ বোর্ড</a></li>
+                    <li><a href="class-rutin.html">ক্লাস রুটিন</a></li>
+                </ul>
+            </li>
+
+            <li class="has-dropdown">
+                <a href="#">ফলাফল <i class="fas fa-angle-down"></i></a>
+                <ul class="submenu">
+                    <li><a href="result.html">একাডেমিক ফলাফল</a></li>
+                    <li><a href="http://www.educationboardresults.gov.bd/">বোর্ড ফলাফল</a></li>
+                </ul>
+            </li>
+
+            <li><a href="ai-chat.html">IDM AI</a></li>
+            <li><a href="blog.html">শিক্ষক কলাম</a></li>
+            <li><a href="gallery.html">গ্যালারি</a></li>
+            <li><a href="contact.html">যোগাযোগ</a></li>
+            <li><a href="login.html" class="btn-login-round">লগইন</a></li>
         </ul>
+
+        <!-- Mobile Toggle -->
+        <div class="mobile-toggle" onclick="openSidebar()">
+            <i class="fas fa-bars"></i>
+        </div>
     </div>
-    <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
+</nav>
+
+<!-- স্লাইড মেনু -->
+<div id="mobileSidebar" class="sidebar-menu">
+    <div class="sidebar-header">
+        <span>মেনুবার</span>
+        <i class="fas fa-times" onclick="closeSidebar()"></i>
+    </div>
+    <ul class="sidebar-content">
+        <li><a href="index.html">হোম</a></li>
+        
+        <li class="m-has-dropdown">
+            <div class="m-nav-item" onclick="toggleMSub('m1', this)">
+                <span>প্রতিষ্ঠানের তথ্য</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <ul id="m1" class="m-submenu">
+                <li><a href="history.html">মাদ্রাসার ইতিহাস</a></li>
+                <li><a href="about.html">আমাদের সম্পর্কে</a></li>
+                <li><a href="#">প্রতিষ্ঠানের স্বীকৃতি</a></li>
+                <li><a href="#">ম্যানেজিং কমিটি</a></li>
+            </ul>
+        </li>
+
+        <li class="m-has-dropdown">
+            <div class="m-nav-item" onclick="toggleMSub('m2', this)">
+                <span>প্রশাসন</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <ul id="m2" class="m-submenu">
+                <li><a href="https://bn.wikipedia.org/wiki/%E0%A6%87%E0%A6%B8%E0%A7%8D%E0%A6%AA%E0%A6%BE%E0%A6%B9%E0%A6%BE%E0%A6%A8%E0%A6%BF_%E0%A6%AA%E0%A6%B0%E0%A6%BF%E0%A6%AC%E0%A6%BE%E0%A6%B0">ইস্পাহানি পরিবার</a></li>
+                <li><a href="supar_speech.html">সুপারিনটেনডেন্ট মহোদয়ের বাণী</a></li>
+                <li><a href="teachers.html">শিক্ষকমন্ডলীর তথ্য</a></li>
+                <li><a href="workers.html">কর্মচারী তথ্য</a></li>
+                <li><a href="privacy.html">প্রাইভেসি পলিসি</a></li>
+            </ul>
+        </li>
+
+        <li class="m-has-dropdown">
+            <div class="m-nav-item" onclick="toggleMSub('m4', this)">
+                <span>একাডেমিক</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <ul id="m4" class="m-submenu">
+                <li><a href="academic.html">কার্যক্রম</a></li>
+                <li><a href="notice.html">নোটিস বোর্ড</a></li>
+                <li><a href="class-rutin.html">ক্লাস রুটিন</a></li>
+            </ul>
+        </li>
+
+        <li class="m-has-dropdown">
+            <div class="m-nav-item" onclick="toggleMSub('m3', this)">
+                <span>ফলাফল</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <ul id="m3" class="m-submenu">
+                <li><a href="result.html">একাডেমিক ফলাফল</a></li>
+                <li><a href="http://www.educationboardresults.gov.bd/">বোর্ড ফলাফল</a></li>
+            </ul>
+        </li>
+        <li><a href="ai-chat.html">IDM AI</a></li>
+        <li><a href="blog.html">শিক্ষক কলাম</a></li>
+        <li><a href="gallery.html">গ্যালারি</a></li>
+        <li><a href="contact.html">যোগাযোগ</a></li>
+        <li><a href="login.html">লগইন</a></li>
+    </ul>
+</div>
+<div id="sideOverlay" class="side-overlay" onclick="closeSidebar()"></div>
 
     <!-- Hero -->
     <header class="header-banner">

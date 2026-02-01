@@ -66,12 +66,12 @@
     padding: 10px 20px;
     border-radius: 20px;
     border-bottom-left-radius: 2px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     display: none; /* শুরুতে লুকানো থাকবে */
 }
 
         /* --- INPUT --- */
-        .input-container { padding: 20px 5%; background: #050a10; border-top: 1px solid #1a2530; display: flex; gap: 10px; }
+        .input-container { padding: 50px 5%; background: #050a10; border-top: 1px solid #1a2530; display: flex; gap: 10px; border-radius: 30px 30px 0px 0px;}
         input { flex: 1; padding: 14px 25px; background: #000; border: 1px solid #334155; border-radius: 50px; color: white; outline: none; transition: 0.3s; }
         input:focus { border-color: var(--ai-glow); box-shadow: 0 0 10px rgba(0, 242, 255, 0.1); }
         .btn-send { background: var(--primary); color: white; width: 50px; height: 50px; border-radius: 50%; border: none; cursor: pointer; transition: 0.3s; }
@@ -103,12 +103,7 @@
         </div>
     </div>
 
-    <div class="input-container">
-        <input type="text" id="userInput" placeholder="মাদ্রাসা সম্পর্কে জিজ্ঞাসা করুন..." onkeypress="handleKey(event)" style="font-family: 'Hind Siliguri', sans-serif;">
-        <button class="btn-send" onclick="askAI()"><i class="fas fa-paper-plane"></i></button>
-    </div>
-
-    <!-- এই বক্সটি এআই উত্তর দেওয়ার আগে ভেসে উঠবে -->
+ <!-- এই বক্সটি এআই উত্তর দেওয়ার আগে ভেসে উঠবে -->
 <div id="ai-thinking" class="thinking-bubble animate__animated animate__fadeIn">
     <div class="dots-container">
         <div class="dot"></div>
@@ -116,6 +111,13 @@
         <div class="dot"></div>
     </div>
 </div>
+
+    <div class="input-container">
+        <input type="text" id="userInput" placeholder="Ask anytink about madrasah..." onkeypress="handleKey(event)" style="font-family: 'Hind Siliguri', sans-serif;">
+        <button class="btn-send" onclick="askAI()"><i class="fas fa-paper-plane"></i></button>
+    </div>
+
+   
 
     <script type="module">
     // ১. Firebase লাইব্রেরি ইমপোর্ট করা
@@ -186,7 +188,7 @@
 
         if (!finalAnswer) {
             // যদি ডাটাবেজে উত্তর না থাকে
-            finalAnswer = `দুঃখিত, এই বিষয়ে আমার ডাটাবেজে তথ্য নেই। তবে আপনি চাইলে <a href='https://www.google.com/search?q=ইস্পাহানি+দাখিল+মাদ্রাসা+${text}' target='_blank' style='color:var(--ai-glow)'>এখানে ক্লিক করে</a> গুগলে সার্চ করতে পারেন।`;
+            finalAnswer = `দুঃখিত, এই বিষয়ে আমার ডাটাবেজে তথ্য নেই।`;
         }
 
         const closing = "<br><br><i>আমি আপনাকে আর কীভাবে সাহায্য করতে পারি?</i>";
@@ -235,7 +237,6 @@
         const win = document.getElementById('chat-arena');
         win.scrollTop = win.scrollHeight;
     }
-
     window.handleKey = (e) => { if(e.key === 'Enter') askAI(); };
 </script>    
 </body>

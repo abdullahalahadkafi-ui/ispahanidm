@@ -454,6 +454,7 @@
                 </ul>
             </li>
 
+            <li><a href="ai-chat.html">IDM AI</a></li>
             <li><a href="blog.html">শিক্ষক কলাম</a></li>
             <li><a href="gallery.html">গ্যালারি</a></li>
             <li><a href="contact.html">যোগাযোগ</a></li>
@@ -525,6 +526,7 @@
                 <li><a href="http://www.educationboardresults.gov.bd/">বোর্ড ফলাফল</a></li>
             </ul>
         </li>
+        <li><a href="ai-chat.html">IDM AI</a></li>
         <li><a href="blog.html">শিক্ষক কলাম</a></li>
         <li><a href="gallery.html">গ্যালারি</a></li>
         <li><a href="contact.html">যোগাযোগ</a></li>
@@ -536,7 +538,7 @@
 
     <!-- Notice Marquee -->
     <div class="notice-bar" style="margin-top: 75px;">
-        <marquee behavior="scroll" direction="left">আসন্ন দাখিল পরীক্ষা ২০২৬ এর বিশেষ প্রস্তুতিমূলক ক্লাস শুরু হতে যাচ্ছে। নতুন ভর্তি কার্যক্রম আগামী ১লা জানুয়ারি থেকে শুরু হবে।</marquee>
+        <marquee behavior="scroll" direction="left"> ইস্পাহানি দাখিল মাদ্রাসা সম্পর্কে যেকোনো তথ্য জানতে <b>IDM AI</b> থেকে জিজ্ঞেস করুন, স্ক্রিনের রোবট আইকনে ক্লিক করে ।</marquee>
     </div>
 
     <!-- Hero -->
@@ -628,7 +630,6 @@
                 <p>পূর্ণাঙ্গ পর্দা এবং ইসলামিক শিষ্টাচার সমৃদ্ধ নিরাপদ ক্যাম্পাস।</p>
             </div>
     </section>
-
 </main>
 
     <!-- Footer -->
@@ -691,55 +692,6 @@ function toggleMSub(id, element) {
 }
     </script>
 
-    
-
-
-
-
-
-
-
-
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-    // কনফিগ আগেরটাই...
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    onAuthStateChanged(auth, (user) => {
-        const loginBtn = document.querySelector('.btn-login-round'); // তোমার লগইন বাটনের ক্লাস
-        
-        if (user) {
-            // ইউজার লগইন থাকলে
-            if(loginBtn) {
-                loginBtn.innerHTML = `<i class="fas fa-user-circle"></i> ${user.displayName.split(' ')[0]}`;
-                loginBtn.href = "#"; // বা প্রোফাইল পেজ
-                loginBtn.onclick = () => {
-                    if(confirm("লগআউট করতে চান?")) signOut(auth).then(() => location.reload());
-                };
-            }
-            // ব্লগ কমেন্টের জন্য নাম সেভ রাখা
-            localStorage.setItem('userName', user.displayName);
-        } else {
-            // লগইন না থাকলে আগের মতোই দেখাবে
-            localStorage.removeItem('userName');
-        }
-    });
-
-    onAuthStateChanged(auth, (user) => {
-    const loginBtn = document.querySelector('.btn-login-round'); // তোমার লগইন বাটনের ক্লাস
-    if (user) {
-        // লগইন থাকলে বাটন পরিবর্তন
-        loginBtn.innerHTML = `<i class="fas fa-user-circle"></i> ${user.displayName.split(' ')[0]}`;
-        loginBtn.href = "profile.html"; // প্রোফাইল পেজে নিয়ে যাবে
-    } else {
-        loginBtn.innerHTML = "লগইন";
-        loginBtn.href = "login.html";
-    }
-});
-</script>
 <!-- Floating AI Bot Launcher -->
 <a href="ai-chat.html" class="ai-launcher animate__animated animate__fadeInUp" title="IDM AI এর সাথে কথা বলুন">
     <div class="ai-icon-inner">
