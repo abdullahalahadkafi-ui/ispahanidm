@@ -103,18 +103,89 @@
     .nav-menu { display: none; } /* পিসি মেনু মোবাইলে হাইড হবে */
     .mobile-toggle { display: block; } /* মোবাইল বাটন মোবাইলে শো করবে */
 }
-        .header { padding: 120px 5% 50px; background: var(--p); color: white; text-align: center; }
 
-        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-        
-        /* Teacher List Table */
-        .table-container { background: white; border-radius: 20px; overflow-x: auto; box-shadow: 0 10px 30px rgba(0,0,0,0.02); border: 1px solid #eee; }
-        table { width: 100%; border-collapse: collapse; min-width: 700px; }
-        th { background: #f1f5f9; padding: 15px; text-align: left; color: var(--p); }
-        td { padding: 15px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
-        
-        .teacher-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--s); }
-        .blood-badge { background: #ffebee; color: #c62828; padding: 3px 8px; border-radius: 5px; font-weight: bold; font-size: 12px; }
+    :root {
+        --primary: #006a4e;
+        --white: #ffffff;
+        --gray-bg: #f8fafc;
+        --text-dark: #1e293b;
+    }
+
+    .teachers-wrapper { padding-top: 70px; }
+
+    /* Hero Section - Very Small */
+    .teachers-hero {
+        background: var(--primary);
+        padding: 30px 5%;
+        text-align: center;
+        color: white;
+    }
+    .teachers-hero h1 { font-size: 22px; margin: 0; }
+
+    .container { 
+        max-width: 800px; /* পিসিতে এরিয়া ছোট রাখা হয়েছে */
+        margin: 30px auto; 
+        padding: 0 15px; 
+    }
+
+    /* Grid Setup */
+    #teacher-grid { 
+        display: grid; 
+        grid-template-columns: repeat(3, 1fr); /* পিসিতে ৩ কলাম */
+        gap: 15px; 
+    }
+
+    /* Mini Card Style */
+    .teacher-card {
+        background: var(--white);
+        height: 85px; /* তোমার চাহিদা মতো ছোট উচ্চতা */
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border-radius: 12px;
+        border: 1px solid #eee;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        transition: 0.3s;
+    }
+    .teacher-card:hover { border-color: var(--primary); transform: scale(1.02); }
+
+    /* Photo Box */
+    .img-box {
+        width: 55px; height: 55px;
+        border-radius: 10px;
+        overflow: hidden;
+        flex-shrink: 0;
+        margin-right: 12px;
+        border: 1px solid #eee;
+    }
+    .teacher-photo { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Info text */
+    .info-box { text-align: left; overflow: hidden; }
+    .info-box h3 { 
+        font-size: 14px; 
+        color: var(--text-dark); 
+        margin: 0; 
+        white-space: nowrap; 
+        overflow: hidden; 
+        text-overflow: ellipsis; /* নাম বড় হলে ডট দেখাবে */
+    }
+    .info-box p { font-size: 11px; color: var(--primary); font-weight: 600; margin: 2px 0; }
+    
+    .blood-mini { font-size: 10px; color: #ef4444; font-weight: 700; }
+
+    /* Loader */
+    .loader { grid-column: 1/-1; text-align: center; padding: 20px; font-size: 14px; }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 900px) {
+        #teacher-grid { grid-template-columns: repeat(2, 1fr); } /* ট্যাবলেটে ২ কলাম */
+    }
+
+    @media (max-width: 600px) {
+        #teacher-grid { grid-template-columns: 1fr; } /* মোবাইলে ১ কলাম */
+        .teacher-card { max-width: 100%; }
+    }
 
         /* Footer */
         footer { background: #111; color: white; padding: 80px 8% 20px; }
@@ -360,44 +431,22 @@
 </div>
 <div id="sideOverlay" class="side-overlay" onclick="closeSidebar()"></div>
 
-    <div class="header">
-        <h1>আমাদের সম্মানিত শিক্ষক মণ্ডলী</h1>
-        <p>দক্ষ ও অভিজ্ঞ শিক্ষকমণ্ডলীর নিরলস প্রচেষ্টায় আমাদের পথচলা</p>
-    </div>
+<main class="teachers-wrapper">
+    <!-- Hero Section -->
+    <section class="teachers-hero">
+        <div class="animate__animated animate__fadeInDown">
+            <h1>সম্মানিত শিক্ষক মণ্ডলী</h1>
+            <p>সুযোগ্য ও অভিজ্ঞ শিক্ষকমণ্ডলীর সুদক্ষ পরিচালনায় আমাদের পথচলা</p>
+        </div>
+    </section>
 
     <div class="container">
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ছবি</th>
-                        <th>নাম</th>
-                        <th>পদবী</th>
-                        <th>মোবাইল</th>
-                        <th>রক্তের গ্রুপ</th>
-                    </tr>
-                </thead>
-                <tbody id="teacher-list">
-                    <!-- শিক্ষক ১ -->
-                    <tr>
-                        <td><img src="super_photo.jpg" class="teacher-img" alt="Super"></td>
-                        <td><b>মাওলানা [আব্বুর নাম]</b></td>
-                        <td>সুপারিনটেনডেন্ট</td>
-                        <td>০১৮XXXXXXXX</td>
-                        <td><span class="blood-badge">A+</span></td>
-                    </tr>
-                    <!-- শিক্ষক ২ -->
-                    <tr>
-                        <td><img src="teacher2.jpg" class="teacher-img" alt="Teacher"></td>
-                        <td><b>মোঃ আব্দুল করিম</b></td>
-                        <td>সহকারী মৌলভী</td>
-                        <td>০১৭XXXXXXXX</td>
-                        <td><span class="blood-badge">O+</span></td>
-                    </tr>
-                </tbody>
-            </table>
+        <!-- এখানে ফায়ারবেস থেকে কার্ডগুলো আসবে -->
+        <div id="teacher-grid">
+            <p class="loader"><i class="fas fa-spinner fa-spin"></i> শিক্ষকদের তালিকা লোড হচ্ছে...</p>
         </div>
     </div>
+</main>
 
      <!-- Footer -->
     <footer>
@@ -458,6 +507,85 @@ function toggleMSub(id, element) {
 }
     </script>
 
+    <script type="module">
+    // ১. Firebase লাইব্রেরি ইমপোর্ট করা
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    // ২. তোমার অরিজিনাল ফায়ারবেস কনফিগ
+    const firebaseConfig = {
+        apiKey: "AIzaSyCTxt82Z4KRW425eYAU-WkVJbmUu1Vcy58",
+        authDomain: "ispahani-madrasah-portal.firebaseapp.com",
+        projectId: "ispahani-madrasah-portal",
+        storageBucket: "ispahani-madrasah-portal.firebasestorage.app",
+        messagingSenderId: "501627545319",
+        appId: "1:501627545319:web:42409b2d8f614dfc3c6442"
+    };
+
+    // ৩. কানেকশন শুরু
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // ৪. শিক্ষকদের ডাটা লোড করার মেইন ফাংশন
+    function loadTeachers() {
+        const q = query(collection(db, "teachers"), orderBy("order", "asc"));
+        
+        onSnapshot(q, (snapshot) => {
+            const grid = document.getElementById('teacher-grid');
+            if (!grid) return;
+            
+            grid.innerHTML = ""; // লোডার মুছে ফেলা
+
+            if (snapshot.empty) {
+                grid.innerHTML = "<p class='loader'>বর্তমানে কোনো শিক্ষকের তথ্য নেই।</p>";
+                return;
+            }
+
+            snapshot.forEach((doc) => {
+                const teacher = doc.data();
+                const photoUrl = teacher.photoUrl || "https://via.placeholder.com/100?text=User";
+
+                // আল্ট্রা-কম্প্যাক্ট ডিজাইন ইনজেকশন
+                grid.innerHTML += `
+                    <div class="teacher-card animate__animated animate__fadeIn">
+                        <div class="img-box">
+                            <img src="${photoUrl}" class="teacher-photo" alt="${teacher.name}">
+                        </div>
+                        <div class="info-box">
+                            <h3>${teacher.name}</h3>
+                            <p>${teacher.designation}</p>
+                            <div class="blood-mini">
+                                <i class="fas fa-tint"></i> ${teacher.blood || 'O+'} | ${teacher.phone || 'N/A'}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        });
+    }
+
+    // ৫. স্লাইড মেনু (Sidebar) কন্ট্রোল ফাংশন
+    window.openSidebar = function() {
+        document.getElementById('mobileSidebar').classList.add('active');
+        document.getElementById('sideOverlay').classList.add('active');
+    };
+
+    window.closeSidebar = function() {
+        document.getElementById('mobileSidebar').classList.remove('active');
+        document.getElementById('sideOverlay').classList.remove('active');
+    };
+
+    // ৬. ড্রপডাউন মেনু টগল (মাদ্রাসার ইতিহাস, প্রশাসন ইত্যাদি)
+    window.toggleMSub = function(id, el) {
+        const sub = document.getElementById(id);
+        el.classList.toggle('active');
+        sub.classList.toggle('open');
+    };
+
+    // পেজ লোড হওয়ার সাথে সাথে শিক্ষকদের তালিকা আনা হবে
+    window.onload = loadTeachers;
+
+</script>
 
 
 <!-- Floating AI Bot Launcher -->
