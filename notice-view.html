@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>অফিশিয়াল নোটিশ | ইস্পাহানি দাখিল মাদ্রাসা</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Hind Siliguri', sans-serif; background: #f4f7f6; padding: 40px 20px; }
+        .letterhead {
+            max-width: 800px; margin: auto; background: white; padding: 60px;
+            border-radius: 5px; box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            position: relative; min-height: 900px;
+        }
+        .header { text-align: center; border-bottom: 3px solid #006a4e; padding-bottom: 20px; margin-bottom: 40px; }
+        .header h1 { color: #006a4e; margin: 0; font-size: 32px; }
+        .header p { margin: 5px 0; color: #555; }
+        
+        .notice-title { font-size: 26px; font-weight: 800; text-decoration: underline; margin-bottom: 20px; text-align: center; }
+        .notice-body { font-size: 18px; line-height: 1.8; text-align: justify; color: #111; white-space: pre-wrap; }
+        .footer-sign { margin-top: 100px; float: right; text-align: center; width: 200px; }
+        .footer-sign p { border-top: 1px solid #000; padding-top: 5px; font-weight: bold; }
+
+        .btn-print {
+            position: fixed; bottom: 30px; right: 30px;
+            background: #f42a41; color: white; border: none; padding: 15px 25px;
+            border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .btn-print { display: none; }
+            .letterhead { box-shadow: none; border: none; width: 100%; margin: 0; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="letterhead" id="printable">
+        <div class="header">
+            <h1>ইস্পাহানি দাখিল মাদ্রাসা</h1>
+            <p>মোহরা, চান্দগাঁও, চট্টগ্রাম | EIIN: ১২৩৪৫৬</p>
+            <p>স্থাপিত: ১৯৭০ | মোবাইল: ০১৮৯৪৮২০৫১৩</p>
+        </div>
+
+        <h2 id="view-title" class="notice-title">লোড হচ্ছে...</h2>
+        <div id="view-body" class="notice-body">দয়া করে অপেক্ষা করুন...</div>
+
+        <div class="footer-sign">
+            <p>সুপারিনটেনডেন্ট</p>
+            <span>ইস্পাহানি দাখিল মাদ্রাসা</span>
+        </div>
+    </div>
+
+    <button class="btn-print" onclick="window.print()"><i class="fas fa-print"></i> PDF হিসেবে সেভ করুন</button>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCTxt82Z4KRW425eYAU-WkVJbmUu1Vcy58",
+            authDomain: "ispahani-madrasah-portal.firebaseapp.com",
+            projectId: "ispahani-madrasah-portal",
+            storageBucket: "ispahani-madrasah-portal.firebasestorage.app",
+            messagingSenderId: "501627545319",
+            appId: "1:501627545319:web:42409b2d8f614dfc3c6442"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // URL থেকে ID নেওয়া
+        const params = new URLSearchParams(window.location.search);
+        const noticeId = params.get('id');
+
+        async function fetchNotice() {
+            if(!noticeId) return;
+            const docRef = doc(db, "notices", noticeId);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                document.getElementById('view-title').innerText = data.title;
+                document.getElementById('view-body').innerText = data.details;
+                document.title = data.title + " | IDM Notice";
+            } else {
+                document.getElementById('view-title').innerText = "পাওয়া যায়নি!";
+            }
+        }
+        fetchNotice();
+    </script>
+</body>
+</html>
