@@ -407,6 +407,62 @@
     }
     .ai-icon-inner { font-size: 24px; }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- SMART PWA BANNER STYLE --- */
+.pwa-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 450px;
+    background: #ffffff;
+    padding: 15px 20px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    z-index: 9999;
+    border: 1px solid var(--border-color);
+}
+
+.pwa-content { display: flex; align-items: center; gap: 12px; }
+.pwa-logo { width: 45px; height: 45px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.pwa-text b { display: block; font-size: 15px; color: var(--p-green); }
+.pwa-text span { font-size: 11px; color: #777; }
+
+.pwa-actions { display: flex; align-items: center; gap: 15px; }
+.btn-pwa { 
+    background: var(--p-green); color: white; border: none; padding: 10px 20px; 
+    border-radius: 10px; font-weight: bold; cursor: pointer; font-family: 'Hind Siliguri', sans-serif;
+    font-size: 13px; transition: 0.3s;
+}
+.btn-pwa:hover { background: var(--secondary); transform: scale(1.05); }
+.close-pwa { color: #ccc; cursor: pointer; font-size: 20px; }
+
+/* শুধুমাত্র মোবাইলে দেখাবে */
+@media (min-width: 769px) {
+    .pwa-banner { display: none !important; }
+}
     </style>
 </head>
 <body>
@@ -700,6 +756,61 @@ function toggleMSub(id, element) {
     element.classList.toggle('active');
     sub.classList.toggle('open');
 }
+
+
+
+
+
+
+
+
+
+
+
+let deferredPrompt;
+const pwaBanner = document.getElementById('pwa-install-banner');
+const installBtn = document.getElementById('pwa-install-btn');
+
+// ১. ব্রাউজারের ইন্সটল প্রম্পটটি ধরা
+window.addEventListener('beforeinstallprompt', (e) => {
+    // ডিফল্ট বার বন্ধ করা
+    e.preventDefault();
+    // ইভেন্টটি সেভ করে রাখা
+    deferredPrompt = e;
+    // আমাদের কাস্টম ব্যানারটি দেখানো (যদি আগে ক্লোজ না করে থাকে)
+    if (!localStorage.getItem('pwaDismissed')) {
+        pwaBanner.style.display = 'flex';
+    }
+});
+
+// ২. বাটনে ক্লিক করলে ইন্সটল শুরু হওয়া
+installBtn.addEventListener('click', async () => {
+    if (deferredPrompt) {
+        // প্রম্পট দেখানো
+        deferredPrompt.prompt();
+        // ইউজার কী ক্লিক করলো তা দেখা
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+            console.log('User installed the PWA');
+        }
+        deferredPrompt = null;
+        pwaBanner.style.display = 'none';
+    }
+});
+
+// ৩. ব্যানারটি বন্ধ করার লজিক
+window.dismissPWA = function() {
+    pwaBanner.style.display = 'none';
+    // এক সপ্তাহের জন্য এটি আর দেখাবে না
+    localStorage.setItem('pwaDismissed', 'true');
+}
+
+// সাইটম্যাপ বা সাকসেসফুল ইন্সটল হলে ব্যানার হাইড করা
+window.addEventListener('appinstalled', () => {
+    pwaBanner.style.display = 'none';
+    deferredPrompt = null;
+});
+
     </script>
 
 <!-- Floating AI Bot Launcher -->
@@ -710,5 +821,24 @@ function toggleMSub(id, element) {
     <!-- আইকনের চারপাশে নিয়ন রিং -->
     <div class="ai-pulse-ring"></div>
 </a>
+
+
+
+
+
+<!-- Smart PWA Install Banner -->
+<div id="pwa-install-banner" class="pwa-banner animate__animated animate__slideInUp" style="display: none;">
+    <div class="pwa-content">
+        <img src="favicon.png" alt="IDM Logo" class="pwa-logo">
+        <div class="pwa-text">
+            <b>ইস্পাহানি মাদ্রাসা অ্যাপ</b>
+            <span>অফলাইনেও ব্যবহার করতে পারবেন</span>
+        </div>
+    </div>
+    <div class="pwa-actions">
+        <button id="pwa-install-btn" class="btn-pwa">ইন্সটল করুন</button>
+        <i class="fas fa-times close-pwa" onclick="dismissPWA()"></i>
+    </div>
+</div>
 </body>
 </html>
