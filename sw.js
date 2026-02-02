@@ -1,10 +1,23 @@
-const cacheName = 'idm-v1';
-const assets = ['index.html', 'favicon.png'];
+const CACHE_NAME = 'idm-cache-v1';
+const urlsToCache = [
+  '/',
+  '/index.html',
+  '/offline.html',
+  '/favicon.png'
+];
 
-self.addEventListener('install', e => {
-  e.waitUntil(caches.open(cacheName).then(cache => cache.addAll(assets)));
+// ফাইলগুলো সেভ করা (Install)
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
+  );
 });
 
-self.addEventListener('fetch', e => {
-  e.respondWith(caches.match(e.request).then(res => res || fetch(e.request)));
+// অফলাইনে থাকলে পেজটি দেখানো (Fetch)
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request).catch(() => caches.match('/offline.html'));
+    })
+  );
 });

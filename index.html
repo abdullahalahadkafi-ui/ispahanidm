@@ -7,7 +7,14 @@
 <link rel="apple-touch-icon" href="favicon.png">
 
 <!--App Install-->
+<!-- PWA Settings -->
 <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#006a4e">
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js');
+  }
+</script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
