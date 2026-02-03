@@ -3,323 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>লগইন পোর্টাল | ইস্পাহানি দাখিল মাদ্রাসা</title>
+    <title>লগইন | ইস্পাহানি দাখিল মাদ্রাসা</title>
     
-    <!-- Fonts & Icons -->
+    <!-- Premium Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
     <style>
-        :root {
-            --primary: #006a4e;
-            --secondary: #f42a41;
-            --bg: #f0f2f5;
-            --white: #ffffff;
-            --hind: 'Hind Siliguri', sans-serif;
-        }
-
+        :root { --p-green: #006a4e; --s-red: #f42a41; --bg: #f0f2f5; --white: #fff; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: var(--hind); background-color: var(--bg); overflow-x: hidden; }
+        body { font-family: 'Hind Siliguri', sans-serif; background: var(--bg); display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px; }
 
-        /* --- NAVIGATION --- */
-        nav { 
-            background: var(--white); padding: 10px 8%; display: flex; justify-content: space-between; 
-            align-items: center; position: sticky; top: 0; z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-bottom: 2px solid var(--primary);
-        }
-        .logo { font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 800; color: var(--primary); text-decoration: none; }
-
-        /* --- LOGIN PORTAL BOX --- */
-        .portal-wrapper { min-height: 90vh; display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
+        /* --- LOGIN CARD --- */
         .login-card { 
-            background: var(--white); padding: 40px; border-radius: 30px; 
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1); width: 100%; max-width: 500px; text-align: center;
+            background: var(--white); padding: 40px 30px; border-radius: 25px; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1); width: 100%; max-width: 450px; 
+            text-align: center; border-bottom: 5px solid var(--p-green);
         }
-        .login-card h2 { color: var(--primary); margin-bottom: 30px; font-size: 26px; }
+        .login-card h1 { font-size: 26px; color: var(--p-green); margin-bottom: 10px; font-weight: 800; }
+        .login-card p { font-size: 14px; color: #64748b; margin-bottom: 30px; }
 
-        /* User Tabs */
-        .user-tabs { display: flex; background: #f1f5f9; padding: 5px; border-radius: 15px; margin-bottom: 25px; }
-        .tab { flex: 1; padding: 10px; border-radius: 10px; cursor: pointer; font-weight: 700; font-size: 14px; transition: 0.3s; color: #64748b; }
-        .tab.active { background: var(--primary); color: #white; box-shadow: 0 5px 15px rgba(0, 106, 78, 0.2); color: white; }
+        /* User Type Select */
+        .type-selector { display: flex; gap: 10px; margin-bottom: 25px; background: #f1f5f9; padding: 5px; border-radius: 12px; }
+        .type-btn { flex: 1; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 13px; transition: 0.3s; border: none; color: #64748b; }
+        .type-btn.active { background: var(--p-green); color: white; box-shadow: 0 4px 10px rgba(0, 106, 78, 0.2); }
 
-        /* Form Controls */
-        .form-group { text-align: left; margin-bottom: 15px; }
-        label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 5px; color: #475569; }
-        input { width: 100%; padding: 13px; border: 2px solid #e2e8f0; border-radius: 12px; outline: none; transition: 0.3s; font-family: var(--hind); }
-        input:focus { border-color: var(--primary); }
-
-        /* Buttons */
-        .btn-login { width: 100%; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 12px; font-weight: 800; font-size: 18px; cursor: pointer; margin-top: 10px; transition: 0.3s; }
-        .btn-login:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 106, 78, 0.2); }
-
-        .google-btn { 
-            width: 100%; padding: 12px; background: #fff; border: 1px solid #ddd; 
-            border-radius: 12px; margin-top: 15px; cursor: pointer; 
-            display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 600;
+        /* Google Button */
+        .btn-google { 
+            width: 100%; padding: 15px; background: white; border: 2px solid #e2e8f0; 
+            border-radius: 15px; cursor: pointer; display: flex; align-items: center; 
+            justify-content: center; gap: 12px; font-weight: 800; font-size: 16px; 
+            transition: 0.3s; font-family: inherit; margin-bottom: 20px;
         }
+        .btn-google:hover { background: #f8fafc; border-color: var(--p-green); transform: translateY(-2px); }
 
-        /* Information Section for AdSense */
-        .info-card { max-width: 800px; margin: 40px auto; padding: 30px; background: white; border-radius: 20px; border-left: 10px solid var(--secondary); }
+        .footer-link { font-size: 13px; color: #94a3b8; text-decoration: none; margin-top: 20px; display: block; }
+        .footer-link:hover { color: var(--p-green); }
 
-        footer { background: #0f172a; color: #94a3b8; padding: 40px; text-align: center; margin-top: 50px; }
-
-        #additional-fields { display: none; margin-top: 20px; border-top: 2px dashed #eee; padding-top: 20px; }
-
-        @media (max-width: 600px) { .login-card { padding: 30px 20px; } }
-
-
-
-
-
-
-
-
-
-
-        /* --- CINEMATIC AI BOT ICON STYLE --- */
-.ai-launcher {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 65px;
-    height: 65px;
-    z-index: 9999;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.ai-icon-inner {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #000 0%, #1a1a2e 100%);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid rgba(0, 210, 255, 0.5);
-    color: #00d2ff; /* Initial AI Blue */
-    font-size: 28px;
-    box-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
-    z-index: 2;
-    animation: aiColorShift 5s infinite linear; /* কালার চেঞ্জ এনিমেশন */
-}
-
-/* আইকনকে দামী লুক দেওয়ার জন্য RGB কালার শিফট */
-@keyframes aiColorShift {
-    0% { color: #00d2ff; border-color: #00d2ff; box-shadow: 0 0 20px rgba(0, 210, 255, 0.6); }
-    33% { color: #39ff14; border-color: #39ff14; box-shadow: 0 0 20px rgba(57, 255, 20, 0.6); }
-    66% { color: #7000ff; border-color: #7000ff; box-shadow: 0 0 20px rgba(112, 0, 255, 0.6); }
-    100% { color: #00d2ff; border-color: #00d2ff; box-shadow: 0 0 20px rgba(0, 210, 255, 0.6); }
-}
-
-/* রোবট আইকনের থরথর করে কাঁপার এনিমেশন (Neural Pulse) */
-.ai-launcher i {
-    animation: neuralPulse 2s infinite ease-in-out;
-}
-@keyframes neuralPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.15); opacity: 0.8; }
-}
-
-/* আইকনের চারপাশে ছড়ানো নিয়ন রিং (Cinematic Aura) */
-.ai-pulse-ring {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: inherit;
-    border: 2px solid var(--ai-blue);
-    animation: ringGlow 2s infinite;
-    z-index: 1;
-}
-
-@keyframes ringGlow {
-    0% { transform: scale(1); opacity: 0.8; box-shadow: 0 0 10px rgba(0, 210, 255, 0.5); }
-    100% { transform: scale(1.8); opacity: 0; box-shadow: 0 0 40px rgba(0, 210, 255, 0); }
-}
-
-/* হোভার ইফেক্ট */
-.ai-launcher:hover {
-    transform: scale(1.2) rotate(15deg);
-}
-
-/* মোবাইল রেসপন্সিভ - মোবাইলে একটু ছোট হবে */
-@media (max-width: 600px) {
-    .ai-launcher {
-        bottom: 20px;
-        right: 20px;
-        width: 55px;
-        height: 55px;
-    }
-    .ai-icon-inner { font-size: 24px; }
-}
+        /* Loading Spinner */
+        #loader { display: none; margin-top: 15px; color: var(--p-green); }
     </style>
 </head>
 <body>
-    
-    <div class="portal-wrapper">
-        <div class="login-card animate__animated animate__zoomIn">
-            <h2>লগইন পোর্টাল</h2>
-            
-            <div class="user-tabs">
-                <div class="tab active" onclick="switchTab('student', this)">ছাত্র</div>
-                <div class="tab" onclick="switchTab('teacher', this)">শিক্ষক</div>
-                <div class="tab" onclick="switchTab('parent', this)">অভিভাবক</div>
-            </div>
 
-            <form id="loginForm">
-                <div class="form-group">
-                    <label>ইমেইল বা ইউজার আইডি</label>
-                    <input type="text" id="email" placeholder="example@mail.com" required>
-                </div>
-                <div class="form-group">
-                    <label>পাসওয়ার্ড</label>
-                    <input type="password" id="password" placeholder="******" required>
-                </div>
+    <div class="login-card animate__animated animate__zoomIn">
+        <div style="margin-bottom:20px;"><i class="fas fa-mosque fa-3x" style="color: var(--p-green);"></i></div>
+        <h1>স্বাগতম</h1>
+        <p>ইস্পাহানি দাখিল মাদ্রাসা ডিজিটাল পোর্টালে আপনার একাউন্টে প্রবেশ করুন</p>
 
-                <button type="submit" class="btn-login">প্রবেশ করুন</button>
-            </form>
-
-            <button class="google-btn">
-                <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" width="20">
-                গুগল দিয়ে লগইন করুন
-            </button>
-
-            <!-- লগইন করার পর এই অংশটি পপ-আপ হবে তথ্য নেওয়ার জন্য -->
-            <div id="additional-fields">
-                <h4 style="margin-bottom:15px; color:var(--secondary);">আপনার তথ্য আপডেট করুন</h4>
-                <div class="form-group">
-                    <label id="label-class">শ্রেণী</label>
-                    <input type="text" id="info-1" placeholder="শ্রেণী/পদবী">
-                </div>
-                <div class="form-group">
-                    <label id="label-roll">রোল নম্বর / আইডি</label>
-                    <input type="text" id="info-2" placeholder="রোল/ফোন">
-                </div>
-                <button class="btn-login" style="background:var(--secondary);" onclick="saveData()">তথ্য সেভ করুন</button>
-            </div>
-
-            <p style="margin-top: 20px; font-size: 12px; color: #999;">পাসওয়ার্ড ভুলে গেছেন? <a href="#" style="color:var(--primary)">এখানে ক্লিক করুন</a></p>
+        <!-- User Role Selection -->
+        <div class="type-selector">
+            <button class="type-btn active" onclick="setType('student', this)">ছাত্র</button>
+            <button class="type-btn" onclick="setType('teacher', this)">শিক্ষক</button>
+            <button class="type-btn" onclick="setType('guardian', this)">অভিভাবক</button>
         </div>
+
+        <button class="btn-google" id="google-btn">
+            <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" width="22">
+            গুগল দিয়ে লগইন করুন
+        </button>
+
+        <div id="loader"><i class="fas fa-spinner fa-spin"></i> প্রসেসিং হচ্ছে...</div>
+
+        <a href="index.html" class="footer-link">← হোম পেজে ফিরে যান</a>
     </div>
 
-    <!-- AdSense Booster Article -->
-    <div class="info-card">
-        <h3>কেন অনলাইন পোর্টাল ব্যবহার করবেন?</h3>
-        <p>ডিজিটাল বাংলাদেশের পথে এক ধাপ এগিয়ে ইস্পাহানি দাখিল মাদ্রাসা তাদের শিক্ষার্থীদের জন্য নিয়ে এসেছে আধুনিক লগইন সিস্টেম। এর মাধ্যমে ছাত্ররা তাদের রেজাল্ট, ক্লাসের উপস্থিতি এবং শিক্ষকদের দেওয়া বিশেষ নোটগুলো খুব সহজেই ডাউনলোড করতে পারবে। শিক্ষকদের জন্য রয়েছে আলাদা প্যানেল যেখান থেকে তারা প্রতিদিনের ক্লাসের আপডেট দিতে পারবেন। আপনার তথ্যের সুরক্ষা নিশ্চিত করা আমাদের প্রথম দায়িত্ব।</p>
-    </div>
+    <!-- Firebase SDK Logic -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-    <footer>
-        <p>&copy; 2026 ইস্পাহানি দাখিল মাদ্রাসা | কারিগরি সহযোগিতায়: হাসিব আহমেদ</p>
-    </footer>
+        const firebaseConfig = {
+            apiKey: "AIzaSyAT-lcLWb8A9iWJZI77-TJifcjabjSBahU",
+            authDomain: "ispahani-madrasah-portal.firebaseapp.com",
+            projectId: "ispahani-madrasah-portal",
+            storageBucket: "ispahani-madrasah-portal.firebasestorage.app",
+            messagingSenderId: "501627545319",
+            appId: "1:501627545319:web:42409b2d8f614dfc3c6442"
+        };
 
-    <script>
-        let currentUserType = 'student';
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const provider = new GoogleAuthProvider();
 
-        function switchTab(type, el) {
-            currentUserType = type;
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            el.classList.add('active');
-            
-            // ট্যাব অনুযায়ী ইনপুট লেবেল পরিবর্তন
-            if(type === 'teacher') {
-                document.getElementById('label-class').innerText = "পদবী";
-                document.getElementById('label-roll').innerText = "ফোন নম্বর";
-            } else {
-                document.getElementById('label-class').innerText = "শ্রেণী";
-                document.getElementById('label-roll').innerText = "রোল নম্বর";
-            }
+        let selectedRole = 'student';
+
+        // রোল সেট করার ফাংশন
+        window.setType = (role, btn) => {
+            selectedRole = role;
+            document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
         }
 
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // এখানে ব্যাকএন্ড লজিক হবে
-            alert("লগইন সফল হয়েছে! অনুগ্রহ করে নিচের তথ্যগুলো পূরণ করুন।");
-            document.getElementById('loginForm').style.display = "none";
-            document.querySelector('.google-btn').style.display = "none";
-            document.getElementById('additional-fields').style.display = "block";
-        });
+        // গুগল লগইন ফাংশন
+        document.getElementById('google-btn').onclick = async () => {
+            const loader = document.getElementById('loader');
+            loader.style.display = "block";
 
-        function saveData() {
-            const val1 = document.getElementById('info-1').value;
-            const val2 = document.getElementById('info-2').value;
-            
-            if(!val1 || !val2) { alert("সবগুলো ঘর পূরণ করুন!"); return; }
-            
-            alert(`ধন্যবাদ! আপনার তথ্য সেভ করা হয়েছে। \nবিভাগ: ${currentUserType} \nতথ্য ১: ${val1} \nতথ্য ২: ${val2}`);
-            window.location.href = "index.html";
-        }
-
-        function toggleSidebar() {
-            // এটি তোমার অন্য পেজের মেনুর সাথে কাজ করবে
-        }
-    </script>
-
-
-
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-    import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-    // তোমার সেই আগের কনফিগ কোড
-    const firebaseConfig = {
-        apiKey: "AIzaSyCTxt82Z4KRW425eYAU-WkVJbmUu1Vcy58",
-        authDomain: "ispahani-madrasah-portal.firebaseapp.com",
-        projectId: "ispahani-madrasah-portal",
-        storageBucket: "ispahani-madrasah-portal.firebasestorage.app",
-        messagingSenderId: "501627545319",
-        appId: "1:501627545319:web:42409b2d8f614dfc3c6442"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
-    const provider = new GoogleAuthProvider();
-
-    // ১. গুগল দিয়ে লগইন এবং ডাটাবেজে তথ্য রাখা
-    window.loginWithGoogle = function() {
-        signInWithPopup(auth, provider)
-            .then(async (result) => {
+            try {
+                const result = await signInWithPopup(auth, provider);
                 const user = result.user;
-                
-                // ইউজার ডাটাবেজে আছে কি না চেক করা
-                const userRef = doc(db, "users", user.uid);
-                const userSnap = await getDoc(userRef);
 
-                if (!userSnap.exists()) {
-                    // প্রথমবার হলে তথ্য সেভ হবে
+                // ডাটাবেজে ইউজার আছে কি না চেক করা
+                const userRef = doc(db, "public_users", user.uid);
+                const snap = await getDoc(userRef);
+
+                if (!snap.exists()) {
+                    // যদি নতুন ইউজার হয়, তবে প্রাথমিক ডাটা সেভ হবে এবং প্রোফাইলে পাঠাবে
                     await setDoc(userRef, {
+                        uid: user.uid,
                         name: user.displayName,
                         email: user.email,
                         photo: user.photoURL,
-                        role: "student", // ডিফল্ট ছাত্র
+                        role: selectedRole,
+                        status: "new",
                         joined: new Date()
                     });
-                    alert("স্বাগতম " + user.displayName + "! আপনার একাউন্ট তৈরি হয়েছে।");
+                    window.location.href = "profile.html";
+                } else {
+                    // আগে থেকেই মেম্বার থাকলে হোমে নিয়ে যাবে
+                    window.location.href = "index.html";
                 }
-                
-                // ব্রাউজার মেমরিতে নাম সেভ রাখা
-                localStorage.setItem('userName', user.displayName);
-                window.location.href = "index.html"; // লগইন শেষে হোমে যাবে
-            }).catch((error) => alert(error.message));
-    }
 
-    // বাটন ক্লিক ইভেন্ট লিসেনার (যদি আইডিতে ক্লিক করা হয়)
-    document.getElementById('google-login-btn').onclick = loginWithGoogle;
-</script>
-
-<!-- Floating AI Bot Launcher -->
-<a href="ai-chat.html" class="ai-launcher animate__animated animate__fadeInUp" title="IDM AI এর সাথে কথা বলুন">
-    <div class="ai-icon-inner">
-        <i class="fas fa-robot"></i>
-    </div>
-    <!-- আইকনের চারপাশে নিয়ন রিং -->
-    <div class="ai-pulse-ring"></div>
-</a>
+            } catch (err) {
+                alert("লগইন ব্যর্থ: " + err.message);
+                loader.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
