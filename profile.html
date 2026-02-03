@@ -2,409 +2,197 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>আমার প্রোফাইল | ইস্পাহানি দাখিল মাদ্রাসা</title>
+    
+    <!-- Premium Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
     <style>
-        :root { --primary: #006a4e; --bg: #f0f2f5; }
-               * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { font-family: var(--hind); background-color: var(--bg-light); color: var(--text-dark); line-height: 1.7; overflow-x: hidden; }
+        :root { --p-green: #006a4e; --s-red: #f42a41; --bg: #f0f2f5; --white: #fff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Hind Siliguri', sans-serif; background: var(--bg); color: #1e293b; }
 
-        /* --- PREMIUM NAV STYLES --- */
-.premium-nav {
-    background: #ffffff;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    position: fixed; width: 100%; top: 0; z-index: 2000;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
-    border-bottom: 1px solid #eee;
-}
-.nav-wrapper {
-    width: 90%; max-width: 1250px; margin: auto;
-    display: flex; justify-content: space-between; align-items: center;
-}
+        /* --- HEADER --- */
+        header { background: #fff; padding: 12px 8%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-bottom: 2px solid var(--p-green); }
+        .logo { font-family: 'Poppins'; font-weight: 800; color: var(--p-green); text-decoration: none; font-size: 20px; }
 
-/* Logo Section */
-.brand-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.brand-logo i { font-size: 30px; color: #006a4e; }
-.logo-txt h1 { font-size: 19px; font-weight: 700; color: #333; margin: 0; }
-.logo-txt span { font-size: 10px; color: #888; text-transform: uppercase; }
+        /* --- PROFILE CARD --- */
+        .container { max-width: 800px; margin: 30px auto; padding: 0 15px; }
+        .profile-card { background: white; border-radius: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.04); overflow: hidden; position: relative; }
+        
+        .profile-cover { height: 160px; background: linear-gradient(135deg, var(--p-green), #064e3b); position: relative; }
+        .profile-body { padding: 0 40px 40px; text-align: center; margin-top: -80px; }
+        
+        .user-avatar-wrap { position: relative; display: inline-block; }
+        .user-img { width: 160px; height: 160px; border-radius: 50%; border: 6px solid #fff; background: #eee; object-fit: cover; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        
+        .role-badge { position: absolute; bottom: 10px; right: 10px; background: var(--s-red); color: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: bold; text-transform: uppercase; border: 2px solid white; }
 
-/* Desktop Menu*/
-.nav-menu { display: flex; list-style: none; gap: 20px; align-items: center; }
-.nav-menu li { position: relative; height: 80px; display: flex; align-items: center; }
-.nav-menu a { 
-    text-decoration: none; color: #444; font-weight: 600; font-size: 14px; 
-    padding: 10px 5px; transition: 0.3s;
-}
-.nav-menu a:hover { color: #006a4e; }
+        /* Form Styling */
+        .form-grid { text-align: left; margin-top: 35px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .form-group { margin-bottom: 18px; }
+        label { display: block; font-size: 13px; font-weight: 700; color: #64748b; margin-bottom: 6px; }
+        input, select { width: 100%; padding: 13px; border: 1.5px solid #f1f5f9; border-radius: 12px; outline: none; font-size: 15px; font-family: inherit; transition: 0.3s; background: #fcfcfc; }
+        input:focus { border-color: var(--p-green); background: #fff; }
 
-/* Dropdown */
-.submenu {
-    position: absolute; top: 80px; left: 0; width: 220px;
-    background: #ffffff; border-radius: 0 0 8px 8px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-    list-style: none; padding: 15px 0;
-    display: none; transform: translateY(10px); transition: 0.3s;
-}
-.has-dropdown:hover .submenu { display: block; transform: translateY(0); }
-.submenu li { height: auto; display: block; }
-.submenu li a { 
-    display: block; padding: 10px 25px; font-size: 13px; color: #555; font-weight: 500;
-}
-.submenu li a:hover { background: #f8fafc; color: #006a4e; padding-left: 30px; }
+        .btn-update { background: var(--p-green); color: white; border: none; padding: 16px; border-radius: 12px; font-weight: 800; cursor: pointer; transition: 0.4s; width: 100%; margin-top: 20px; font-size: 17px; }
+        .btn-update:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0, 106, 78, 0.2); }
 
-.btn-login-round { 
-    background: #006a4e; color: #fff !important; 
-    padding: 8px 22px !important; border-radius: 50px; 
-}
+        .logout-link { display: inline-block; margin-top: 20px; color: #94a3b8; text-decoration: none; font-size: 14px; font-weight: 600; cursor: pointer; }
+        .logout-link:hover { color: var(--s-red); }
 
-/* PC-তে সাইডবার টগল বাটন হাইড থাকবে */
-.mobile-toggle { display: none; font-size: 24px; color: #006a4e; cursor: pointer; }
-
-/* --- Mobile Sidebar --- */
-.sidebar-menu {
-    position: fixed; top: 0; right: -300px; width: 300px; height: 100vh;
-    background: #fff; z-index: 3000; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: -10px 0 30px rgba(0,0,0,0.1); overflow-y: auto; padding-top: 20px;
-}
-.sidebar-menu.active { right: 0; }
-
-.sidebar-header { display: flex; justify-content: space-between; padding: 0 25px 20px; border-bottom: 1px solid #eee; }
-.sidebar-header span { font-weight: 800; color: #006a4e; }
-
-.sidebar-content { list-style: none; padding: 20px 0; }
-.m-nav-item, .sidebar-content li a {
-    display: flex; justify-content: space-between; padding: 15px 25px;
-    text-decoration: none; color: #333; font-weight: 600; cursor: pointer;
-}
-
-/* Sidebar Accordion (Dropdown) */
-.m-submenu { list-style: none; background: #f9f9f9; max-height: 0; overflow: hidden; transition: 0.4s ease; }
-.m-submenu.open { max-height: 500px; padding: 10px 0; }
-.m-submenu li a { padding: 10px 45px; font-weight: 400; font-size: 14px; color: #666; }
-
-.m-nav-item i { transition: 0.3s; font-size: 12px; }
-.m-nav-item.active i { transform: rotate(180deg); color: #006a4e; }
-
-.side-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2500; display: none; }
-.side-overlay.active { display: block; }
-
-/* --- Responsive Logic --- */
-@media (max-width: 1024px) {
-    .nav-menu { display: none; } 
-    .mobile-toggle { display: block; } 
-}
-        .profile-card { background: white; max-width: 500px; margin: auto; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .user-img { width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--primary); margin-bottom: 15px; }
-        .form-group { text-align: left; margin-bottom: 15px; }
-        label { display: block; font-weight: bold; font-size: 13px; color: #555; }
-        input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; outline: none; }
-        .btn-save { background: var(--primary); color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; font-weight: bold; cursor: pointer; }
-
-
-
-
-
-
-
-
-
-
-        /* --- CINEMATIC AI BOT ICON STYLE --- */
-.ai-launcher {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 65px;
-    height: 65px;
-    z-index: 9999;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.ai-icon-inner {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #000 0%, #1a1a2e 100%);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid rgba(0, 210, 255, 0.5);
-    color: #00d2ff; /* Initial AI Blue */
-    font-size: 28px;
-    box-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
-    z-index: 2;
-    animation: aiColorShift 5s infinite linear; /* কালার চেঞ্জ এনিমেশন */
-}
-
-/* আইকনকে দামী লুক দেওয়ার জন্য RGB কালার শিফট */
-@keyframes aiColorShift {
-    0% { color: #00d2ff; border-color: #00d2ff; box-shadow: 0 0 20px rgba(0, 210, 255, 0.6); }
-    33% { color: #39ff14; border-color: #39ff14; box-shadow: 0 0 20px rgba(57, 255, 20, 0.6); }
-    66% { color: #7000ff; border-color: #7000ff; box-shadow: 0 0 20px rgba(112, 0, 255, 0.6); }
-    100% { color: #00d2ff; border-color: #00d2ff; box-shadow: 0 0 20px rgba(0, 210, 255, 0.6); }
-}
-
-/* রোবট আইকনের থরথর করে কাঁপার এনিমেশন (Neural Pulse) */
-.ai-launcher i {
-    animation: neuralPulse 2s infinite ease-in-out;
-}
-@keyframes neuralPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.15); opacity: 0.8; }
-}
-
-/* আইকনের চারপাশে ছড়ানো নিয়ন রিং (Cinematic Aura) */
-.ai-pulse-ring {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: inherit;
-    border: 2px solid var(--ai-blue);
-    animation: ringGlow 2s infinite;
-    z-index: 1;
-}
-
-@keyframes ringGlow {
-    0% { transform: scale(1); opacity: 0.8; box-shadow: 0 0 10px rgba(0, 210, 255, 0.5); }
-    100% { transform: scale(1.8); opacity: 0; box-shadow: 0 0 40px rgba(0, 210, 255, 0); }
-}
-
-/* হোভার ইফেক্ট */
-.ai-launcher:hover {
-    transform: scale(1.2) rotate(15deg);
-}
-
-/* মোবাইল রেসপন্সিভ - মোবাইলে একটু ছোট হবে */
-@media (max-width: 600px) {
-    .ai-launcher {
-        bottom: 20px;
-        right: 20px;
-        width: 55px;
-        height: 55px;
-    }
-    .ai-icon-inner { font-size: 24px; }
-}
+        @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } .profile-body { padding: 0 20px 30px; } }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-<nav class="premium-nav">
-    <div class="nav-wrapper">
-        <!-- Logo -->
-        <a href="index.html" class="brand-logo">
-            <img src="favicon.png" alt="brand-logo" style="width: 40px;">
-            <div class="logo-txt">
-                <h1>ইস্পাহানি দাখিল মাদ্রাসা</h1>
+
+    <header>
+        <a href="index.html" class="logo">IDM <span>PORTAL</span></a>
+        <div id="nav-user" style="font-weight: 700; color: var(--p-green); font-size: 14px;">লোড হচ্ছে...</div>
+    </header>
+
+    <div class="container">
+        <div class="profile-card animate__animated animate__fadeIn">
+            <div class="profile-cover"></div>
+            <div class="profile-body">
+                <!-- User Photo -->
+                <div class="user-avatar-wrap">
+                    <img id="display-img" src="https://via.placeholder.com/160" class="user-img">
+                    <div id="display-role" class="role-badge">STUDENT</div>
+                </div>
+
+                <h2 id="user-title" style="margin-top:15px; font-weight: 800;">আপনার নাম</h2>
+                <p id="user-email" style="color:#888; font-size: 14px;"></p>
+
+                <!-- Update Form -->
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>পূর্ণ নাম (বাংলা/ইংরেজি)</label>
+                        <input type="text" id="p-name" placeholder="আপনার নাম">
+                    </div>
+                    <div class="form-group">
+                        <label id="role-label">শ্রেণী / পদবী</label>
+                        <input type="text" id="p-info" placeholder="উদা: দাখিল ১০ম বা অভিভাবক">
+                    </div>
+                    <div class="form-group">
+                        <label>রোল নম্বর / আইডি</label>
+                        <input type="text" id="p-roll" placeholder="রোল নম্বর">
+                    </div>
+                    <div class="form-group">
+                        <label>মোবাইল নম্বর</label>
+                        <input type="tel" id="p-phone" placeholder="০১৮XXXXXXXX">
+                    </div>
+                    <div class="form-group">
+                        <label>রক্তের গ্রুপ</label>
+                        <select id="p-blood">
+                            <option value="">সিলেক্ট করুন</option>
+                            <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+                            <option>O+</option><option>O-</option><option>AB+</option><option>AB-</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>ঠিকানা</label>
+                        <input type="text" id="p-address" placeholder="আপনার এলাকা">
+                    </div>
+                    <div class="form-group" style="grid-column: span 2;">
+                        <label>প্রোফাইল ছবির লিঙ্ক (URL)</label>
+                        <input type="text" id="p-photo-url" placeholder="https://imgur.com/photo.jpg" oninput="document.getElementById('display-img').src = this.value">
+                        <small style="font-size:11px; color:#94a3b8;">* গুগল ফটো বা অন্য অনলাইন ছবির লিঙ্ক দিন।</small>
+                    </div>
+                </div>
+
+                <button class="btn-update" id="save-btn">তথ্য আপডেট করুন <i class="fas fa-save"></i></button>
+                <a class="logout-link" id="logout-btn">লগআউট করুন</a>
             </div>
-        </a>
-
-        <!-- Desktop Menu -->
-        <ul class="nav-menu">
-            <li><a href="index.html">শুরু</a></li>
-            
-            <li class="has-dropdown">
-                <a href="#">প্রতিষ্ঠানের তথ্য <i class="fas fa-angle-down"></i></a>
-                <ul class="submenu">
-                    <li><a href="history.html">মাদ্রাসার ইতিহাস</a></li>
-                    <li><a href="about.html">আমাদের সম্পর্কে</a></li>
-                    <li><a href="#">প্রতিষ্ঠানের স্বীকৃতি</a></li>
-                    <li><a href="#">ম্যানেজিং কমিটি</a></li>
-                </ul>
-            </li>
-
-            <li class="has-dropdown">
-                <a href="#">প্রশাসন <i class="fas fa-angle-down"></i></a>
-                <ul class="submenu">
-                    <li><a href="https://bn.wikipedia.org/wiki/%E0%A6%87%E0%A6%B8%E0%A7%8D%E0%A6%AA%E0%A6%BE%E0%A6%B9%E0%A6%BE%E0%A6%A8%E0%A6%BF_%E0%A6%AA%E0%A6%B0%E0%A6%BF%E0%A6%AC%E0%A6%BE%E0%A6%B0">ইস্পাহানী পরিবার</a></li>
-                    <li><a href="supar_speech.html">সুপারিনটেনডেন্ট মহোদয়ের বাণী</a></li>
-                    <li><a href="teachers.html">শিক্ষকমন্ডলীর তথ্য</a></li>
-                    <li><a href="workers.html">কর্মচারীদের তথ্য</a></li>
-                    <li><a href="privacy.html">প্রাইভেসি পলিসি</a></li>
-                </ul>
-            </li>
-
-            <li class="has-dropdown">
-                <a href="#">একাডেমিক <i class="fas fa-angle-down"></i></a>
-                <ul class="submenu">
-                    <li><a href="academic.html">কার্যক্রম</a></li>
-                    <li><a href="notice.html">নোটিশ বোর্ড</a></li>
-                    <li><a href="class-rutin.html">ক্লাস রুটিন</a></li>
-                </ul>
-            </li>
-
-            <li class="has-dropdown">
-                <a href="#">ফলাফল <i class="fas fa-angle-down"></i></a>
-                <ul class="submenu">
-                    <li><a href="result.html">একাডেমিক ফলাফল</a></li>
-                    <li><a href="http://www.educationboardresults.gov.bd/">বোর্ড ফলাফল</a></li>
-                </ul>
-            </li>
-
-            <li><a href="ai-chat.html">IDM AI</a></li>
-            <li><a href="blog.html">শিক্ষক কলাম</a></li>
-            <li><a href="gallery.html">গ্যালারি</a></li>
-            <li><a href="contact.html">যোগাযোগ</a></li>
-            <li><a href="login.html" class="btn-login-round">লগইন</a></li>
-        </ul>
-
-        <!-- Mobile Toggle -->
-        <div class="mobile-toggle" onclick="openSidebar()">
-            <i class="fas fa-bars"></i>
         </div>
     </div>
-</nav>
 
-<!-- স্লাইড মেনু -->
-<div id="mobileSidebar" class="sidebar-menu">
-    <div class="sidebar-header">
-        <span>মেনুবার</span>
-        <i class="fas fa-times" onclick="closeSidebar()"></i>
-    </div>
-    <ul class="sidebar-content">
-        <li><a href="index.html">হোম</a></li>
-        
-        <li class="m-has-dropdown">
-            <div class="m-nav-item" onclick="toggleMSub('m1', this)">
-                <span>প্রতিষ্ঠানের তথ্য</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <ul id="m1" class="m-submenu">
-                <li><a href="history.html">মাদ্রাসার ইতিহাস</a></li>
-                <li><a href="about.html">আমাদের সম্পর্কে</a></li>
-                <li><a href="#">প্রতিষ্ঠানের স্বীকৃতি</a></li>
-                <li><a href="#">ম্যানেজিং কমিটি</a></li>
-            </ul>
-        </li>
-
-        <li class="m-has-dropdown">
-            <div class="m-nav-item" onclick="toggleMSub('m2', this)">
-                <span>প্রশাসন</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <ul id="m2" class="m-submenu">
-                <li><a href="https://bn.wikipedia.org/wiki/%E0%A6%87%E0%A6%B8%E0%A7%8D%E0%A6%AA%E0%A6%BE%E0%A6%B9%E0%A6%BE%E0%A6%A8%E0%A6%BF_%E0%A6%AA%E0%A6%B0%E0%A6%BF%E0%A6%AC%E0%A6%BE%E0%A6%B0">ইস্পাহানি পরিবার</a></li>
-                <li><a href="supar_speech.html">সুপারিনটেনডেন্ট মহোদয়ের বাণী</a></li>
-                <li><a href="teachers.html">শিক্ষকমন্ডলীর তথ্য</a></li>
-                <li><a href="workers.html">কর্মচারী তথ্য</a></li>
-                <li><a href="privacy.html">প্রাইভেসি পলিসি</a></li>
-            </ul>
-        </li>
-
-        <li class="m-has-dropdown">
-            <div class="m-nav-item" onclick="toggleMSub('m4', this)">
-                <span>একাডেমিক</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <ul id="m4" class="m-submenu">
-                <li><a href="academic.html">কার্যক্রম</a></li>
-                <li><a href="notice.html">নোটিস বোর্ড</a></li>
-                <li><a href="class-rutin.html">ক্লাস রুটিন</a></li>
-            </ul>
-        </li>
-
-        <li class="m-has-dropdown">
-            <div class="m-nav-item" onclick="toggleMSub('m3', this)">
-                <span>ফলাফল</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <ul id="m3" class="m-submenu">
-                <li><a href="result.html">একাডেমিক ফলাফল</a></li>
-                <li><a href="http://www.educationboardresults.gov.bd/">বোর্ড ফলাফল</a></li>
-            </ul>
-        </li>
-        <li><a href="ai-chat.html">IDM AI</a></li>
-        <li><a href="blog.html">শিক্ষক কলাম</a></li>
-        <li><a href="gallery.html">গ্যালারি</a></li>
-        <li><a href="contact.html">যোগাযোগ</a></li>
-        <li><a href="login.html">লগইন</a></li>
-    </ul>
-</div>
-<div id="sideOverlay" class="side-overlay" onclick="closeSidebar()"></div>
-
-    
-
-    <div class="profile-card">
-        <img id="user-pic" class="user-img" src="https://via.placeholder.com/100">
-        <h2 id="user-name-title">ইউজারের নাম</h2>
-        <p id="user-email" style="color:#888; margin-bottom: 20px;"></p>
-        <hr><br>
-
-        <div class="form-group"><label>আপনার পূর্ণ নাম</label><input type="text" id="p-name"></div>
-        <div class="form-group"><label>শ্রেণী</label><input type="text" id="p-class" placeholder="যেমন: দাখিল ১০ম"></div>
-        <div class="form-group"><label>রোল নম্বর</label><input type="text" id="p-roll"></div>
-        <div class="form-group"><label>মোবাইল নম্বর</label><input type="tel" id="p-phone" placeholder="017XXXXXXXX"></div>
-        <div class="form-group"><label>ঠিকানা</label><input type="text" id="p-address"></div>
-
-        <button class="btn-save" onclick="updateProfile()">তথ্য আপডেট করুন</button>
-    </div>
-
+    <!-- Firebase Logic -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-        const firebaseConfig = { /* তোমার সেই কনফিগ কোড এখানে বসাও */ };
+        // তোমার ফায়ারবেস কনফিগ
+        const firebaseConfig = {
+            apiKey: "AIzaSyCTxt82Z4KRW425eYAU-WkVJbmUu1Vcy58",
+            authDomain: "ispahani-madrasah-portal.firebaseapp.com",
+            projectId: "ispahani-madrasah-portal",
+            storageBucket: "ispahani-madrasah-portal.firebasestorage.app",
+            messagingSenderId: "501627545319",
+            appId: "1:501627545319:web:42409b2d8f614dfc3c6442"
+        };
+
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        let currentUID = "";
+        let uid = "";
 
-        // ১. লগইন করা ইউজারের ডাটা লোড করা
+        // ১. ইউজারের তথ্য লোড করা
         onAuthStateChanged(auth, async (user) => {
             if (user) {
-                currentUID = user.uid;
-                document.getElementById('user-pic').src = user.photoURL;
+                uid = user.uid;
                 document.getElementById('user-email').innerText = user.email;
-                document.getElementById('user-name-title').innerText = user.displayName;
+                document.getElementById('nav-user').innerText = user.displayName;
 
-                // যদি আগে থেকে তথ্য থাকে তা বক্সে দেখানো
-                const docSnap = await getDoc(doc(db, "users", user.uid));
-                if (docSnap.exists()) {
-                    const data = docSnap.data();
+                // ডাটাবেজ থেকে তথ্য চেক
+                const docRef = doc(db, "public_users", user.uid);
+                const snap = await getDoc(docRef);
+
+                if (snap.exists()) {
+                    const data = snap.data();
+                    document.getElementById('user-title').innerText = data.name || user.displayName;
+                    document.getElementById('display-role').innerText = data.role || "USER";
+                    document.getElementById('display-img').src = data.photo || user.photoURL;
+
+                    // ফর্ম পূরণ করা
                     document.getElementById('p-name').value = data.name || user.displayName;
-                    document.getElementById('p-class').value = data.class || "";
+                    document.getElementById('p-info').value = data.info || "";
                     document.getElementById('p-roll').value = data.roll || "";
                     document.getElementById('p-phone').value = data.phone || "";
+                    document.getElementById('p-blood').value = data.blood || "";
                     document.getElementById('p-address').value = data.address || "";
+                    document.getElementById('p-photo-url').value = data.photo || user.photoURL;
                 }
             } else {
                 window.location.href = "login.html";
             }
         });
 
-        // ২. ডাটাবেজে তথ্য সেভ করা
-        window.uploadPhoto = function() {
-    const file = document.getElementById('photoFile').files[0];
-    const status = document.getElementById('upload-status');
-    status.innerText = "ছবি প্রসেস হচ্ছে...";
+        // ২. তথ্য সেভ করার ফাংশন
+        document.getElementById('save-btn').onclick = async () => {
+            const btn = document.getElementById('save-btn');
+            btn.innerText = "আপডেট হচ্ছে...";
 
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = async function () {
-        const base64Image = reader.result; // এটি ছবির ডাটা
-        // এই ডাটাটি আমরা ইউজারের 'photo' ফিল্ডে সেভ করবো
-        status.innerText = "ছবি সফলভাবে নির্বাচিত হয়েছে। তথ্য সেভ করুন বাটনে চাপুন।";
-        localStorage.setItem('tempPhoto', base64Image); 
-    };
-};
+            const updatedData = {
+                name: document.getElementById('p-name').value,
+                info: document.getElementById('p-info').value,
+                roll: document.getElementById('p-roll').value,
+                phone: document.getElementById('p-phone').value,
+                blood: document.getElementById('p-blood').value,
+                address: document.getElementById('p-address').value,
+                photo: document.getElementById('p-photo-url').value,
+                email: auth.currentUser.email,
+                lastUpdate: new Date()
+            };
+
+            try {
+                await setDoc(doc(db, "public_users", uid), updatedData, { merge: true });
+                alert("আপনার প্রোফাইল সফলভাবে আপডেট হয়েছে! ✅");
+                location.reload();
+            } catch (err) {
+                alert("ভুল হয়েছে: " + err.message);
+            }
+        }
+
+        // ৩. লগআউট
+        document.getElementById('logout-btn').onclick = () => {
+            signOut(auth).then(() => window.location.href = "login.html");
+        }
     </script>
-
-
-<!-- Floating AI Bot Launcher -->
-<a href="ai-chat.html" class="ai-launcher animate__animated animate__fadeInUp" title="IDM AI এর সাথে কথা বলুন">
-    <div class="ai-icon-inner">
-        <i class="fas fa-robot"></i>
-    </div>
-    <!-- আইকনের চারপাশে নিয়ন রিং -->
-    <div class="ai-pulse-ring"></div>
-</a>
 </body>
 </html>
