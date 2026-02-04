@@ -524,9 +524,9 @@
             <li><a href="blog.html">শিক্ষক কলাম</a></li>
             <li><a href="gallery.html">গ্যালারি</a></li>
             <li><a href="contact.html">যোগাযোগ</a></li>
-            <li><div id="auth-ui">
+            <div id="auth-ui">
     <a href="login.html" class="btn-login-round">লগইন</a>
-</div></li>
+</div>
         </ul>
 
         <!-- Mobile Toggle -->
@@ -745,56 +745,38 @@
 
 
 
+
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
     const firebaseConfig = {
-    apiKey: "AIzaSyAT-lcLWb8A9iWJZI77-TJifcjabjSBahU",
-    authDomain: "ispahani-madrasah-portal.firebaseapp.com",
-    projectId: "ispahani-madrasah-portal",
-    storageBucket: "ispahani-madrasah-portal.firebasestorage.app",
-    messagingSenderId: "501627545319",
-    appId: "1:501627545319:web:42409b2d8f614dfc3c6442"
-};
+        apiKey: "AIzaSyAT-lcLWb8A9iWJZI77-TJifcjabjSBahU",
+        authDomain: "ispahani-madrasah-portal.firebaseapp.com",
+        projectId: "ispahani-madrasah-portal",
+        storageBucket: "ispahani-madrasah-portal.firebasestorage.app",
+        messagingSenderId: "501627545319",
+        appId: "1:501627545319:web:42409b2d8f614dfc3c6442"
+    };
+
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
-    const db = getFirestore(app);
 
-    // --- স্মার্ট ইউজার ডিটেকশন সিস্টেম ---
-    onAuthStateChanged(auth, async (user) => {
+    onAuthStateChanged(auth, (user) => {
         const authUI = document.getElementById('auth-ui');
-        
         if (user) {
-            // ইউজার লগইন থাকলে তার ডাটাবেজ প্রোফাইল চেক করো
-            const userRef = doc(db, "public_users", user.uid);
-            const snap = await getDoc(userRef);
-            
-            let displayName = user.displayName.split(' ')[0]; // প্রথম নাম
-            let photoURL = user.photoURL;
-
-            if (snap.exists()) {
-                const data = snap.data();
-                if(data.photo) photoURL = data.photo;
-                if(data.name) displayName = data.name.split(' ')[0];
-            }
-
-            // ন্যাভবারে প্রোফাইল আইকন দেখানো
+            // লগইন থাকলে প্রোফাইল আইকন দেখাবে
             authUI.innerHTML = `
-                <a href="profile.html" class="user-nav-profile">
-                    <img src="${photoURL}" style="width:35px; height:35px; border-radius:50%; border:2px solid #006a4e;">
-                    <span style="margin-left:8px; font-weight:bold; color:#333;">${displayName}</span>
-                </a>
-            `;
+                <a href="profile.html" style="text-decoration:none; display:flex; align-items:center; gap:8px;">
+                    <img src="${user.photoURL}" style="width:35px; border-radius:50%; border:2px solid #006a4e;">
+                    <span style="color:#333; font-weight:bold;">${user.displayName.split(' ')[0]}</span>
+                </a>`;
         } else {
-            // লগইন না থাকলে আগের বাটনই থাকবে
+            // লগইন না থাকলে বাটন দেখাবে
             authUI.innerHTML = `<a href="login.html" class="btn-login-round">লগইন</a>`;
         }
     });
 </script>
-
-
 
 
 
