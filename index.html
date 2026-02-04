@@ -746,10 +746,14 @@
 
 
 
+
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
+    // তোমার কনফিগ কোড...
+
+    
     const firebaseConfig = {
         apiKey: "AIzaSyAT-lcLWb8A9iWJZI77-TJifcjabjSBahU",
         authDomain: "ispahani-madrasah-portal.firebaseapp.com",
@@ -758,22 +762,22 @@
         messagingSenderId: "501627545319",
         appId: "1:501627545319:web:42409b2d8f614dfc3c6442"
     };
-
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
     onAuthStateChanged(auth, (user) => {
         const authUI = document.getElementById('auth-ui');
         if (user) {
-            // লগইন থাকলে প্রোফাইল আইকন দেখাবে
+            // ইউজার থাকলে তার ডাটা ব্রাউজারেও সেভ রাখছি যাতে দ্রুত লোড হয়
+            localStorage.setItem('isLoggedIn', 'true');
             authUI.innerHTML = `
                 <a href="profile.html" style="text-decoration:none; display:flex; align-items:center; gap:8px;">
-                    <img src="${user.photoURL}" style="width:35px; border-radius:50%; border:2px solid #006a4e;">
+                    <img src="${user.photoURL}" style="width:35px; height:35px; border-radius:50%; border:2px solid #0fac9f;">
                     <span style="color:#333; font-weight:bold;">${user.displayName.split(' ')[0]}</span>
                 </a>`;
         } else {
-            // লগইন না থাকলে বাটন দেখাবে
-            authUI.innerHTML = `<a href="login.html" class="btn-login-round">লগইন</a>`;
+            localStorage.removeItem('isLoggedIn');
+            authUI.innerHTML = `<a href="login.html" class="btn-login-round" style="background:#006a4e; color:white; padding:8px 20px; border-radius:50px; text-decoration:none;">লগইন</a>`;
         }
     });
 </script>
