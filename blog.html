@@ -97,171 +97,154 @@
 
     <a href="ai-chat.html" class="ai-btn animate__animated animate__pulse animate__infinite"><i class="fas fa-robot"></i></a>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        import { getFirestore, collection, query, orderBy, onSnapshot, doc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+   
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { getFirestore, collection, query, orderBy, onSnapshot, doc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyAT-lcLWb8A9iWJZI77-TJifcjabjSBahU",
-            authDomain: "ispahani-madrasah-portal.firebaseapp.com",
-            projectId: "ispahani-madrasah-portal",
-            storageBucket: "ispahani-madrasah-portal.firebasestorage.app",
-            messagingSenderId: "501627545319",
-            appId: "1:501627545319:web:42409b2d8f614dfc3c6442"
-        };
+    // ১. তোমার ফায়ারবেস কনফিগ
+    const firebaseConfig = {
+        apiKey: "AIzaSyCTxt82Z4KRW425eYAU-WkVJbmUu1Vcy58",
+        authDomain: "ispahani-madrasah-portal.firebaseapp.com",
+        projectId: "ispahani-madrasah-portal",
+        storageBucket: "ispahani-madrasah-portal.firebasestorage.app",
+        messagingSenderId: "501627545319",
+        appId: "1:501627545319:web:42409b2d8f614dfc3c6442"
+    };
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
 
-        let currentUser = null;
+    let currentUser = null;
 
-
-
-
-        onAuthStateChanged(auth, (user) => {
-            currentUser = user;
-            loadFeed()
-
-        const authUI = document.getElementById('auth-ui');
-        if (user) {
-            // লগইন থাকলে প্রোফাইল আইকন দেখাবে
-            authUI.innerHTML = `
-                <a href="profile.html" style="text-decoration:none; display:flex; align-items:center; gap:8px;">
-                    <img src="${user.photoURL}" style="width:35px; border-radius:50%; border:2px solid #006a4e;">
-                    <span style="color:#333; font-weight:bold;">${user.displayName.split(' ')[0]}</span>
-                </a>`;
-        } else {
-            // লগইন না থাকলে বাটন দেখাবে
-            authUI.innerHTML = `<a href="login.html" class="btn-login-round">লগইন</a>`;
-        }
+    // ২. লগইন স্ট্যাটাস চেক
+    onAuthStateChanged(auth, (user) => {
+        currentUser = user;
+        loadFeed(); // ইউজার পাওয়ার পর ফিড লোড হবে
     });
 
+    // ৩. টাইম ক্যালকুলেটর ফাংশন
+    function formatTime(timestamp) {
+        if(!timestamp) return "এখনই";
+        const seconds = Math.floor((new Date() - timestamp.toDate()) / 1000);
+        if (seconds < 60) return seconds + "সে আগে";
+        if (seconds < 3600) return Math.floor(seconds/60) + "মি আগে";
+        if (seconds < 86400) return Math.floor(seconds/3600) + "ঘ আগে";
+        return timestamp.toDate().toLocaleDateString('bn-BD');
+    }
 
-
-
-
-
-        // ২. টাইম ক্যালকুলেটর
-        function formatTime(timestamp) {
-            if(!timestamp) return "Just now";
-            const seconds = Math.floor((new Date() - timestamp.toDate()) / 1000);
-            if (seconds < 60) return seconds + "s";
-            if (seconds < 3600) return Math.floor(seconds/60) + "m";
-            if (seconds < 86400) return Math.floor(seconds/3600) + "h";
-            if (seconds < 2592000) return Math.floor(seconds/86400) + "d";
-            return timestamp.toDate().toLocaleDateString('bn-BD');
-        }
-
-        // ৩. ফিড লোড করা
-        function loadFeed() {
-            const q = query(collection(db, "posts"), orderBy("time", "desc"));
-            onSnapshot(q, (snapshot) => {
-                const feed = document.getElementById('feed');
-                feed.innerHTML = "";
+    // ৪. ফিড লোড করার মেইন ফাংশন (রিয়েল-টাইম)
+    function loadFeed() {
+        const q = query(collection(db, "posts"), orderBy("time", "desc"));
+        onSnapshot(q, (snapshot) => {
+            const feed = document.getElementById('news-feed'); // নিশ্চিত করো তোমার HTML-এ এই আইডি আছে
+            if(!feed) return;
+            feed.innerHTML = "";
+            
+            snapshot.forEach((postDoc) => {
+                const post = postDoc.data();
+                const pid = postDoc.id;
+                const imgTag = post.imageUrl ? `<img src="${post.imageUrl}" class="post-img">` : "";
                 
-                snapshot.forEach((postDoc) => {
-                    const post = postDoc.data();
-                    const pid = postDoc.id;
-                    const imgTag = post.imageUrl ? `<img src="${post.imageUrl}" class="post-img">` : "";
-                    
-                    // ইউজারের নিজের রিঅ্যাকশন চেক
-                    let myReact = post.reacts && post.reacts[currentUser?.uid] ? post.reacts[currentUser.uid] : null;
+                // রিঅ্যাকশন চেক
+                let myReact = post.reacts && post.reacts[currentUser?.uid] ? post.reacts[currentUser.uid] : null;
 
-                    feed.innerHTML += `
-                        <div class="post-card">
-                            <div class="post-header">
-                                <img src="${post.authorPhoto || 'https://via.placeholder.com/42'}">
-                                <div class="header-info">
-                                    <b>${post.author}</b>
-                                    <span>${formatTime(post.time)} • <i class="fas fa-globe-americas"></i></span>
-                                </div>
-                            </div>
-                            <div class="post-text">${post.text}</div>
-                            ${imgTag}
-                            
-                            <div class="post-stats">
-                                <div class="react-icons-row">
-                                    <span style="margin-right:5px;">❤️👍 ${Object.keys(post.reacts || {}).length}</span>
-                                </div>
-                                <span onclick="toggleCmt('${pid}')" style="cursor:pointer">${post.comments ? post.comments.length : 0}টি কমেন্ট</span>
-                            </div>
-
-                            <div class="interaction-btns">
-                                <div class="reaction-container">
-                                    <div class="btn-action ${myReact ? 'active-react' : ''}">
-                                        <i class="${myReact ? 'fas' : 'far'} fa-thumbs-up"></i> 
-                                        ${myReact ? myReact : 'লাইক'}
-                                    </div>
-                                    <div class="reaction-bar">
-                                        <span onclick="sendReact('${pid}', '👍')">👍</span>
-                                        <span onclick="sendReact('${pid}', '❤️')">❤️</span>
-                                        <span onclick="sendReact('${pid}', '🥰')">🥰</span>
-                                        <span onclick="sendReact('${pid}', '😂')">😂</span>
-                                        <span onclick="sendReact('${pid}', '😮')">😮</span>
-                                        <span onclick="sendReact('${pid}', '😡')">😡</span>
-                                    </div>
-                                </div>
-                                <div class="btn-action" onclick="toggleCmt('${pid}')">
-                                    <i class="far fa-comment"></i> কমেন্ট
-                                </div>
-                                <div class="btn-action" onclick="share('${pid}')">
-                                    <i class="far fa-share-square"></i> শেয়ার
-                                </div>
-                            </div>
-
-                            <div class="comment-area" id="area-${pid}">
-                                <div class="comment-list">
-                                    ${(post.comments || []).map(c => `
-                                        <div class="comment-item">
-                                            <img src="https://via.placeholder.com/32">
-                                            <div class="comment-bubble"><b>${c.user}</b>${c.text}</div>
-                                        </div>
-                                    `).join('')}
-                                </div>
-                                <div class="cmt-input-wrapper">
-                                    <input type="text" id="in-${pid}" placeholder="একটি মন্তব্য লিখুন..." onkeypress="if(event.key==='Enter') sendCmt('${pid}')">
-                                    <button class="btn-send-cmt" onclick="sendCmt('${pid}')"><i class="fas fa-paper-plane"></i></button>
-                                </div>
+                feed.innerHTML += `
+                    <div class="post-card animate__animated animate__fadeIn">
+                        <div class="post-header">
+                            <img src="${post.authorPhoto || 'https://via.placeholder.com/42'}">
+                            <div class="header-info">
+                                <b>${post.author}</b>
+                                <span>${formatTime(post.time)} • <i class="fas fa-globe-americas"></i></span>
                             </div>
                         </div>
-                    `;
-                });
+                        <div class="post-text">${post.text}</div>
+                        ${imgTag}
+                        
+                        <div class="post-stats">
+                            <span id="react-stat-${pid}">❤️ 👍 ${Object.keys(post.reacts || {}).length}</span>
+                            <span onclick="toggleCmt('${pid}')" style="cursor:pointer">${post.comments ? post.comments.length : 0}টি কমেন্ট</span>
+                        </div>
+
+                        <div class="interaction-btns">
+                            <div class="reaction-container">
+                                <div class="btn-action ${myReact ? 'active-react' : ''}">
+                                    <i class="${myReact ? 'fas' : 'far'} fa-thumbs-up"></i> ${myReact || 'লাইক'}
+                                </div>
+                                <div class="reaction-bar">
+                                    <span onclick="sendReact('${pid}', '👍')">👍</span>
+                                    <span onclick="sendReact('${pid}', '❤️')">❤️</span>
+                                    <span onclick="sendReact('${pid}', '🥰')">🥰</span>
+                                    <span onclick="sendReact('${pid}', '😂')">😂</span>
+                                    <span onclick="sendReact('${pid}', '😡')">😡</span>
+                                </div>
+                            </div>
+                            <div class="btn-action" onclick="toggleCmt('${pid}')"><i class="far fa-comment"></i> কমেন্ট</div>
+                            <div class="btn-action" onclick="sharePost('${pid}')"><i class="far fa-share-square"></i> শেয়ার</div>
+                        </div>
+
+                        <div class="comment-area" id="area-${pid}">
+                            <div class="comment-list">
+                                ${(post.comments || []).map(c => `
+                                    <div class="comment-item">
+                                        <img src="${c.userPhoto || 'https://via.placeholder.com/32'}" style="width:32px; height:32px; border-radius:50%;">
+                                        <div class="comment-bubble"><b>${c.user}</b><span>${c.text}</span></div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <div class="cmt-input-wrapper">
+                                <input type="text" id="in-${pid}" placeholder="মন্তব্য লিখুন..." onkeypress="if(event.key==='Enter') sendCmt('${pid}')">
+                                <button class="btn-send-cmt" onclick="sendCmt('${pid}')"><i class="fas fa-paper-plane"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                `;
             });
-        }
+        });
+    }
 
-        // ৪. ফাংশনসমূহ
-        window.sendReact = async (pid, emoji) => {
-            if(!currentUser) return alert("দয়া করে আগে লগইন করুন!");
-            const ref = doc(db, "posts", pid);
-            const updates = {};
-            updates[`reacts.${currentUser.uid}`] = emoji;
-            await updateDoc(ref, updates);
-        };
+    // ৫. রিঅ্যাক্ট ফাংশন
+    window.sendReact = async (pid, emoji) => {
+        if(!currentUser) return alert("আগে লগইন করুন!");
+        const ref = doc(db, "posts", pid);
+        const updates = {};
+        updates[`reacts.${currentUser.uid}`] = emoji;
+        await updateDoc(ref, updates);
+    };
 
-        window.sendCmt = async (pid) => {
-            const input = document.getElementById(`in-${pid}`);
-            if(!input.value || !currentUser) return alert("লগইন করে মন্তব্য লিখুন!");
-            const ref = doc(db, "posts", pid);
-            await updateDoc(ref, {
-                comments: arrayUnion({
-                    user: currentUser.displayName,
-                    text: input.value,
-                    time: new Date()
-                })
-            });
-            input.value = "";
-        };
+    // ৬. কমেন্ট ফাংশন (ছবি সহ সেভ হবে)
+    window.sendCmt = async (pid) => {
+        const input = document.getElementById(`in-${pid}`);
+        if(!input.value || !currentUser) return alert("লগইন করে মন্তব্য লিখুন!");
 
-        window.toggleCmt = (id) => document.getElementById(`area-${id}`).classList.toggle('active');
+        const ref = doc(db, "posts", pid);
+        await updateDoc(ref, {
+            comments: arrayUnion({
+                user: currentUser.displayName,
+                userPhoto: currentUser.photoURL, // এখানে ছবি সেভ হচ্ছে
+                text: input.value,
+                time: new Date()
+            })
+        });
+        input.value = "";
+    };
 
-        window.share = (id) => {
-            const link = window.location.href.split('?')[0] + "?post=" + id;
-            navigator.clipboard.writeText(link);
-            alert("পোস্টের লিঙ্ক কপি হয়েছে! আপনি এখন যেকোনো জায়গায় শেয়ার করতে পারেন।");
-        };
+    window.toggleCmt = (id) => document.getElementById(`area-${id}`).classList.toggle('active');
 
-    </script>
+    window.sharePost = (id) => {
+        const link = window.location.href.split('?')[0] + "?post=" + id;
+        navigator.clipboard.writeText(link);
+        alert("লিঙ্ক কপি হয়েছে!");
+    };
+
+    // সাইডবার টগল
+    window.toggleSidebar = () => {
+        document.getElementById('mobileSidebar').classList.toggle('active');
+        document.getElementById('sideOverlay').classList.toggle('active');
+    };
+
+</script>
 </body>
 </html>
