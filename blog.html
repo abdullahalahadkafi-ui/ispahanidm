@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ব্লগ ও শিক্ষক কলাম | ইস্পাহানি দাখিল মাদ্রাসা</title>
+    <title>নিউজ ফিড ও কলাম | ইস্পাহানি দাখিল মাদ্রাসা</title>
     
-    <!-- Premium Resources -->
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
@@ -17,36 +17,40 @@
             --bg: #f0f2f5; 
             --white: #ffffff;
             --text-gray: #65676b;
+            --react-yellow: #f59e0b;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-style: normal !important; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Hind Siliguri', sans-serif; background: var(--bg); color: #050505; padding-top: 80px; }
 
-        /* --- NAV & SIDEBAR (আগের মতোই থাকবে) --- */
-        nav { background: #fff; height: 70px; position: fixed; width: 100%; top: 0; z-index: 2000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-bottom: 1px solid #eee; display: flex; align-items: center; padding: 0 5%; }
-        .logo { font-weight: 800; color: var(--p-green); text-decoration: none; font-size: 20px; }
+        /* --- NAVIGATION (আগের স্টাইল বজায় রাখা হয়েছে) --- */
+        nav { background: #fff; height: 70px; position: fixed; width: 100%; top: 0; z-index: 2000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-bottom: 2px solid var(--p-green); display: flex; align-items: center; padding: 0 5%; }
+        .logo { font-weight: 800; color: var(--p-green); text-decoration: none; font-size: 22px; }
 
-        /* --- FEED CONTAINER --- */
-        .container { max-width: 650px; margin: auto; padding: 10px; }
+        .container { max-width: 600px; margin: auto; padding: 10px; }
         
-        .post-card { background: var(--white); border-radius: 12px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); margin-bottom: 15px; overflow: hidden; animation: fadeInUp 0.5s; }
+        /* --- POST CARD --- */
+        .post-card { background: var(--white); border-radius: 10px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); margin-bottom: 15px; overflow: hidden; }
         
-        .post-header { padding: 12px 16px; display: flex; align-items: center; gap: 12px; }
+        .post-header { padding: 12px 16px; display: flex; align-items: center; gap: 10px; }
         .post-header img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 1px solid #ddd; }
-        .post-header b { font-size: 15px; color: #050505; display: block; }
-        .post-header small { color: var(--text-gray); font-size: 13px; }
+        .header-info b { font-size: 15px; display: block; line-height: 1.2; }
+        .header-info span { color: var(--text-gray); font-size: 12px; display: flex; align-items: center; gap: 5px; margin-top: 2px; }
 
-        .post-text { padding: 4px 16px 16px; font-size: 16px; white-space: pre-wrap; color: #050505; }
-        .post-img { width: 100%; display: block; max-height: 500px; object-fit: cover; border-top: 1px solid #eee; border-bottom: 1px solid #eee; }
+        .post-text { padding: 4px 16px 16px; font-size: 16px; white-space: pre-wrap; }
+        .post-img { width: 100%; display: block; max-height: 500px; object-fit: cover; border-top: 1px solid #f0f2f5; border-bottom: 1px solid #f0f2f5; }
 
-        /* --- REACTION & STATS --- */
-        .post-stats { padding: 10px 16px; display: flex; justify-content: space-between; border-bottom: 1px solid #ebedf0; font-size: 14px; color: var(--text-gray); }
-        
+        /* --- REACTIONS & STATS --- */
+        .post-stats { padding: 10px 16px; display: flex; justify-content: space-between; border-bottom: 1px solid #ebedf0; font-size: 13px; color: var(--text-gray); }
+        .react-icons-row { display: flex; align-items: center; gap: -5px; }
+        .react-icons-row i { font-size: 16px; }
+
         .interaction-btns { display: flex; padding: 4px; position: relative; }
-        .btn-action { flex: 1; padding: 10px; text-align: center; cursor: pointer; color: var(--text-gray); font-weight: 600; border-radius: 6px; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s; }
+        .btn-action { flex: 1; padding: 10px; text-align: center; cursor: pointer; color: var(--text-gray); font-weight: 600; border-radius: 4px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; transition: 0.2s; }
         .btn-action:hover { background: #f2f2f2; }
+        .btn-action.active-react { color: var(--fb-blue); }
 
-        /* FB Style Reaction Bar */
+        /* Floating Reaction Bar (FB Style) */
         .reaction-container { position: relative; flex: 1; }
         .reaction-bar {
             position: absolute; bottom: 45px; left: 0; background: white;
@@ -54,43 +58,47 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.15); gap: 12px; z-index: 100;
             border: 1px solid #eee;
         }
-        .reaction-container:hover .reaction-bar { display: flex; animation: bounceIn 0.4s; }
-        .reaction-bar span { font-size: 28px; transition: 0.2s; cursor: pointer; }
+        .reaction-container:hover .reaction-bar { display: flex; animation: bounceIn 0.3s; }
+        .reaction-bar span { font-size: 26px; transition: 0.2s; cursor: pointer; }
         .reaction-bar span:hover { transform: scale(1.4); }
 
-        /* --- COMMENT SECTION --- */
-        .comment-area { padding: 12px 16px; display: none; background: #fff; border-top: 1px solid #eee; }
+        /* --- COMMENTS AREA --- */
+        .comment-area { padding: 10px 16px; background: #fff; display: none; border-top: 1px solid #eee; }
         .comment-area.active { display: block; }
-        .comment-input-box { display: flex; gap: 8px; align-items: center; margin-bottom: 15px; }
-        .comment-input-box input { flex: 1; padding: 10px 15px; border-radius: 20px; border: none; background: #f0f2f5; outline: none; font-family: inherit; }
         
-        .comment-list { list-style: none; padding: 0; }
         .comment-item { display: flex; gap: 8px; margin-bottom: 10px; }
+        .comment-item img { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
         .comment-bubble { background: #f0f2f5; padding: 8px 12px; border-radius: 18px; font-size: 13px; max-width: 85%; }
         .comment-bubble b { font-size: 12px; display: block; color: #050505; }
 
-        @keyframes bounceIn { 0% { transform: scale(0.5); opacity: 0; } 70% { transform: scale(1.1); } 100% { transform: scale(1); opacity: 1; } }
-        .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #333; color: white; padding: 10px 25px; border-radius: 50px; display: none; z-index: 5000; }
+        /* Comment Input */
+        .cmt-input-wrapper { display: flex; gap: 8px; align-items: center; position: relative; margin-top: 10px; }
+        .cmt-input-wrapper input { flex: 1; padding: 10px 45px 10px 15px; border-radius: 20px; border: none; background: #f0f2f5; outline: none; font-family: inherit; font-size: 14px; }
+        .btn-send-cmt { position: absolute; right: 12px; color: var(--fb-blue); cursor: pointer; border: none; background: none; font-size: 18px; }
+
+        @keyframes bounceIn { 0% { transform: scale(0); } 100% { transform: scale(1); } }
+        
+        /* Floating AI Icon */
+        .ai-btn { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background: var(--p-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1000; text-decoration: none; }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="index.html" class="logo">ইস্পাহানি দাখিল মাদ্রাসা</a>
-        <div style="font-size: 14px; font-weight: 700; color: #888;">ব্লগ ও কলাম</div>
+        <a href="index.html" class="logo">ইস্পাহানি দাখিল <span>মাদ্রাসা</span></a>
     </nav>
 
-    <div class="container" id="feed-container">
+    <div class="container" id="feed">
         <p style="text-align:center; color:#888; padding:50px;">সার্ভার থেকে তথ্য লোড হচ্ছে...</p>
     </div>
 
-    <div id="share-toast" class="toast">লিঙ্ক কপি হয়েছে!</div>
+    <a href="ai-chat.html" class="ai-btn animate__animated animate__pulse animate__infinite"><i class="fas fa-robot"></i></a>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
         import { getFirestore, collection, query, orderBy, onSnapshot, doc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-        // তোমার ফায়ারবেস কনফিগ
         const firebaseConfig = {
             apiKey: "AIzaSyCTxt82Z4KRW425eYAU-WkVJbmUu1Vcy58",
             authDomain: "ispahani-madrasah-portal.firebaseapp.com",
@@ -101,62 +109,97 @@
         };
 
         const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // ১. রিয়েল-টাইমে পোস্ট লোড করা
-        function loadPosts() {
+        let currentUser = null;
+
+        // ১. লগইন চেক
+        onAuthStateChanged(auth, (user) => {
+            currentUser = user;
+            loadFeed();
+        });
+
+        // ২. টাইম ক্যালকুলেটর
+        function formatTime(timestamp) {
+            if(!timestamp) return "Just now";
+            const seconds = Math.floor((new Date() - timestamp.toDate()) / 1000);
+            if (seconds < 60) return seconds + "s";
+            if (seconds < 3600) return Math.floor(seconds/60) + "m";
+            if (seconds < 86400) return Math.floor(seconds/3600) + "h";
+            if (seconds < 2592000) return Math.floor(seconds/86400) + "d";
+            return timestamp.toDate().toLocaleDateString('bn-BD');
+        }
+
+        // ৩. ফিড লোড করা
+        function loadFeed() {
             const q = query(collection(db, "posts"), orderBy("time", "desc"));
             onSnapshot(q, (snapshot) => {
-                const feed = document.getElementById('feed-container');
+                const feed = document.getElementById('feed');
                 feed.innerHTML = "";
                 
                 snapshot.forEach((postDoc) => {
-                    const data = postDoc.data();
+                    const post = postDoc.data();
                     const pid = postDoc.id;
-
-                    // স্মার্ট ইমেজ লজিক: ছবি থাকলে আসবে, না থাকলে কিছুই দেখাবে না
-                    const imgHTML = data.imageUrl ? `<img src="${data.imageUrl}" class="post-img">` : "";
+                    const imgTag = post.imageUrl ? `<img src="${post.imageUrl}" class="post-img">` : "";
+                    
+                    // ইউজারের নিজের রিঅ্যাকশন চেক
+                    let myReact = post.reacts && post.reacts[currentUser?.uid] ? post.reacts[currentUser.uid] : null;
 
                     feed.innerHTML += `
                         <div class="post-card">
                             <div class="post-header">
-                                <img src="super_photo.jpg">
-                                <div><b>${data.author}</b><small>${data.role || 'অফিসিয়াল'}</small></div>
+                                <img src="${post.authorPhoto || 'https://via.placeholder.com/42'}">
+                                <div class="header-info">
+                                    <b>${post.author}</b>
+                                    <span>${formatTime(post.time)} • <i class="fas fa-globe-americas"></i></span>
+                                </div>
                             </div>
-                            <div class="post-text">${data.text}</div>
+                            <div class="post-text">${post.text}</div>
+                            ${imgTag}
                             
-                            ${imgHTML}
-
                             <div class="post-stats">
-                                <span>❤️ 👍 ${data.reacts ? Object.keys(data.reacts).length : 0}</span>
-                                <span>${data.comments ? data.comments.length : 0}টি কমেন্ট</span>
+                                <div class="react-icons-row">
+                                    <span style="margin-right:5px;">❤️👍 ${Object.keys(post.reacts || {}).length}</span>
+                                </div>
+                                <span onclick="toggleCmt('${pid}')" style="cursor:pointer">${post.comments ? post.comments.length : 0}টি কমেন্ট</span>
                             </div>
 
                             <div class="interaction-btns">
                                 <div class="reaction-container">
-                                    <div class="btn-action"><i class="far fa-thumbs-up"></i> লাইক</div>
+                                    <div class="btn-action ${myReact ? 'active-react' : ''}">
+                                        <i class="${myReact ? 'fas' : 'far'} fa-thumbs-up"></i> 
+                                        ${myReact ? myReact : 'লাইক'}
+                                    </div>
                                     <div class="reaction-bar">
-                                        <span onclick="addReact('${pid}', '👍')">👍</span>
-                                        <span onclick="addReact('${pid}', '❤️')">❤️</span>
-                                        <span onclick="addReact('${pid}', '😂')">😂</span>
-                                        <span onclick="addReact('${pid}', '😮')">😮</span>
-                                        <span onclick="addReact('${pid}', '😡')">😡</span>
+                                        <span onclick="sendReact('${pid}', '👍')">👍</span>
+                                        <span onclick="sendReact('${pid}', '❤️')">❤️</span>
+                                        <span onclick="sendReact('${pid}', '🥰')">🥰</span>
+                                        <span onclick="sendReact('${pid}', '😂')">😂</span>
+                                        <span onclick="sendReact('${pid}', '😮')">😮</span>
+                                        <span onclick="sendReact('${pid}', '😡')">😡</span>
                                     </div>
                                 </div>
-                                <div class="btn-action" onclick="toggleComments('${pid}')"><i class="far fa-comment"></i> কমেন্ট</div>
-                                <div class="btn-action" onclick="shareMe('${pid}', '${data.author}')"><i class="far fa-share-square"></i> শেয়ার</div>
+                                <div class="btn-action" onclick="toggleCmt('${pid}')">
+                                    <i class="far fa-comment"></i> কমেন্ট
+                                </div>
+                                <div class="btn-action" onclick="share('${pid}')">
+                                    <i class="far fa-share-square"></i> শেয়ার
+                                </div>
                             </div>
 
-                            <div class="comment-area" id="cmt-area-${pid}">
+                            <div class="comment-area" id="area-${pid}">
                                 <div class="comment-list">
-                                    ${(data.comments || []).map(c => `
+                                    ${(post.comments || []).map(c => `
                                         <div class="comment-item">
+                                            <img src="https://via.placeholder.com/32">
                                             <div class="comment-bubble"><b>${c.user}</b>${c.text}</div>
                                         </div>
                                     `).join('')}
                                 </div>
-                                <div class="comment-input-box">
-                                    <input type="text" placeholder="একটি মন্তব্য লিখুন..." onkeypress="handleCmt(event, '${pid}', this)">
+                                <div class="cmt-input-wrapper">
+                                    <input type="text" id="in-${pid}" placeholder="একটি মন্তব্য লিখুন..." onkeypress="if(event.key==='Enter') sendCmt('${pid}')">
+                                    <button class="btn-send-cmt" onclick="sendCmt('${pid}')"><i class="fas fa-paper-plane"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -165,41 +208,37 @@
             });
         }
 
-        // ২. রিঅ্যাকশন দেওয়া
-        window.addReact = async (id, emoji) => {
-            const ref = doc(db, "posts", id);
-            // এখানে ডাইনামিক ফিল্ড আপডেট করা হচ্ছে
-            await updateDoc(ref, { [`reacts.${Date.now()}`]: emoji });
+        // ৪. ফাংশনসমূহ
+        window.sendReact = async (pid, emoji) => {
+            if(!currentUser) return alert("দয়া করে আগে লগইন করুন!");
+            const ref = doc(db, "posts", pid);
+            const updates = {};
+            updates[`reacts.${currentUser.uid}`] = emoji;
+            await updateDoc(ref, updates);
         };
 
-        // ৩. কমেন্ট পোস্ট করা
-        window.handleCmt = async (e, id, input) => {
-            if(e.key === 'Enter' && input.value !== "") {
-                const user = localStorage.getItem('userName') || "অতিথি ইউজার";
-                const ref = doc(db, "posts", id);
-                await updateDoc(ref, {
-                    comments: arrayUnion({ user: user, text: input.value, time: new Date() })
-                });
-                input.value = "";
-            }
+        window.sendCmt = async (pid) => {
+            const input = document.getElementById(`in-${pid}`);
+            if(!input.value || !currentUser) return alert("লগইন করে মন্তব্য লিখুন!");
+            const ref = doc(db, "posts", pid);
+            await updateDoc(ref, {
+                comments: arrayUnion({
+                    user: currentUser.displayName,
+                    text: input.value,
+                    time: new Date()
+                })
+            });
+            input.value = "";
         };
 
-        window.toggleComments = (id) => {
-            document.getElementById(`cmt-area-${id}`).classList.toggle('active');
+        window.toggleCmt = (id) => document.getElementById(`area-${id}`).classList.toggle('active');
+
+        window.share = (id) => {
+            const link = window.location.href.split('?')[0] + "?post=" + id;
+            navigator.clipboard.writeText(link);
+            alert("পোস্টের লিঙ্ক কপি হয়েছে! আপনি এখন যেকোনো জায়গায় শেয়ার করতে পারেন।");
         };
 
-        window.shareMe = async (id, author) => {
-            const shareUrl = `${window.location.origin}${window.location.pathname}?post=${id}`;
-            if (navigator.share) {
-                await navigator.share({ title: 'IDM Blog', text: author + '-এর পোস্ট', url: shareUrl });
-            } else {
-                navigator.clipboard.writeText(shareUrl);
-                document.getElementById('share-toast').style.display = 'block';
-                setTimeout(() => document.getElementById('share-toast').style.display = 'none', 2000);
-            }
-        };
-
-        window.onload = loadPosts;
     </script>
 </body>
 </html>
