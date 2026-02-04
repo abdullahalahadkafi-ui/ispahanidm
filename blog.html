@@ -117,8 +117,13 @@
 
         let currentUser = null;
 
-        // ১. লগইন চেক
+
+
+
         onAuthStateChanged(auth, (user) => {
+            currentUser = user;
+            loadFeed()
+
         const authUI = document.getElementById('auth-ui');
         if (user) {
             // লগইন থাকলে প্রোফাইল আইকন দেখাবে
@@ -132,6 +137,11 @@
             authUI.innerHTML = `<a href="login.html" class="btn-login-round">লগইন</a>`;
         }
     });
+
+
+
+
+
 
         // ২. টাইম ক্যালকুলেটর
         function formatTime(timestamp) {
