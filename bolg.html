@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ব্লগ ও শিক্ষক কলাম | ইস্পাহানি দাখিল মাদ্রাসা</title>
+    
+    <!-- Premium Resources -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <style>
+        :root { 
+            --p-green: #006a4e; 
+            --fb-blue: #1877f2; 
+            --bg: #f0f2f5; 
+            --white: #ffffff;
+            --text-gray: #65676b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-style: normal !important; }
+        body { font-family: 'Hind Siliguri', sans-serif; background: var(--bg); color: #050505; padding-top: 80px; }
+
+        /* --- NAV & SIDEBAR (আগের মতোই থাকবে) --- */
+        nav { background: #fff; height: 70px; position: fixed; width: 100%; top: 0; z-index: 2000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-bottom: 1px solid #eee; display: flex; align-items: center; padding: 0 5%; }
+        .logo { font-weight: 800; color: var(--p-green); text-decoration: none; font-size: 20px; }
+
+        /* --- FEED CONTAINER --- */
+        .container { max-width: 650px; margin: auto; padding: 10px; }
+        
+        .post-card { background: var(--white); border-radius: 12px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); margin-bottom: 15px; overflow: hidden; animation: fadeInUp 0.5s; }
+        
+        .post-header { padding: 12px 16px; display: flex; align-items: center; gap: 12px; }
+        .post-header img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 1px solid #ddd; }
+        .post-header b { font-size: 15px; color: #050505; display: block; }
+        .post-header small { color: var(--text-gray); font-size: 13px; }
+
+        .post-text { padding: 4px 16px 16px; font-size: 16px; white-space: pre-wrap; color: #050505; }
+        .post-img { width: 100%; display: block; max-height: 500px; object-fit: cover; border-top: 1px solid #eee; border-bottom: 1px solid #eee; }
+
+        /* --- REACTION & STATS --- */
+        .post-stats { padding: 10px 16px; display: flex; justify-content: space-between; border-bottom: 1px solid #ebedf0; font-size: 14px; color: var(--text-gray); }
+        
+        .interaction-btns { display: flex; padding: 4px; position: relative; }
+        .btn-action { flex: 1; padding: 10px; text-align: center; cursor: pointer; color: var(--text-gray); font-weight: 600; border-radius: 6px; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s; }
+        .btn-action:hover { background: #f2f2f2; }
+
+        /* FB Style Reaction Bar */
+        .reaction-container { position: relative; flex: 1; }
+        .reaction-bar {
+            position: absolute; bottom: 45px; left: 0; background: white;
+            padding: 8px 12px; border-radius: 40px; display: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15); gap: 12px; z-index: 100;
+            border: 1px solid #eee;
+        }
+        .reaction-container:hover .reaction-bar { display: flex; animation: bounceIn 0.4s; }
+        .reaction-bar span { font-size: 28px; transition: 0.2s; cursor: pointer; }
+        .reaction-bar span:hover { transform: scale(1.4); }
+
+        /* --- COMMENT SECTION --- */
+        .comment-area { padding: 12px 16px; display: none; background: #fff; border-top: 1px solid #eee; }
+        .comment-area.active { display: block; }
+        .comment-input-box { display: flex; gap: 8px; align-items: center; margin-bottom: 15px; }
+        .comment-input-box input { flex: 1; padding: 10px 15px; border-radius: 20px; border: none; background: #f0f2f5; outline: none; font-family: inherit; }
+        
+        .comment-list { list-style: none; padding: 0; }
+        .comment-item { display: flex; gap: 8px; margin-bottom: 10px; }
+        .comment-bubble { background: #f0f2f5; padding: 8px 12px; border-radius: 18px; font-size: 13px; max-width: 85%; }
+        .comment-bubble b { font-size: 12px; display: block; color: #050505; }
+
+        @keyframes bounceIn { 0% { transform: scale(0.5); opacity: 0; } 70% { transform: scale(1.1); } 100% { transform: scale(1); opacity: 1; } }
+        .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #333; color: white; padding: 10px 25px; border-radius: 50px; display: none; z-index: 5000; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">ইস্পাহানি দাখিল মাদ্রাসা</a>
+        <div style="font-size: 14px; font-weight: 700; color: #888;">ব্লগ ও কলাম</div>
+    </nav>
+
+    <div class="container" id="feed-container">
+        <p style="text-align:center; color:#888; padding:50px;">সার্ভার থেকে তথ্য লোড হচ্ছে...</p>
+    </div>
+
+    <div id="share-toast" class="toast">লিঙ্ক কপি হয়েছে!</div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, query, orderBy, onSnapshot, doc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // তোমার ফায়ারবেস কনফিগ
+        const firebaseConfig = {
+            apiKey: "AIzaSyCTxt82Z4KRW425eYAU-WkVJbmUu1Vcy58",
+            authDomain: "ispahani-madrasah-portal.firebaseapp.com",
+            projectId: "ispahani-madrasah-portal",
+            storageBucket: "ispahani-madrasah-portal.firebasestorage.app",
+            messagingSenderId: "501627545319",
+            appId: "1:501627545319:web:42409b2d8f614dfc3c6442"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // ১. রিয়েল-টাইমে পোস্ট লোড করা
+        function loadPosts() {
+            const q = query(collection(db, "posts"), orderBy("time", "desc"));
+            onSnapshot(q, (snapshot) => {
+                const feed = document.getElementById('feed-container');
+                feed.innerHTML = "";
+                
+                snapshot.forEach((postDoc) => {
+                    const data = postDoc.data();
+                    const pid = postDoc.id;
+
+                    // স্মার্ট ইমেজ লজিক: ছবি থাকলে আসবে, না থাকলে কিছুই দেখাবে না
+                    const imgHTML = data.imageUrl ? `<img src="${data.imageUrl}" class="post-img">` : "";
+
+                    feed.innerHTML += `
+                        <div class="post-card">
+                            <div class="post-header">
+                                <img src="super_photo.jpg">
+                                <div><b>${data.author}</b><small>${data.role || 'অফিসিয়াল'}</small></div>
+                            </div>
+                            <div class="post-text">${data.text}</div>
+                            
+                            ${imgHTML}
+
+                            <div class="post-stats">
+                                <span>❤️ 👍 ${data.reacts ? Object.keys(data.reacts).length : 0}</span>
+                                <span>${data.comments ? data.comments.length : 0}টি কমেন্ট</span>
+                            </div>
+
+                            <div class="interaction-btns">
+                                <div class="reaction-container">
+                                    <div class="btn-action"><i class="far fa-thumbs-up"></i> লাইক</div>
+                                    <div class="reaction-bar">
+                                        <span onclick="addReact('${pid}', '👍')">👍</span>
+                                        <span onclick="addReact('${pid}', '❤️')">❤️</span>
+                                        <span onclick="addReact('${pid}', '😂')">😂</span>
+                                        <span onclick="addReact('${pid}', '😮')">😮</span>
+                                        <span onclick="addReact('${pid}', '😡')">😡</span>
+                                    </div>
+                                </div>
+                                <div class="btn-action" onclick="toggleComments('${pid}')"><i class="far fa-comment"></i> কমেন্ট</div>
+                                <div class="btn-action" onclick="shareMe('${pid}', '${data.author}')"><i class="far fa-share-square"></i> শেয়ার</div>
+                            </div>
+
+                            <div class="comment-area" id="cmt-area-${pid}">
+                                <div class="comment-list">
+                                    ${(data.comments || []).map(c => `
+                                        <div class="comment-item">
+                                            <div class="comment-bubble"><b>${c.user}</b>${c.text}</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                <div class="comment-input-box">
+                                    <input type="text" placeholder="একটি মন্তব্য লিখুন..." onkeypress="handleCmt(event, '${pid}', this)">
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            });
+        }
+
+        // ২. রিঅ্যাকশন দেওয়া
+        window.addReact = async (id, emoji) => {
+            const ref = doc(db, "posts", id);
+            // এখানে ডাইনামিক ফিল্ড আপডেট করা হচ্ছে
+            await updateDoc(ref, { [`reacts.${Date.now()}`]: emoji });
+        };
+
+        // ৩. কমেন্ট পোস্ট করা
+        window.handleCmt = async (e, id, input) => {
+            if(e.key === 'Enter' && input.value !== "") {
+                const user = localStorage.getItem('userName') || "অতিথি ইউজার";
+                const ref = doc(db, "posts", id);
+                await updateDoc(ref, {
+                    comments: arrayUnion({ user: user, text: input.value, time: new Date() })
+                });
+                input.value = "";
+            }
+        };
+
+        window.toggleComments = (id) => {
+            document.getElementById(`cmt-area-${id}`).classList.toggle('active');
+        };
+
+        window.shareMe = async (id, author) => {
+            const shareUrl = `${window.location.origin}${window.location.pathname}?post=${id}`;
+            if (navigator.share) {
+                await navigator.share({ title: 'IDM Blog', text: author + '-এর পোস্ট', url: shareUrl });
+            } else {
+                navigator.clipboard.writeText(shareUrl);
+                document.getElementById('share-toast').style.display = 'block';
+                setTimeout(() => document.getElementById('share-toast').style.display = 'none', 2000);
+            }
+        };
+
+        window.onload = loadPosts;
+    </script>
+</body>
+</html>
