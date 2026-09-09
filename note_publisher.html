@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>নোটিশ কন্ট্রোল প্যানেল | IDM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Hind Siliguri', sans-serif; background: #f1f5f9; padding: 40px 20px; text-align: center; }
+        .admin-box { max-width: 600px; margin: auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 6px solid #006a4e; }
+        .form-group { text-align: left; margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; }
+        input, textarea, select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; outline: none; font-family: inherit; }
+        .btn-post { width: 100%; padding: 15px; background: #006a4e; color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="admin-box">
+    <h2>নতুন নোটিশ পাবলিশ করুন</h2>
+    <div class="form-group">
+        <label>নোটিশের শিরোনাম</label>
+        <input type="text" id="nTitle" placeholder="উদা: দাখিল পরীক্ষার সময়সূচী">
+    </div>
+    <div class="form-group">
+        <label>নোটিশের ধরণ</label>
+        <select id="nType">
+            <option value="General">সাধারণ (General)</option>
+            <option value="Exam">পরীক্ষা (Exam)</option>
+            <option value="Admission">ভর্তি (Admission)</option>
+            <option value="Holiday">ছুটি (Holiday)</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>বিস্তারিত নোটিশ</label>
+        <textarea id="nDetails" rows="6" placeholder="এখানে বিস্তারিত তথ্য লিখুন..."></textarea>
+    </div>
+    <button class="btn-post" onclick="publishNotice()">সার্ভারে আপলোড করুন</button>
+</div>
+
+<script type="module">
+    // ১. Firebase লাইব্রেরি ইমপোর্ট করা
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    // ২. তোমার অরিজিনাল ফায়ারবেস কনফিগ (স্ক্রিনশট থেকে নিখুঁতভাবে নেওয়া)
+    const firebaseConfig = {
+        apiKey: "AIzaSyCTxt82Z4KRW425eYAU-WkVJbmUu1Vcy58",
+        authDomain: "ispahani-madrasah-portal.firebaseapp.com",
+        projectId: "ispahani-madrasah-portal", // এটি আগে মিসিং ছিল
+        storageBucket: "ispahani-madrasah-portal.firebasestorage.app",
+        messagingSenderId: "501627545319",
+        appId: "1:501627545319:web:42409b2d8f614dfc3c6442"
+    };
+
+    // ৩. কানেকশন শুরু
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // ৪. নোটিশ পাবলিশ করার ফাংশন (window অবজেক্টে রাখা হয়েছে যাতে বাটন কাজ করে)
+    window.publishNotice = async function() {
+        const title = document.getElementById('nTitle').value;
+        const details = document.getElementById('nDetails').value;
+        const type = document.getElementById('nType').value;
+
+        if(!title || !details) {
+            alert("দয়া করে শিরোনাম এবং বিস্তারিত তথ্য দিন!");
+            return;
+        }
+
+        try {
+            // ৫. ডাটাবেজে নোটিশ পাঠানো
+            await addDoc(collection(db, "notices"), {
+                title: title,
+                details: details,
+                type: type,
+                time: serverTimestamp()
+            });
+            alert("সাফল্য! নোটিশটি অনলাইনে পাবলিশ হয়েছে। ✅");
+            
+            // ইনপুট বক্স পরিষ্কার করা
+            document.getElementById('nTitle').value = "";
+            document.getElementById('nDetails').value = "";
+        } catch (e) {
+            console.error("Error: ", e);
+            alert("দুঃখিত! ডাটা পাঠাতে সমস্যা হয়েছে। এরর: " + e.message);
+        }
+    }
+</script>
+</body>
+</html>

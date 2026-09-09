@@ -2,10 +2,12 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- Favicon (Browser Tab Logo) -->
-<link rel="icon" type="image/png" href="favicon.png">
-<link rel="apple-touch-icon" href="favicon.png">
-
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
 
 <script>
   if ('serviceWorker' in navigator) {
@@ -13,9 +15,9 @@
   }
 </script>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Primary Meta Tags -->
+<!-- Primary Meta Tags -->
 <title>ইস্পাহানি দাখিল মাদ্রাসা | অফিশিয়াল শিক্ষা পোর্টাল</title>
 <meta name="title" content="ইস্পাহানি দাখিল মাদ্রাসা | অফিশিয়াল শিক্ষা পোর্টাল">
 <meta name="description" content="ইস্পাহানি শিল্পগোষ্ঠী পরিচালিত ও এম্পিওভুক্ত একটি আদর্শ দ্বীনি শিক্ষা প্রতিষ্ঠান। এখানে দাখিল পরীক্ষার ফলাফল, ভর্তি তথ্য এবং একাডেমিক রুটিন পাওয়া যায়।">
@@ -193,10 +195,10 @@
 }
 .msg-img { width: 150px; object-fit: cover; border-radius: 50%; border: 4px solid #eee; margin-bottom: 15px;box-shadow: 1px 4px 10px #1111114d; }
 .msg-title { background: var(--p-green); color: white; padding: 5px 15px; border-radius: 50px; font-size: 13px; display: inline-block; margin-bottom: 10px; }
-
+.article-card{padding: 20px;}
 
 /* Features Section */
-.features-section { padding: 60px 8%; background: var(--white); text-align: center; }
+.features-section { padding: 60px 8%; text-align: center; }
 .features-grid { 
     display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
     gap: 25px; margin-top: 40px; 
@@ -212,97 +214,10 @@
     .info-section, .utility-section { grid-template-columns: 1fr; }
     .hero-section { height: 400px; }
 }
-.article-hub{
-    margin: 20px;
-}
-.article-card { padding: 20px; margin-top: 60px; line-height: 1.8; margin: 25px auto; max-width: 800px;background-color: #fff; border-radius: 20px; box-shadow: 1px 4px 10px #1111110c;}
+.article-card {margin-top: 60px; line-height: 1.8; margin: 25px auto; max-width: 800px;}
 .article-card h2 { color: var(--p-green); margin-bottom: 20px; font-size: 26px; }
 
 
-
-/* --- CINEMATIC AI BOT ICON STYLE --- */
-.ai-launcher {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 65px;
-    height: 65px;
-    z-index: 9999;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.ai-icon-inner {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #000 0%, #1a1a2e 100%);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid rgba(0, 210, 255, 0.5);
-    color: #00d2ff; /* Initial AI Blue */
-    font-size: 28px;
-    box-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
-    z-index: 2;
-    animation: aiColorShift 5s infinite linear; /* কালার চেঞ্জ এনিমেশন */
-}
-
-/* আইকনকে দামী লুক দেওয়ার জন্য RGB কালার শিফট */
-@keyframes aiColorShift {
-    0% { color: #00d2ff; border-color: #00d2ff; box-shadow: 0 0 20px rgba(0, 210, 255, 0.6); }
-    33% { color: #39ff14; border-color: #39ff14; box-shadow: 0 0 20px rgba(57, 255, 20, 0.6); }
-    66% { color: #7000ff; border-color: #7000ff; box-shadow: 0 0 20px rgba(112, 0, 255, 0.6); }
-    100% { color: #00d2ff; border-color: #00d2ff; box-shadow: 0 0 20px rgba(0, 210, 255, 0.6); }
-}
-
-/* রোবট আইকনের থরথর করে কাঁপার এনিমেশন (Neural Pulse) */
-.ai-launcher i {
-    animation: neuralPulse 2s infinite ease-in-out;
-}
-@keyframes neuralPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.15); opacity: 0.8; }
-}
-
-/* আইকনের চারপাশে ছড়ানো নিয়ন রিং (Cinematic Aura) */
-.ai-pulse-ring {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: inherit;
-    border: 2px solid var(--ai-blue);
-    animation: ringGlow 2s infinite;
-    z-index: 1;
-}
-
-@keyframes ringGlow {
-    0% { transform: scale(1); opacity: 0.8; box-shadow: 0 0 10px rgba(0, 210, 255, 0.5); }
-    100% { transform: scale(1.8); opacity: 0; box-shadow: 0 0 40px rgba(0, 210, 255, 0); }
-}
-
-/* হোভার ইফেক্ট */
-.ai-launcher:hover {
-    transform: scale(1.2) rotate(15deg);
-}
-
-/* মোবাইল রেসপন্সিভ - মোবাইলে একটু ছোট হবে */
-@media (max-width: 600px) {
-    .ai-launcher {
-        bottom: 20px;
-        right: 20px;
-        width: 55px;
-        height: 55px;
-    }
-    .ai-icon-inner { font-size: 24px; }
-}
-
-
-        /* Footer */
         footer { background: #111; color: white; padding: 80px 8% 20px; }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
         .social-icons { display: flex; gap: 20px; margin-top: 20px; font-size: 25px; }
@@ -310,7 +225,6 @@
 
         .footer-bottom { border-top: 1px solid #333; margin-top: 50px; padding-top: 20px; text-align: center; }
 
-        /* Responsive */
         @media (max-width: 992px) {
             .result-container, .footer-grid, .stats { grid-template-columns: 1fr; }
             .form-grid { grid-template-columns: 1fr; }
@@ -324,7 +238,6 @@
 
 
 
-        /* --- CINEMATIC AI BOT ICON STYLE --- */
 .ai-launcher {
     position: fixed;
     bottom: 30px;
@@ -352,10 +265,9 @@
     font-size: 28px;
     box-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
     z-index: 2;
-    animation: aiColorShift 5s infinite linear; /* কালার চেঞ্জ এনিমেশন */
+    animation: aiColorShift 5s infinite linear; 
 }
 
-/* আইকনকে দামী লুক দেওয়ার জন্য RGB কালার শিফট */
 @keyframes aiColorShift {
     0% { color: #00d2ff; border-color: #00d2ff; box-shadow: 0 0 20px rgba(0, 210, 255, 0.6); }
     33% { color: #39ff14; border-color: #39ff14; box-shadow: 0 0 20px rgba(57, 255, 20, 0.6); }
@@ -363,7 +275,6 @@
     100% { color: #00d2ff; border-color: #00d2ff; box-shadow: 0 0 20px rgba(0, 210, 255, 0.6); }
 }
 
-/* রোবট আইকনের থরথর করে কাঁপার এনিমেশন (Neural Pulse) */
 .ai-launcher i {
     animation: neuralPulse 2s infinite ease-in-out;
 }
@@ -372,7 +283,6 @@
     50% { transform: scale(1.15); opacity: 0.8; }
 }
 
-/* আইকনের চারপাশে ছড়ানো নিয়ন রিং (Cinematic Aura) */
 .ai-pulse-ring {
     position: absolute;
     width: 100%;
@@ -389,12 +299,10 @@
     100% { transform: scale(1.8); opacity: 0; box-shadow: 0 0 40px rgba(0, 210, 255, 0); }
 }
 
-/* হোভার ইফেক্ট */
 .ai-launcher:hover {
     transform: scale(1.2) rotate(15deg);
 }
 
-/* মোবাইল রেসপন্সিভ - মোবাইলে একটু ছোট হবে */
 @media (max-width: 600px) {
     .ai-launcher {
         bottom: 20px;
@@ -404,26 +312,6 @@
     }
     .ai-icon-inner { font-size: 24px; }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* --- SMART PWA BANNER STYLE --- */
 .pwa-banner {
     position: fixed;
     bottom: 20px;
@@ -456,14 +344,15 @@
 .btn-pwa:hover { background: var(--secondary); transform: scale(1.05); }
 .close-pwa { color: #ccc; cursor: pointer; font-size: 20px; }
 
-/* শুধুমাত্র মোবাইলে দেখাবে */
 @media (min-width: 769px) {
     .pwa-banner { display: none !important; }
 }
+
+
     </style>
 </head>
 <body>
-
+    
     <!-- Navigation -->
 <nav class="premium-nav">
     <div class="nav-wrapper">
@@ -659,6 +548,7 @@
                 </div>
             </div>
     </section>
+    
     <section class="article-hub">
         <div class="article-card">
             <h2>মাদ্রাসার ইতিহাস ও আধুনিকায়নে ইস্পাহানি গ্রুপের ভূমিকা</h2>
@@ -734,63 +624,12 @@
             </div>
         </div>
         <div class="footer-bottom" style="color: #888; padding: 25px;">
-            <p>&copy; 2026 Ispahani Dakhil Madrasah<br>Designed & Developed by <a href="https://www.facebook.com/profile.php?id=61564242167643"style="color: #0fac9f; font-weight: 600; text-decoration: none;">Kafi Ahad</a></p>
+            <p>&copy; 2026 Ispahani Dakhil Madrasah<br>Designed & Developed by <a href="https://www.facebook.com/ekafiabdullah"style="color: #999; font-weight: 600; text-decoration: none;">Kafi Abdullah</a></p>
         </div>
     </footer>
 
-
-
-
-
-
-
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-    // তোমার কনফিগ কোড...
-
-    
-    const firebaseConfig = {
-        apiKey: "AIzaSyAT-lcLWb8A9iWJZI77-TJifcjabjSBahU",
-        authDomain: "ispahani-madrasah-portal.firebaseapp.com",
-        projectId: "ispahani-madrasah-portal",
-        storageBucket: "ispahani-madrasah-portal.firebasestorage.app",
-        messagingSenderId: "501627545319",
-        appId: "1:501627545319:web:42409b2d8f614dfc3c6442"
-    };
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    onAuthStateChanged(auth, (user) => {
-        const authUI = document.getElementById('auth-ui');
-        if (user) {
-            // ইউজার থাকলে তার ডাটা ব্রাউজারেও সেভ রাখছি যাতে দ্রুত লোড হয়
-            localStorage.setItem('isLoggedIn', 'true');
-            authUI.innerHTML = `
-                <a href="profile.html" style="text-decoration:none; display:flex; align-items:center; gap:8px;">
-                    <img src="${user.photoURL}" style="width:35px; height:35px; border-radius:50%; border:2px solid #0fac9f;">
-                    <span style="color:#333; font-weight:bold;">${user.displayName.split(' ')[0]}</span>
-                </a>`;
-        } else {
-            localStorage.removeItem('isLoggedIn');
-            authUI.innerHTML = `<a href="login.html" class="btn-login-round" style="background:#006a4e; color:white; padding:8px 20px; border-radius:50px; text-decoration:none;">লগইন</a>`;
-        }
-    });
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-    <script>
+    <!--Menu logic-->
+        <script>
        function openSidebar() {
     document.getElementById('mobileSidebar').classList.add('active');
     document.getElementById('sideOverlay').classList.add('active');
@@ -804,63 +643,8 @@ function closeSidebar() {
 function toggleMSub(id, element) {
     const sub = document.getElementById(id);
     element.classList.toggle('active');
-    sub.classList.toggle('open');
+    sub.classList.toggle('open'); 
 }
-
-
-
-
-
-
-
-
-
-
-
-let deferredPrompt;
-const pwaBanner = document.getElementById('pwa-install-banner');
-const installBtn = document.getElementById('pwa-install-btn');
-
-// ১. ব্রাউজারের ইন্সটল প্রম্পটটি ধরা
-window.addEventListener('beforeinstallprompt', (e) => {
-    // ডিফল্ট বার বন্ধ করা
-    e.preventDefault();
-    // ইভেন্টটি সেভ করে রাখা
-    deferredPrompt = e;
-    // আমাদের কাস্টম ব্যানারটি দেখানো (যদি আগে ক্লোজ না করে থাকে)
-    if (!localStorage.getItem('pwaDismissed')) {
-        pwaBanner.style.display = 'flex';
-    }
-});
-
-// ২. বাটনে ক্লিক করলে ইন্সটল শুরু হওয়া
-installBtn.addEventListener('click', async () => {
-    if (deferredPrompt) {
-        // প্রম্পট দেখানো
-        deferredPrompt.prompt();
-        // ইউজার কী ক্লিক করলো তা দেখা
-        const { outcome } = await deferredPrompt.userChoice;
-        if (outcome === 'accepted') {
-            console.log('User installed the PWA');
-        }
-        deferredPrompt = null;
-        pwaBanner.style.display = 'none';
-    }
-});
-
-// ৩. ব্যানারটি বন্ধ করার লজিক
-window.dismissPWA = function() {
-    pwaBanner.style.display = 'none';
-    // এক সপ্তাহের জন্য এটি আর দেখাবে না
-    localStorage.setItem('pwaDismissed', 'true');
-}
-
-// সাইটম্যাপ বা সাকসেসফুল ইন্সটল হলে ব্যানার হাইড করা
-window.addEventListener('appinstalled', () => {
-    pwaBanner.style.display = 'none';
-    deferredPrompt = null;
-});
-
     </script>
 
 <!-- Floating AI Bot Launcher -->
@@ -868,27 +652,267 @@ window.addEventListener('appinstalled', () => {
     <div class="ai-icon-inner">
         <i class="fas fa-robot"></i>
     </div>
-    <!-- আইকনের চারপাশে নিয়ন রিং -->
+    <!-- Ring neoon efect ai icon -->
     <div class="ai-pulse-ring"></div>
 </a>
-
-
-
-
-
-<!-- Smart PWA Install Banner -->
-<div id="pwa-install-banner" class="pwa-banner animate__animated animate__slideInUp" style="display: none;">
-    <div class="pwa-content">
-        <img src="favicon.png" alt="IDM Logo" class="pwa-logo">
-        <div class="pwa-text">
-            <b>ইস্পাহানি মাদ্রাসা অ্যাপ</b>
-            <span>অফলাইনেও ব্যবহার করতে পারবেন</span>
-        </div>
-    </div>
-    <div class="pwa-actions">
-        <button id="pwa-install-btn" class="btn-pwa">ইন্সটল করুন</button>
-        <i class="fas fa-times close-pwa" onclick="dismissPWA()"></i>
-    </div>
 </div>
+
+<!-- ================= 2. AD CONTAINERS (HTML) ================= -->
+
+<!-- Slide-up Ad Container -->
+<div id="dynamic-slide-ad" class="slide-ad-container">
+  <div class="ad-card">
+    <button class="ad-close-btn" onclick="closeAllAds()">&times;</button>
+    <div class="ad-image-box">
+      <img id="slide-ad-img" src="" alt="Book Cover">
+    </div>
+    <div class="ad-content">
+      <span id="slide-ad-tag" class="ad-tag">স্পেশাল অফার</span>
+      <h4 id="slide-ad-title">বইয়ের নাম</h4>
+      <p id="slide-ad-desc">বইয়ের বিবরণ...</p>
+      <a id="slide-ad-link" href="#" target="_blank" class="ad-btn">Order Now</a>
+    </div>
+  </div>
+</div>
+
+<!-- Fullscreen Modal Pop-up Ad Container (With Blur) -->
+<div id="dynamic-popup-ad" class="popup-overlay">
+  <div class="popup-card">
+    <button class="ad-close-btn" onclick="closeAllAds()">&times;</button>
+    <div class="ad-image-box popup-img-box">
+      <img id="popup-ad-img" src="" alt="Book Cover">
+    </div>
+    <div class="ad-content">
+      <span id="popup-ad-tag" class="ad-tag">জনপ্রিয় বই</span>
+      <h3 id="popup-ad-title">বইয়ের নাম</h3>
+      <p id="popup-ad-desc">বইয়ের বিবরণ...</p>
+      <a id="popup-ad-link" href="#" target="_blank" class="ad-btn">Order Now</a>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 3. STYLES (CSS) ================= -->
+<style>
+  /* Common Close Button */
+  .ad-close-btn {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    border: none;
+    font-size: 20px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 100;
+    font-family: 'Hind Siliguri', sans-serif;
+  }
+
+  /* --- Slide-up Ad Styling --- */
+  .slide-ad-container {
+    position: fixed;
+    bottom: -100%;
+    right: 20px;
+    z-index: 999999;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-family: 'Hind Siliguri', sans-serif;
+  }
+  .slide-ad-container.show {
+    bottom: 20px;
+  }
+  .ad-card {
+    position: relative;
+    width: 300px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+  }
+
+  /* --- Pop-up Overlay (Background Blur) Styling --- */
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    font-family: 'Hind Siliguri', sans-serif;
+  }
+  .popup-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .popup-card {
+    position: relative;
+    width: 90%;
+    max-width: 360px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    overflow: hidden;
+    transform: scale(0.8);
+    transition: transform 0.4s ease;
+  }
+  .popup-overlay.show .popup-card {
+    transform: scale(1);
+  }
+
+  /* --- Image Box & Content Layout --- */
+  .ad-image-box {
+    width: 100%;
+    height: 200px;
+    background: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ad-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* ছবি কাটা পড়বে না */
+    padding: 5px;
+  }
+  .ad-content {
+    padding: 15px;
+  }
+  .ad-tag {
+    background: #ffe4e6;
+    color: #e11d48;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+  .ad-content h4, .ad-content h3 {
+    margin: 8px 0 5px 0;
+    color: #0f172a;
+  }
+  .ad-content p {
+    margin: 0 0 12px 0;
+    font-size: 13px;
+    color: #475569;
+    line-height: 1.4;
+  }
+  .ad-btn {
+    display: block;
+    text-align: center;
+    background: linear-gradient(135deg, #e11d48, #be123c);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);
+  }
+</style>
+
+<!-- ================= 4. SCRIPT (JAVASCRIPT) ================= -->
+<script>
+  // ১. বই ও অ্যাফিলিয়েট লিংকের ডাটাবেজ
+  const booksList = [
+    {
+      tag: "স্পেশাল অফার",
+      title: "প্যারাডক্সিক্যাল সাজিদ",
+      desc: "আরিফ আজাদের জনপ্রিয় বইটির ওপর বিশেষ ছাড় চলছে। এখনই অর্ডার করুন।",
+      image: "ad_book(ps).webp",
+      link: "https://rkmri.co/Se5RNyEeIM0S"
+    },
+    {
+      tag: "জনপ্রিয় বই",
+      title: "বেলা ফুরোবার আগে",
+      desc: "জীবনকে নতুনভাবে সাজানোর সেরা বই। সংগ্রহ করতে নিচের বাটনে চাপুন।",
+      image: "https://img.drz.lazcdn.com/static/bd/p/1831f90d142be1534dce16c3b79e9955.jpg_720x720q80.jpg_.webp",
+      link: "https://rkmri.co/eAmN5m0520Ae/"
+    },
+    {
+      tag: "বেস্ট সেলার",
+      title: "একনজরে কুরআন",
+      desc: "আকর্ষণীয় চাবির রিং ফ্রি! এক নজরে কুরআন নিলেই চাবির রিং পাচ্ছেন KEYRING কোড ব্যবহারে!",
+      image: "https://wafilife-media-v2.wafilife.com/uploads/2025/02/%E0%A6%8F%E0%A6%95-%E0%A6%A8%E0%A6%9C%E0%A6%B0%E0%A7%87-%E0%A6%95%E0%A6%AD%E0%A6%BE%E0%A6%B0-250x361.jpg",
+      link: "https://rkmri.co/lMpNeNoM2yyA"
+    },
+    {
+      tag: "২০% ছাড়ে",
+      title: "হাউ টু টক টু এনিওয়ান",
+      desc: "সফলতার ৯২টি ট্রিকস (ইসলামে কথা বলা ও শোনার আদব কায়দা বইটি ফ্রি)",
+      image: "https://rokbucket.rokomari.io/ProductNew20190903/260X372/How_to_talk_to_Anyone-Leil_Lowndes-092f0-217607.jpg",
+      link: "https://rkmri.co/M5T303MAeIpe/"
+    },
+    {
+      tag: "18% OFF",
+      title: "হায়াতের দিন ফুরোলে",
+      desc: "স্টক আউট হওয়ার আগেই অর্ডার করুন",
+      image: "https://rokbucket.rokomari.io/ProductNew20190903/260X372/Hayater_Din_Furole-Arif_Azad-71002-372019.jpg",
+      link: "https://rkmri.co/3INIEeySMTel/"
+    },
+  ];
+
+  // সব ধরনের অ্যাড বন্ধ করার ফাংশন
+  function closeAllAds() {
+    document.getElementById('dynamic-slide-ad').classList.remove('show');
+    document.getElementById('dynamic-popup-ad').classList.remove('show');
+  }
+
+  // র্যান্ডম অ্যাড প্রসেসর
+  function showRandomAd() {
+    closeAllAds();
+
+    // র্যান্ডম বই নির্বাচন
+    const randomIndex = Math.floor(Math.random() * booksList.length);
+    const selectedBook = booksList[randomIndex];
+
+    // র্যান্ডম অ্যাড টাইপ নির্বাচন (Slide-up নাকি Popup?)
+    const adType = Math.random() < 0.5 ? 'slide' : 'popup';
+
+    setTimeout(() => {
+      if (adType === 'slide') {
+        document.getElementById('slide-ad-tag').innerText = selectedBook.tag || "স্পেশাল অফার";
+        document.getElementById('slide-ad-img').src = selectedBook.image;
+        document.getElementById('slide-ad-title').innerText = selectedBook.title;
+        document.getElementById('slide-ad-desc').innerText = selectedBook.desc;
+        document.getElementById('slide-ad-link').href = selectedBook.link;
+        
+        document.getElementById('dynamic-slide-ad').classList.add('show');
+      } else {
+        document.getElementById('popup-ad-tag').innerText = selectedBook.tag || "জনপ্রিয় বই";
+        document.getElementById('popup-ad-img').src = selectedBook.image;
+        document.getElementById('popup-ad-title').innerText = selectedBook.title;
+        document.getElementById('popup-ad-desc').innerText = selectedBook.desc;
+        document.getElementById('popup-ad-link').href = selectedBook.link;
+        
+        document.getElementById('dynamic-popup-ad').classList.add('show');
+      }
+    }, 300);
+  }
+
+  // টাইমার সেটিং (পেজ ওপেন হলে ২ সেকেন্ড পর এবং প্রতি ১ মিনিট পর পর)
+  window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      showRandomAd();
+    }, 2000);
+
+    setInterval(() => {
+      showRandomAd();
+    }, 60000); 
+  });
+</script>
+
+
+
 </body>
 </html>
