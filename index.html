@@ -732,14 +732,14 @@ function toggleMSub(id, element) {
     border: 1px solid #e2e8f0;
   }
 
-  /* --- Pop-up Overlay (Background Blur) Styling --- */
+  /* --- Pop-up Overlay Styling --- */
   .popup-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     z-index: 999999;
@@ -770,54 +770,61 @@ function toggleMSub(id, element) {
     transform: scale(1);
   }
 
-  /* --- Image Box & Content Layout --- */
+  /* --- Image Box & Content Fixes --- */
   .ad-image-box {
     width: 100%;
-    height: 200px;
+    height: 180px;
     background: #f8fafc;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   .ad-image-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* ছবি কাটা পড়বে না */
-    padding: 5px;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    padding: 10px;
   }
+  
+  /* Text and Content Visibility Fix */
   .ad-content {
     padding: 15px;
+    background: #ffffff !important;
+    display: block !important;
+    text-align: left;
   }
   .ad-tag {
+    display: inline-block;
     background: #ffe4e6;
-    color: #e11d48;
-    font-size: 11px;
+    color: #e11d48 !important;
+    font-size: 12px;
     font-weight: bold;
     padding: 3px 8px;
     border-radius: 4px;
-    text-transform: uppercase;
+    margin-bottom: 5px;
   }
   .ad-content h4, .ad-content h3 {
-    margin: 8px 0 5px 0;
-    color: #0f172a;
+    margin: 6px 0;
+    color: #0f172a !important;
+    font-size: 16px;
+    font-weight: bold;
   }
   .ad-content p {
     margin: 0 0 12px 0;
     font-size: 13px;
-    color: #475569;
+    color: #334155 !important;
     line-height: 1.4;
   }
   .ad-btn {
     display: block;
     text-align: center;
-    background: linear-gradient(135deg, #e11d48, #be123c);
-    color: #ffffff;
+    background: #e11d48;
+    color: #ffffff !important;
     text-decoration: none;
     padding: 10px;
     border-radius: 8px;
     font-weight: bold;
     font-size: 14px;
-    box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);
   }
 </style>
 
