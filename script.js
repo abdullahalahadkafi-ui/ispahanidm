@@ -36,20 +36,24 @@ function updateAuthUI(user) {
 }
 
 
-// ভিজিটর গণনা করার আধুনিক API
 function loadVisitorCount() {
   const countElement = document.getElementById('visitorCount');
   if (!countElement) return;
 
-  // আপনার ওয়েবসাইটের নাম দিয়ে কাউন্ট কল করা
-  fetch('https://api.counterapi.dev/v1/idmbookshop/visits/up')
-    .then(response => response.json())
+  // CounterAPI ব্যবহার করে সংখ্যা গণনা
+  fetch('https://api.counterapi.dev/v1/ispahanidm_site/visits/up')
+    .then(res => {
+      if (!res.ok) throw new Error('Network error');
+      return res.json();
+    })
     .then(data => {
-      // ভিজিটর সংখ্যা বাংলায় সুন্দর করে দেখানো
+      // আসল সংখ্যাটি বাংলায় রূপান্তর করে দেখাবে
       countElement.innerText = data.count.toLocaleString('bn-BD');
     })
-    .catch(() => {
-      countElement.innerText = '১,২০০+'; // ব্যাকআপ ডাটা
+    .catch(err => {
+      console.error('Counter Error:', err);
+      // এরর হলে ১ না দেখিয়ে '১+' দেখাবে
+      countElement.innerText = '১+'; 
     });
 }
 
