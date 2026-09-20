@@ -1,0 +1,12 @@
+.auth-page { min-height: 100vh; display: grid; place-items: center; padding: 40px 18px; background: radial-gradient(circle at 15% 10%, #d8efe3, transparent 34%), linear-gradient(135deg, #f4faf7, #e7f1ec); }
+.auth-card { width: min(440px, 100%); padding: 38px; border: 1px solid #d5e5dc; border-radius: 18px; background: rgba(255, 255, 255, .94); box-shadow: 0 24px 70px rgba(16, 59, 45, .12); }
+.auth-logo { display: block; width: 60px; height: 60px; margin-bottom: 20px; border-radius: 15px; }
+.auth-card h1 { margin: 8px 0; color: #17211f; font-size: clamp(30px, 7vw, 46px); line-height: 1.08; }
+.auth-card > p { color: #687771; }
+.auth-card .portal-field { margin: 25px 0 14px; }
+.auth-google { width: 100%; background: #12382f; }
+.auth-google:disabled { opacity: .65; cursor: wait; }
+.auth-back { display: block; margin-top: 20px; color: #07533f; font-size: 13px; text-align: center; }
+.form-status { min-height: 22px; margin: 12px 0 0; color: #07533f; font-size: 13px; }
+.auth-avatar { width: 25px; height: 25px; border-radius: 50%; vertical-align: middle; object-fit: cover; }
+@media (max-width: 520px) { .auth-card { padding: 28px 22px; } }

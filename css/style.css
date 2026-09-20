@@ -1,0 +1,6 @@
+/* Shared stylesheet entry point. Legacy styles remain available during migration. */
+@import url("../style.css");
+
+footer a { transition: color .2s ease, text-decoration-color .2s ease; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 3px; }
+footer a:hover { color: #f4c542 !important; text-decoration-color: currentColor; }
+.footer-bottom a { font-weight: 400 !important; }
