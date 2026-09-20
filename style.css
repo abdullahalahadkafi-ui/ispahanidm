@@ -1,4 +1,5 @@
  /* --- PREMIUM BODY LAYOUT CSS --- */
+body .ai-launcher { display: none !important; }
 :root {
     --p-green: #006a4e;
     --s-red: #f42a41;
