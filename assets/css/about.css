@@ -1,0 +1,30 @@
+ :root {
+            --p-green: #006a4e;
+            --s-red: #f42a41;
+            --gold: #b8860b;
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --text: #333333;
+            --hind: 'Hind Siliguri', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-style: normal !important; }
+        body { font-family: var(--hind); background-color: var(--bg); color: var(--text); line-height: 1.8; overflow-x: hidden; }
+
+      /* --- HERO AREA --- */
+        .about-hero { padding: 160px 8% 80px; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1523050853064-8521a201c833?q=80&w=1500'); background-size: cover; background-position: center; color: #fff; text-align: center; border-radius: 0 0 50px 50px; }
+        .about-hero h1 { font-size: 42px; font-weight: 700; margin-bottom: 10px; }
+
+        /* --- MAIN CONTENT LAYOUT --- */
+        .container { max-width: 1100px; margin: 50px auto; padding: 0 20px; }
+        
+        .info-card { padding: 30px; margin-bottom: 40px; }
+        .info-card h2 { color: var(--p-green); margin-bottom: 20px; font-size: 28px; }
+        
+        .mission-vision { grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px; max-width: 600px; margin: 25px auto; }
+        .mv-box { background: #f0f7f4; padding: 30px; border-radius: 20px; border-bottom: 5px solid var(--p-green); margin: 20px;}
+        .mv-box i { font-size: 35px; color: var(--p-green); margin-bottom: 15px; }
+
+
+        .article-card { padding: 30px; margin-top: 60px; line-height: 1.9; }
+        .article-card h2 { color: var(--p-green); margin-bottom: 20px; font-size: 26px; }

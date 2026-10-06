@@ -1,0 +1,191 @@
+.pwa-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 450px;
+    background: #ffffff;
+    padding: 15px 20px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    z-index: 9999;
+    border: 1px solid var(--border-color);
+}
+
+.pwa-content { display: flex; align-items: center; gap: 12px; }
+.pwa-logo { width: 45px; height: 45px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.pwa-text b { display: block; font-size: 15px; color: var(--p-green); }
+.pwa-text span { font-size: 11px; color: #777; }
+
+.pwa-actions { display: flex; align-items: center; gap: 15px; }
+.btn-pwa { 
+    background: var(--p-green); color: white; border: none; padding: 10px 20px; 
+    border-radius: 10px; font-weight: bold; cursor: pointer; font-family: 'Hind Siliguri', sans-serif;
+    font-size: 13px; transition: 0.3s;
+}
+.btn-pwa:hover { background: var(--secondary); transform: scale(1.05); }
+.close-pwa { color: #ccc; cursor: pointer; font-size: 20px; }
+
+@media (min-width: 769px) {
+    .pwa-banner { display: none !important; }
+}
+
+/* ================= Slider Styling ================= */
+
+.slider-main-section {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 100px auto 0 auto;
+  box-sizing: border-box;
+  padding: 0 16px;
+}
+
+.slider-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  touch-action: pan-y;
+}
+
+.slider-wrapper {
+  display: flex;
+  transition: transform 0.4s ease-out;
+  width: 100%;
+  border-radius: 12px;
+}
+
+.slide {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.slide a {
+  display: block;
+  width: 100%;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  user-select: none;
+}
+
+.mobile-banner {
+  display: block !important;
+}
+
+.desktop-banner {
+  display: none !important;
+}
+
+.slider-btn {
+  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #ffffff;
+  color: #333;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+.slider-btn:hover {
+  background: #f5f5f5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ডটস সম্পূর্ণ হাইড */
+.slider-dots {
+  display: none !important;
+}
+
+
+@media (min-width: 768px) {
+  .slider-main-section {
+    padding: 0;
+  }
+
+  .mobile-banner {
+    display: none !important;
+  }
+  
+  .desktop-banner {
+    display: block !important;
+  }
+
+  .slider-btn {
+    display: flex;
+  }
+
+  .prev-btn {
+    left: -20px;
+  }
+
+  .next-btn {
+    right: -20px;
+  }
+}
+
+/* ================= Custom Glass Shine Effect ================= */
+
+.slide a {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+.slide a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.45) 100%
+  );
+  transform: skewX(-15deg);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.slide a:hover::before {
+  animation: customShineLeftToRight 1.5s ease-in-out;
+}
+
+@keyframes customShineLeftToRight {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 150%;
+  }
+}

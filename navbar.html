@@ -1,0 +1,122 @@
+<nav class="premium-nav">
+    <div class="nav-wrapper">
+        <button class="mobile-toggle" type="button" onclick="openSidebar()" aria-label="মেনু খুলুন">
+            <i class="fas fa-bars"></i>
+        </button>
+        <a href="index.html" class="brand-logo">
+            <img src="favicon.png" alt="ইস্পাহানি দাখিল মাদ্রাসা">
+            <div class="logo-txt">
+                <h1>ইস্পাহানি দাখিল মাদ্রাসা</h1>
+            </div>
+        </a>
+
+        <ul class="nav-menu">
+            <li><a href="index.html">শুরু</a></li>
+            <li class="has-dropdown">
+                <a href="#">প্রতিষ্ঠানের তথ্য <i class="fas fa-angle-down"></i></a>
+                <ul class="submenu">
+                    <li><a href="history.html">মাদ্রাসার ইতিহাস</a></li>
+                    <li><a href="about.html">আমাদের সম্পর্কে</a></li>
+                    <li><a href="#">প্রতিষ্ঠানের স্বীকৃতি</a></li>
+                    <li><a href="#">ম্যানেজিং কমিটি</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">প্রশাসন <i class="fas fa-angle-down"></i></a>
+                <ul class="submenu">
+                    <li><a href="https://bn.wikipedia.org/wiki/%E0%A6%87%E0%A6%B8%E0%A7%8D%E0%A6%AA%E0%A6%BE%E0%A6%B9%E0%A6%BE%E0%A6%A8%E0%A6%BF_%E0%A6%AA%E0%A6%B0%E0%A6%BF%E0%A6%AC%E0%A6%BE%E0%A6%B0">ইস্পাহানী পরিবার</a></li>
+                    <li><a href="supar-speech.html">সুপারিনটেনডেন্ট মহোদয়ের বাণী</a></li>
+                    <li><a href="teachers-info.html">শিক্ষকমন্ডলীর তথ্য</a></li>
+                    <li><a href="workers-info.html">কর্মচারীদের তথ্য</a></li>
+                    <li><a href="privacy.html">প্রাইভেসি পলিসি</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">একাডেমিক <i class="fas fa-angle-down"></i></a>
+                <ul class="submenu">
+                    <li><a href="activities.html">কার্যক্রম</a></li>
+                    <li><a href="notice-board.html">নোটিশ বোর্ড</a></li>
+                    <li><a href="class-routine.html">ক্লাস রুটিন</a></li>
+                    <li><a href="gallery.html">গ্যালারি</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">ফলাফল <i class="fas fa-angle-down"></i></a>
+                <ul class="submenu">
+                    <li><a href="get-result.html">একাডেমিক ফলাফল</a></li>
+                    <li><a href="http://www.educationboardresults.gov.bd/">বোর্ড ফলাফল</a></li>
+                </ul>
+            </li>
+            <li><a href="blog.html">ব্লগ</a></li>
+            <li><a href="contact.html">যোগাযোগ</a></li>
+            <li class="nav-auth-item">
+                <a href="signin.html" class="btn-login-round">Sign In</a>
+            </li>
+        </ul>
+        <div class="mobile-actions">
+            <a href="signin.html" class="btn-login-round mobile-login">Sign In</a>
+        </div>
+    </div>
+</nav>
+
+<div id="mobileSidebar" class="sidebar-menu">
+    <div class="sidebar-header">
+        <a href="index.html" class="sidebar-brand">
+            <img src="favicon.png" alt="ইস্পাহানি দাখিল মাদ্রাসা">
+            <span>ইস্পাহানি দাখিল মাদ্রাসা</span>
+        </a>
+        <button type="button" class="sidebar-close" onclick="closeSidebar()" aria-label="মেনু বন্ধ করুন">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <ul class="sidebar-content">
+        <li><a href="index.html">হোম</a></li>
+        <li class="m-has-dropdown">
+            <button class="m-nav-item" type="button" onclick="toggleMSub('m1', this)">
+                <span>প্রতিষ্ঠানের তথ্য</span><i class="fas fa-chevron-down"></i>
+            </button>
+            <ul id="m1" class="m-submenu">
+                <li><a href="history.html">মাদ্রাসার ইতিহাস</a></li>
+                <li><a href="about.html">আমাদের সম্পর্কে</a></li>
+                <li><a href="#">প্রতিষ্ঠানের স্বীকৃতি</a></li>
+                <li><a href="#">ম্যানেজিং কমিটি</a></li>
+            </ul>
+        </li>
+        <li class="m-has-dropdown">
+            <button class="m-nav-item" type="button" onclick="toggleMSub('m2', this)">
+                <span>প্রশাসন</span><i class="fas fa-chevron-down"></i>
+            </button>
+            <ul id="m2" class="m-submenu">
+                <li><a href="https://bn.wikipedia.org/wiki/%E0%A6%87%E0%A6%B8%E0%A7%8D%E0%A6%AA%E0%A6%BE%E0%A6%B9%E0%A6%BE%E0%A6%A8%E0%A6%BF_%E0%A6%AA%E0%A6%B0%E0%A6%BF%E0%A6%AC%E0%A6%BE%E0%A6%B0">ইস্পাহানি পরিবার</a></li>
+                <li><a href="supar-speech.html">সুপারিনটেনডেন্ট মহোদয়ের বাণী</a></li>
+                <li><a href="teachers-info.html">শিক্ষকমন্ডলীর তথ্য</a></li>
+                <li><a href="workers-info.html">কর্মচারীদের তথ্য</a></li>
+                <li><a href="privacy.html">প্রাইভেসি পলিসি</a></li>
+            </ul>
+        </li>
+        <li class="m-has-dropdown">
+            <button class="m-nav-item" type="button" onclick="toggleMSub('m4', this)">
+                <span>একাডেমিক</span><i class="fas fa-chevron-down"></i>
+            </button>
+            <ul id="m4" class="m-submenu">
+                <li><a href="activities.html">কার্যক্রম</a></li>
+                <li><a href="notice-board.html">নোটিশ বোর্ড</a></li>
+                <li><a href="class-routine.html">ক্লাস রুটিন</a></li>
+                <li><a href="gallery.html">গ্যালারি</a></li>
+            </ul>
+        </li>
+        <li class="m-has-dropdown">
+            <button class="m-nav-item" type="button" onclick="toggleMSub('m3', this)">
+                <span>ফলাফল</span><i class="fas fa-chevron-down"></i>
+            </button>
+            <ul id="m3" class="m-submenu">
+                <li><a href="get-result.html">একাডেমিক ফলাফল</a></li>
+                <li><a href="http://www.educationboardresults.gov.bd/">বোর্ড ফলাফল</a></li>
+            </ul>
+        </li>
+        <li><a href="blog.html">ব্লগ</a></li>
+        <li><a href="contact.html">যোগাযোগ</a></li>
+    </ul>
+</div>
+<div id="sideOverlay" class="side-overlay" onclick="closeSidebar()"></div>

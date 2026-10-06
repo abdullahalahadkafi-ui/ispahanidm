@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>পরীক্ষার ফলাফল | ইস্পাহানি দাখিল মাদ্রাসা</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!--CSS Files-->
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/ad.css">
+    <link rel="stylesheet" href="assets/css/get-result.css">
+
+    <!--JS Files-->
+    <script src="assets/js/components.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/ad.js"></script>
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+
+    <!-- Navigation -->
+
+
+    <div class="portal-wrapper">
+        <div class="result-card animate__animated animate__fadeIn">
+            <div class="card-header">
+                <img src="https://cdn-icons-png.flaticon.com/512/3222/3222800.png" alt="Icon">
+                <h2>GET RESULT</h2>
+            </div>
+
+            <!-- Form -->
+            <div class="form-group">
+                <label>Student ID</label>
+                <input type="text" id="studentId" placeholder="Enter Student Id">
+            </div>
+
+            <div class="form-group">
+                <label>Select Class</label>
+                <select id="selectClass">
+                    <option value="">Select a class</option>
+                    <option>One</option><option>Two</option><option>Three</option>
+                    <option>Four</option><option>Five</option><option>Six</option>
+                    <option>Seven</option><option>Eight</option><option>Nine</option>
+                    <option>Dakhil</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Select Term</label>
+                <select id="selectTerm">
+                    <option value="">Select a term</option>
+                    <option>1st Term Examination</option>
+                    <option>Half Yearly Examination</option>
+                    <option>Annual Examination</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Session</label>
+                <select id="selectSession">
+                    <option>2026</option>
+                    <option>2025-2026</option>
+                    <option>2024-2025</option>
+                    <option>2023-2024</option>
+                </select>
+            </div>
+
+            <button class="btn-show" onclick="fetchResult()">Show Marks</button>
+        </div>
+
+        <!-- Marksheet Display Area -->
+        <div id="marksheet-area" class="container">
+            <div class="marksheet" id="printable-ms">
+                <div style="text-align: center; border-bottom: 2px solid #000; padding-bottom: 15px; margin-bottom: 20px;">
+                    <h1 style="font-size: 24px;">ইস্পাহানি দাখিল মাদ্রাসা</h1>
+                    <p>একাডেমিক মার্কশিট / ফলাফল বিবরণী</p>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                    <p>নাম: <b id="res-name"></b></p>
+                    <p>আইডি: <b id="res-id"></b></p>
+                </div>
+                <p>শ্রেণী: <b id="res-class"></b> | সেশন: <b id="res-session"></b></p>
+
+                <table class="marks-table">
+                    <thead>
+                        <tr><th>বিষয়</th><th>প্রাপ্ত নম্বর</th><th>গ্রেড</th></tr>
+                    </thead>
+                    <tbody id="marks-body"></tbody>
+                </table>
+                
+                <div style="margin-top: 30px; text-align: center;">
+                    <button class="btn-show" style="max-width: 200px; background: #333;" onclick="window.print()">Print Marksheet</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<div id="footer-placeholder"></div>
+<script src="assets/js/components.js"></script>
+</body>
+</html>

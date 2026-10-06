@@ -1,0 +1,23 @@
+        :root {
+            --p-green: #006a4e;
+            --s-red: #f42a41;
+            --white: #ffffff;
+            --bg-light: #f8fafc;
+            --text-dark: #333333;
+            --border: #eeeeee;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-style: normal !important; }
+        body { font-family: 'Hind Siliguri', sans-serif; background: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+
+        /* --- CONTENT AREA --- */
+        .header-banner { padding: 140px 8% 60px; background: var(--p-green); color: #fff; text-align: center; border-radius: 0 0 50px 50px; }
+        
+        .container { max-width: 600px; margin: 25px auto; padding: 0 20px;}
+        
+        .contact-card {margin-top: 20px; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: 1px solid var(--border); }
+        .info-item { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; }
+        .info-item i { font-size: 20px; color: var(--p-green); background: #f0fdf4; padding: 15px; border-radius: 50%; }
+        
+        input, textarea { width: 100%; padding: 14px; border: 2px solid #f1f5f9; border-radius: 12px; margin-bottom: 15px; outline: none; font-family: inherit; }
+        .btn-send { width: 100%; padding: 16px; background: var(--p-green); color: #fff; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; font-family: 'Hind Siliguri', sans-serif;}
