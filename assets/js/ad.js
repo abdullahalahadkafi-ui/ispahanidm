@@ -56,9 +56,9 @@ function showRandomAd() {
 window.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => {
     showRandomAd();
-  }, 2000);
+  }, 5000);
 
   setInterval(() => {
     showRandomAd();
-  }, 60000); 
+  }, 120000); 
 });
